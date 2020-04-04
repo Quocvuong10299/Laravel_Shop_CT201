@@ -1,0 +1,47 @@
+
+//slider top banner
+.slider{
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  .slick-active{
+    background: $white;
+    position: absolute;
+    top:0;
+    left: 0;
+  }
+  &__content{
+    &--component{
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  .slick-dots{
+    position: absolute;
+    top: 30%;
+    right: -50px;
+    transform: rotate(90deg);
+    width: 200px;
+    height: 30px;
+    li{
+      text-indent: -9999px;
+      position: relative;
+      margin: 0 20px;
+      width: 13px;
+      height: 13px;
+      border-radius: 100%;
+      button{
+        text-indent: -9999px;
+        width: 13px;
+        height: 13px;
+        border: 2px solid $white;
+        border-radius: 100%;
+        z-index: 99999;
+        padding: 0;
+      }
+    }
+  }
+}

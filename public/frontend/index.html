@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <!--fontawesome icon-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <!--cdn css bt-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>CT201</title>
+    <link  href="https://fonts.googleapis.com/css?family=Quicksand:400,400i,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.0/slick-theme.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.0/slick.min.css">
+    <!--add css link-->
+    <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="header container-fluid d-flex w-100">
+            <!--header-->
+            <div class="container position-relative">
+                <div class="header__wrapper d-flex justify-content-between">
+                    <div class="header__logo">
+                        <a href="#">King's</a>
+                    </div>
+                    <div class="header__main-nav d-none d-lg-block">
+                        <nav>
+                            <ul class="d-flex justify-content-between align-items-center my-0 px-0">
+                                <li><a href="#"> Trang Chủ</a></li>
+                                <li class="position-relative header__parent--sub"><a href="products.html"> Thời Trang Nam </a>
+                                    <ul class="header__sub p-3 rounded-bottom">
+                                        <h5 class="mx-0"><strong>Áo</strong></h5>
+                                        <li><a href="#"> Áo Sơ Mi </a></li>
+                                        <li><a href="#"> Áo Thun </a></li>
+                                        <li><a href="#"> Áo Vest </a></li>
+                                        <li><a href="#"> Áo Khoác </a></li>
+                                        <h5 class="mx-0"><strong>Quần</strong></h5>
+                                        <li><a href="#"> Quần Tây</a></li>
+                                        <li><a href="#"> Quần Jean</a></li>
+                                        <li><a href="#"> Quần Short</a></li>
+                                    </ul>
+                                </li>
+                                <li class="position-relative header__parent--sub"><a href="#"> Thời Trang Nữ </a>
+                                    <ul class="header__sub p-3 rounded-bottom">
+                                        <h5 class="mx-0"><strong>Áo</strong></h5>
+                                        <li><a href="#"> Áo Sơ Mi </a></li>
+                                        <li><a href="#"> Áo Thun </a></li>
+                                        <li><a href="#"> Áo Khoác </a></li>
+                                        <h5 class="mx-0"><strong>Quần</strong></h5>
+                                        <li><a href="#"> Quần Kaki</a></li>
+                                        <li><a href="#"> Quần Jean</a></li>
+                                        <h5 class="mx-0"><strong>Đầm</strong></h5>
+                                        <li><a href="#">Đầm Thun</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#"> Giảm Giá </a></li>
+                                <li><a href="contact.html"> Liên Hệ </a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="header__icons d-flex">
+                        <div class="container-fluid d-flex header__pd--cart position-relative">
+                            <div class="header__cart">
+                                <i class="fa fa-shopping-bag position-relative" aria-hidden="true">
+                                       <span class="header--notify">1</span>
+                                </i>
+                                <div class="header__show-cart shadow-sm p-3 mb-5 bg-white rounded">
+                                    <div class="container-fluid d-flex justify-content-between px-0">
+                                        <div class="header--img-cart">
+                                            <img src="./images/img1">
+                                        </div>
+                                        <div class="header__info-cart p-2">
+                                            <h6><strong>Apple Watch Serris 3</strong></h6>
+                                            <p class="header--price_1 my-0">4.000.000 VND</p>
+                                            <p class="header--price_2 my-0">3.000.000 VND</p>
+                                            <strong class="small-text">Số Lượng :</strong><input type="number" min="1" max="100" value="1">
+                                        </div>
+                                        <div class="header__remove-item">
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="container-fluid">
+                                        <button class="btn btn-danger"> Xóa Hết </button>
+                                       <a href="/carts.html"><button class="btn btn-success"> Xem Giỏ Hàng </button></a>
+                                        <strong>Tổng: 3.000.000 VND</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="header__search">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </div>
+                            <div class="header__user">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                   <div class="header__user--show rounded-bottom bg-white">
+                                       <ul class="header__user--component w-100 px-0 my-0">
+                                           <li><a href="#">Đăng Nhập</a></li>
+                                           <li> <a href="#">Đăng Kí</a></li>
+                                       </ul>
+                                   </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--search overlay-->
+                <div class="header__overlay">
+                    <div class="overlay"></div>
+                    <div class="header__search--content">
+                        <form class="form-inline d-flex justify-content-center">
+                            <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder=" Tìm kiếm " aria-label="Search">
+                        </form>
+                    </div>
+                </div>
+                <!--end search overlay-->
+            </div>
+            <!--end header-->
+        </div>
+        <!--start slider-->
+        <div class="slider position-relative w-100">
+            <div class="slider__content w-100 container-fluid">
+                <div class="slider__content--component">
+                    <img src="./images/slider2.jpg">
+                </div>
+                <div class="slider__content--component">
+                    <img src="./images/slider1.jpg">
+                </div>
+            </div>
+        </div>
+        <!--end slider-->
+
+        <!--start main-->
+        <div class="main mt-5 container-fluid">
+            <!--banner gender-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-sm-12 col-md-4 col-xs-12 gender__component">
+                        <div class="gender__component--image my-2">
+                            <img src="./images/image1.jpg"/>
+                            <a href="#">
+                                <div class="overlay-image">
+                                    <div class="gender__component--title btn_1">
+                                        <h5 class="text-dark font_1"> Thời Trang Nam </h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-12 col-md-4 col-xs-12 gender__component">
+                        <div class="gender__component--image my-2">
+                            <img src="./images/image2.jpg"/>
+                            <a href="#">
+                                <div class="overlay-image">
+                                    <div class="gender__component--title btn_1">
+                                        <h5 class="text-dark font_1"> Thời Trang Nữ </h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-12 col-md-4 col-xs-12 gender__component">
+                        <div class="gender__component--image my-2">
+                            <img src="./images/image3.jpg"/>
+                            <a href="#">
+                                <div class="overlay-image">
+                                    <div class="gender__component--title btn_1">
+                                        <h5 class="text-dark font_1"> Giảm Giá </h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--end banner gender-->
+
+            <!-- new products-->
+            <div class="container mt-5">
+                <h4 class="main__title--component"> Sản Phẩm Nổi Bật </h4>
+                <div class="slider__products my-5  w-100 position-relative">
+                    <div class="slider__products--component">
+                       <a class="hover__me" href="#">
+                           <img src="https://product.hstatic.net/1000296747/product/img_5249_copy_grande.png"/>
+                           <div class="info__products--component">
+                               <h5> Áo thun Mt58 </h5>
+                               <div class="show__price d-flex">
+                                   <p class="header--price_1"> 100 .000<small>đ</small></p>
+                                   <p class="header--price_2"> 90.000<small>đ</small></p>
+                               </div>
+                           </div>
+                       </a>
+                    </div>
+                    <div class="slider__products--component">
+                        <a class="hover__me" href="#">
+                            <img src="https://product.hstatic.net/1000296747/product/img_5249_copy_grande.png"/>
+                            <div class="info__products--component">
+                                <h5> Áo thun Mt58 </h5>
+                                <div class="show__price d-flex">
+                                    <p class="header--price_1"> 100 .000<small>đ</small></p>
+                                    <p class="header--price_2"> 90.000<small>đ</small></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slider__products--component">
+                        <a class="hover__me" href="#">
+                            <img src="https://product.hstatic.net/1000296747/product/img_5249_copy_grande.png"/>
+                            <div class="info__products--component">
+                                <h5> Áo thun Mt58 </h5>
+                                <div class="show__price d-flex">
+                                    <p class="header--price_1"> 100 .000<small>đ</small></p>
+                                    <p class="header--price_2"> 90.000<small>đ</small></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slider__products--component">
+                        <a class="hover__me" href="#">
+                            <img src="https://product.hstatic.net/1000296747/product/img_5249_copy_grande.png"/>
+                            <div class="info__products--component">
+                                <h5> Áo thun Mt58 </h5>
+                                <div class="show__price d-flex">
+                                    <p class="header--price_1"> 100 .000<small>đ</small></p>
+                                    <p class="header--price_2"> 90.000<small>đ</small></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slider__products--component">
+                        <a class="hover__me" href="#">
+                            <img src="https://product.hstatic.net/1000296747/product/img_5249_copy_grande.png"/>
+                            <div class="info__products--component">
+                                <h5> Áo thun Mt58 </h5>
+                                <div class="show__price d-flex">
+                                    <p class="header--price_1"> 100 .000<small>đ</small></p>
+                                    <p class="header--price_2"> 90.000<small>đ</small></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slider__products--component">
+                        <a class="hover__me" href="#">
+                            <img src="https://product.hstatic.net/1000296747/product/img_5249_copy_grande.png"/>
+                            <div class="info__products--component">
+                                <h5> Áo thun Mt58 </h5>
+                                <div class="show__price d-flex">
+                                    <p class="header--price_1"> 100 .000<small>đ</small></p>
+                                    <p class="header--price_2"> 90.000<small>đ</small></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--end new products-->
+
+            <!--sale products-->
+            <div class="container mt-5">
+                <h4 class="main__title--component"> Sản Phẩm Giảm Giá </h4>
+                <div class="slider__products my-5">
+                    <div class="slider__products--component position-relative">
+                        <a href="#">
+                            <div class="label-sale">
+                                <p>-20%</p>
+                            </div>
+                            <img src="https://product.hstatic.net/1000296747/product/img_5249_copy_grande.png"/>
+                            <div class="info__products--component">
+                                <h5> Áo thun Mt58 </h5>
+                                <div class="show__price d-flex">
+                                    <p class="header--price_1"> 100 .000<small>đ</small></p>
+                                    <p class="header--price_2"> 90.000<small>đ</small></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slider__products--component position-relative">
+                        <a href="#">
+                            <div class="label-sale">
+                                <p>-20%</p>
+                            </div>
+                            <img src="https://product.hstatic.net/1000296747/product/img_5249_copy_grande.png"/>
+                            <div class="info__products--component">
+                                <h5> Áo thun Mt58 </h5>
+                                <div class="show__price d-flex">
+                                    <p class="header--price_1"> 100 .000<small>đ</small></p>
+                                    <p class="header--price_2"> 90.000<small>đ</small></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slider__products--component position-relative">
+                        <a href="#">
+                            <div class="label-sale">
+                                <p>-20%</p>
+                            </div>
+                            <img src="https://product.hstatic.net/1000296747/product/img_5249_copy_grande.png"/>
+                            <div class="info__products--component">
+                                <h5> Áo thun Mt58 </h5>
+                                <div class="show__price d-flex">
+                                    <p class="header--price_1"> 100 .000<small>đ</small></p>
+                                    <p class="header--price_2"> 90.000<small>đ</small></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slider__products--component position-relative">
+                        <a href="#">
+                            <div class="label-sale">
+                                <p>-20%</p>
+                            </div>
+                            <img src="https://product.hstatic.net/1000296747/product/img_5249_copy_grande.png"/>
+                            <div class="info__products--component">
+                                <h5> Áo thun Mt58 </h5>
+                                <div class="show__price d-flex">
+                                    <p class="header--price_1"> 100 .000<small>đ</small></p>
+                                    <p class="header--price_2"> 90.000<small>đ</small></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slider__products--component position-relative">
+                        <a href="#">
+                            <div class="label-sale">
+                                <p>-20%</p>
+                            </div>
+                            <img src="https://product.hstatic.net/1000296747/product/img_5249_copy_grande.png"/>
+                            <div class="info__products--component">
+                                <h5> Áo thun Mt58 </h5>
+                                <div class="show__price d-flex">
+                                    <p class="header--price_1"> 100 .000<small>đ</small></p>
+                                    <p class="header--price_2"> 90.000<small>đ</small></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slider__products--component position-relative">
+                        <a href="#">
+                            <div class="label-sale">
+                                <p>-20%</p>
+                            </div>
+                            <img src="https://product.hstatic.net/1000296747/product/img_5249_copy_grande.png"/>
+                            <div class="info__products--component">
+                                <h5> Áo thun Mt58 </h5>
+                                <div class="show__price d-flex">
+                                    <p class="header--price_1"> 100 .000<small>đ</small></p>
+                                    <p class="header--price_2"> 90.000<small>đ</small></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--end sale product-->
+            <!--new products-->
+            <div class="container my-5">
+                <h4 class="main__title--component mb-5"> Sản Phẩm Mới</h4>
+                <div class="row">
+                    <div class="col-6 col-lg-3 col-md-4 col-xl-3 col-xs-6 col-sm-6 product__layout">
+                        <div class="label-sale mx-2 my-3">
+                            <p>new</p>
+                        </div>
+                        <a href="#" class="w-100">
+                            <div class="scale__image">
+                                <img src="https://product.hstatic.net/1000296747/product/a14e0ba3-dd47-4b9a-aaae-37a0a99b1354_c74cb53d359a4ac595552d46cef09f2d_grande.jpeg"/>
+                            </div>
+                            <div class="info__products--component">
+                                <h5> Áo thun Mt58 </h5>
+                                <div class="show__price d-flex">
+                                    <p class="header--price_1"> 100 .000 VND</p>
+                                    <p class="header--price_2"> 90.000 VND</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-lg-3 col-md-4 col-xl-3 col-xs-6 col-sm-6 product__layout">
+                        <div class="label-sale mx-2 my-3">
+                            <p>new</p>
+                        </div>
+                        <a href="#" class="w-100">
+                            <div class="scale__image">
+                                <img src="https://product.hstatic.net/1000296747/product/a14e0ba3-dd47-4b9a-aaae-37a0a99b1354_c74cb53d359a4ac595552d46cef09f2d_grande.jpeg"/>
+                            </div>
+                            <div class="info__products--component">
+                                <h5> Áo thun Mt58 </h5>
+                                <div class="show__price d-flex">
+                                    <p class="header--price_1"> 100 .000 VND</p>
+                                    <p class="header--price_2"> 90.000 VND</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-lg-3 col-md-4 col-xl-3 col-xs-6 col-sm-6 product__layout">
+                        <div class="label-sale mx-2 my-3">
+                            <p>new</p>
+                        </div>
+                        <a href="#" class="w-100">
+                            <div class="scale__image">
+                                <img src="https://product.hstatic.net/1000296747/product/a14e0ba3-dd47-4b9a-aaae-37a0a99b1354_c74cb53d359a4ac595552d46cef09f2d_grande.jpeg"/>
+                            </div>
+                            <div class="info__products--component">
+                                <h5> Áo thun Mt58 </h5>
+                                <div class="show__price d-flex">
+                                    <p class="header--price_1"> 100 .000 VND</p>
+                                    <p class="header--price_2"> 90.000 VND</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-lg-3 col-md-4 col-xl-3 col-xs-6 col-sm-6 product__layout">
+                        <div class="label-sale mx-2 my-3">
+                            <p>new</p>
+                        </div>
+                        <a href="#" class="w-100">
+                            <div class="scale__image">
+                                <img src="https://product.hstatic.net/1000296747/product/a14e0ba3-dd47-4b9a-aaae-37a0a99b1354_c74cb53d359a4ac595552d46cef09f2d_grande.jpeg"/>
+                            </div>
+                            <div class="info__products--component">
+                                <h5> Áo thun Mt58 </h5>
+                                <div class="show__price d-flex">
+                                    <p class="header--price_1"> 100 .000 VND</p>
+                                    <p class="header--price_2"> 90.000 VND</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--end new products-->
+            <!--start news-->
+            <div class="container my-5">
+                <h4 class="main__title--component mb-5">Tin Nổi Bật</h4>
+                <div class="row">
+                    <div class="col-6 col-lg-3 col-md-4 col-xl-3 col-xs-6 col-sm-6 product__layout">
+                        <a href="#" class="w-100">
+                            <div class="scale__image">
+                                <img src="https://product.hstatic.net/1000296747/product/a14e0ba3-dd47-4b9a-aaae-37a0a99b1354_c74cb53d359a4ac595552d46cef09f2d_grande.jpeg"/>
+                            </div>
+                            <div class="title__news--component">
+                                <div class="d-flex justify-content-between">
+                                    <small class="text-muted"><i class="fa fa-user-circle mr-1" aria-hidden="true"></i>le quoc vuong</small>
+                                    <small class="text-muted"><i class="fa fa-clock-o" aria-hidden="true"></i> 25 phut truoc</small>
+                                </div>
+                                <h5 class="text-center"><strong>Thời trang ý ...</strong></h5>
+                                <p class="text-muted"> Có thể thấy trong tuần lễ thời trang mới đây tại ý... </p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-lg-3 col-md-4 col-xl-3 col-xs-6 col-sm-6 product__layout">
+                        <a href="#" class="w-100">
+                            <div class="scale__image">
+                                <img src="https://product.hstatic.net/1000296747/product/a14e0ba3-dd47-4b9a-aaae-37a0a99b1354_c74cb53d359a4ac595552d46cef09f2d_grande.jpeg"/>
+                            </div>
+                            <div class="title__news--component">
+                                <div class="d-flex justify-content-between">
+                                    <small class="text-muted"><i class="fa fa-user-circle mr-1" aria-hidden="true"></i>le quoc vuong</small>
+                                    <small class="text-muted"><i class="fa fa-clock-o" aria-hidden="true"></i> 25 phut truoc</small>
+                                </div>
+                                <h5 class="text-center"><strong>Thời trang ý ...</strong></h5>
+                                <p class="text-muted"> Có thể thấy trong tuần lễ thời trang mới đây tại ý... </p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-lg-3 col-md-4 col-xl-3 col-xs-6 col-sm-6 product__layout">
+                        <a href="#" class="w-100">
+                            <div class="scale__image">
+                                <img src="https://product.hstatic.net/1000296747/product/a14e0ba3-dd47-4b9a-aaae-37a0a99b1354_c74cb53d359a4ac595552d46cef09f2d_grande.jpeg"/>
+                            </div>
+                            <div class="title__news--component">
+                                <div class="d-flex justify-content-between">
+                                    <small class="text-muted"><i class="fa fa-user-circle mr-1" aria-hidden="true"></i>le quoc vuong</small>
+                                    <small class="text-muted"><i class="fa fa-clock-o" aria-hidden="true"></i> 25 phut truoc</small>
+                                </div>
+                                <h5 class="text-center"><strong>Thời trang ý ...</strong></h5>
+                                <p class="text-muted"> Có thể thấy trong tuần lễ thời trang mới đây tại ý... </p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-lg-3 col-md-4 col-xl-3 col-xs-6 col-sm-6 product__layout">
+                        <a href="#" class="w-100">
+                            <div class="scale__image">
+                                <img src="https://product.hstatic.net/1000296747/product/a14e0ba3-dd47-4b9a-aaae-37a0a99b1354_c74cb53d359a4ac595552d46cef09f2d_grande.jpeg"/>
+                            </div>
+                            <div class="title__news--component">
+                                <div class="d-flex justify-content-between">
+                                    <small class="text-muted"><i class="fa fa-user-circle mr-1" aria-hidden="true"></i>le quoc vuong</small>
+                                    <small class="text-muted"><i class="fa fa-clock-o" aria-hidden="true"></i> 25 phut truoc</small>
+                                </div>
+                                <h5 class="text-center"><strong>Thời trang ý ...</strong></h5>
+                                <p class="text-muted"> Có thể thấy trong tuần lễ thời trang mới đây tại ý... </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--end news-->
+        </div>
+        <!--end main-->
+        <div class="footer">
+            <div class="container">
+                   <div class="row">
+                       <div class="col-sm-12 col-xs-12 col-lg-4 col-md-4 col-xl-4">
+                           <h4><a href="#" class="header__logo">King's</a></h4>
+                           <ul class="px-0">
+                               <li> Họ & Tên: Lê Quốc Vương </li>
+                               <li> SĐT: +(84)6362535336 </li>
+                               <li>Khoa: Khoa CNTT & TT</li>
+                               <li>MSSV: B1709583</li>
+                               <li>Lớp: DI7Z6A1</li>
+                           </ul>
+                       </div>
+                       <div class="col-sm-12 col-xs-12 col-lg-4 col-md-4 col-xl-4">
+                           <h4>Liên Kết </h4>
+                           <ul class="px-0">
+                               <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</a></li>
+                               <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+                               <li><a href="#"><i class="fa fa-refresh" aria-hidden="true"></i> Chính Sách Đổi Trả</a></li>
+                           </ul>
+                       </div>
+                       <div class="col-sm-12 col-xs-12 col-lg-4 col-md-4 col-xl-4">
+
+                       </div>
+                   </div>
+            </div>
+        </div>
+        <div style="background: #C7C7C7;" class="container-fluid px-0 d-flex justify-content-center align-item-center">
+            <p style="font-size: 15px;" class="my-0 text-white">Copyright &copy; 2020 Lê Quốc Vương - B1709583 </p>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.0/slick.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>
