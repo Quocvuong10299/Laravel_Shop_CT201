@@ -5,43 +5,33 @@
         <!--banner gender-->
         <div class="container">
             <div class="row">
+                @foreach($gender as $prod_gender)
                 <div class="col-lg-4 col-sm-12 col-md-4 col-xs-12 gender__component">
                     <div class="gender__component--image my-2">
-                        <img src="/frontend/images/image1.webp"/>
-                        <a href="#">
+                        <img src="/frontend/images/{{($prod_gender->category_gender_id===1) ? 'image1.webp' : 'image2.jpg'}}"/>
+                        <a href="{{route('pageProductGender',$prod_gender->category_gender_id)}}">
                             <div class="overlay-image">
                                 <div class="gender__component--title btn_1">
-                                    <h5 class="text-dark font_1"> Thời Trang Nam </h5>
+                                    <h5 class="text-dark font_1"> {{$prod_gender->category_gender_name}} </h5>
                                 </div>
                             </div>
                         </a>
                     </div>
                 </div>
+                @endforeach
                 <div class="col-lg-4 col-sm-12 col-md-4 col-xs-12 gender__component">
-                    <div class="gender__component--image my-2">
-                        <img src="/frontend/images/gallery_item_3.webp"/>
-                        <a href="#">
-                            <div class="overlay-image">
-                                <div class="gender__component--title btn_1">
-                                    <h5 class="text-dark font_1"> Thời Trang Nữ </h5>
+                        <div class="gender__component--image my-2">
+                            <img src="/frontend/images/image3.webp"/>
+                            <a href="#">
+                                <div class="overlay-image">
+                                    <div class="gender__component--title btn_1">
+                                        <h5 class="text-dark font_1"> Giảm Giá </h5>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-12 col-md-4 col-xs-12 gender__component">
-                    <div class="gender__component--image my-2">
-                        <img src="/frontend/images/image3.webp"/>
-                        <a href="#">
-                            <div class="overlay-image">
-                                <div class="gender__component--title btn_1">
-                                    <h5 class="text-dark font_1"> Giảm Giá </h5>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
 
-                </div>
+                    </div>
             </div>
         </div>
         <!--end banner gender-->
@@ -119,16 +109,16 @@
         <div class="container my-5">
             <h4 class="main__title--component mb-5">Bộ Sưu Tập</h4>
             <div class="row">
-                <div class="col-lg-3 col-md-4 col-xl-3 col-xs-6 col-sm-6 product__layout">
+                <div class="col-12 col-lg-3 col-md-4 col-xl-3 col-xs-6 col-sm-6 product__layout">
                     <img src="/frontend/images/gallery_item_4.webp"/>
                 </div>
-                <div class="col-lg-3 col-md-4 col-xl-3 col-xs-6 col-sm-6 product__layout">
+                <div class="col-12 col-lg-3 col-md-4 col-xl-3 col-xs-6 col-sm-6 product__layout">
                     <img src="/frontend/images/block_home_category2.webp"/>
                 </div>
-                <div class="col-lg-3 col-md-4 col-xl-3 col-xs-6 col-sm-6 product__layout">
+                <div class="col-12 col-lg-3 col-md-4 col-xl-3 col-xs-6 col-sm-6 product__layout">
                     <img src="/frontend/images/gallery_item_4.webp"/>
                 </div>
-                <div class="col-lg-3 col-md-4 col-xl-3 col-xs-6 col-sm-6 product__layout">
+                <div class="col-12 col-lg-3 col-md-4 col-xl-3 col-xs-6 col-sm-6 product__layout">
                     <img src="/frontend/images/gallery_item_4.webp"/>
                 </div>
             </div>

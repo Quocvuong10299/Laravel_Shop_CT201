@@ -1,5 +1,19 @@
 body{
   font-family: 'Quicksand', sans-serif;
+  color:$color5;
+  button, input, textarea, select{
+   &:focus{
+     outline: none;
+     box-shadow: none;
+   }
+  }
+  .form-control, .form-group {
+    &:focus{
+      box-shadow: none;
+      outline:none;
+      border: 1px solid #ccc;
+    }
+  }
 }
 a{
   color: $black;

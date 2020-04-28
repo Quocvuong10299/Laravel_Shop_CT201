@@ -12,17 +12,69 @@
 */
 
 Route::get('/','HomeController@index')->name('home');
-Route::get('/chi-tiet-san-pham/{id}','HomeController@productDetail')->name('productDetail');
+Route::get('/cart','HomeController@showCart')->name('showCart');
+Route::get('/checkouts','HomeController@checkOuts')->name('checkOuts');
+Route::post('/checkouts','HomeController@postCheckOuts')->name('postCheckOuts');
+Route::get('/san-pham/{id}','HomeController@productDetail')->name('productDetail');
+Route::get('/product/comment/{id}','HomeController@getComment')->name('getComment');
+Route::post('/san-pham/{id}','HomeController@postComment')->name('postComment');
 //route get ajax
 Route::get('/select-color','HomeController@selectColor');
-Route::get('/select-size','HomeController@selectSize');
-//route get products men
-Route::get('/ao-so-mi-nam','PageMenController@pageShirtMen')->name('pageShirtMen');
-Route::get('/ao-so-mi-thun-nam','PageMenController@pageTshirtMen')->name('pageTshirtMen');
-Route::get('/quan-jean-nam','PageMenController@pageJeanMen')->name('pageJeanMen');
-Route::get('/quan-tay-nam','PageMenController@pageTrousersMen')->name('pageTrousersMen');
-// route get product women
-Route::get('/ao-so-mi-nu','PageWomenController@pageShirtWomen')->name('pageShirtWomen');
-Route::get('/ao-so-mi-thun-nu','PageWomenController@pageTshirtWomen')->name('pageTshirtWomen');
-Route::get('/quan-jean-nu','PageWomenController@pageJeanWomen')->name('pageJeanWomen');
-Route::get('/dam-thun-nu','PageWomenController@pageDressWomen')->name('pageDressWomen');
+Route::get('/select-size','HomeController@selectSize')->name('changeSize');
+Route::get('/search','HomeController@searchIndex');
+Route::get('/supplier','PagesController@selectSupplier');
+Route::get('/sort-price','PagesController@selectFollow');
+Route::get('/show-product-gender/{id_gender}','PagesController@showProducFollowGender');
+//Route::get('/search/action','HomeController@searchAction');
+
+Route::group(['prefix'=>'collections'], function (){
+    Route::get('/{gender}/{slug}','PagesController@pageShowAllProduct')->name('pageShowAllProduct');
+    Route::get('/{gender}','PagesController@pageProductGender')->name('pageProductGender');
+//    Route::get('/{slug_name}','PagesController@pageShowDiscount')->name('pageShowDiscount');
+});
+Route::group(['prefix'=>'more'], function (){
+   Route::get('/contact','moreController@contactUS')->name('contactUS');
+});
+
+Route::group(['prefix'=>'account'], function(){
+   Route::get('/register','accountController@getRegister')->name('getregister');
+   Route::post('/register','accountController@postRegister')->name('postregister');
+   Route::get('/login','accountController@getLogin')->name('getlogin');
+   Route::post('/login','accountController@postLogin')->name('postlogin');
+   Route::get('/logout','accountController@getLogout')->name('getlogout');
+});
+
+//admin
+
+Route::get('/admin','adminController@getAdminLogin')->name('getAdminLogin');
+Route::post('/admin','adminController@postAdminLogin')->name('postAdminLogin');
+
+//api admin
+Route::group(['prefix'=>'api','middleware' => 'adminLogin'], function(){
+//    ROUTE USERS
+    Route::get('/users','Api\apiController@getUser');
+    Route::get('/users/logout','Api\apiController@logOutAdmin');
+    Route::delete('users/{id}', 'Api\apiController@removeUser');
+//    ROUTE CATEGORY
+    Route::get('/category','Api\apiController@getCategory');
+    Route::post('/category/edit/{id}','Api\apiController@editCategory');
+    Route::post('/category/add','Api\apiController@addCategory');
+//    ROUTE PRODUCTS
+    Route::get('/products','Api\apiController@getProduct');
+//    ROUTE COMMENTS
+    Route::get('/comments','Api\apiController@getComment');
+    Route::delete('comments/{id}', 'Api\apiController@removeComment');
+//    ROUTE SLIDE
+    Route::get('/slides','Api\apiController@getSlide');
+    Route::post('/slides','Api\apiController@postSlide');
+});
+
+Route::group(['prefix'=>'admin/dashboard','middleware' => 'adminLogin'], function(){
+    Route::get('/','adminController@getDashboard')->name('getDashboard');
+//    Route::get('/users','Api\apiController@user_index');
+    Route::view('/{any}', 'admin.admin')->where('any', '.*');
+//    Route::group(['prefix','category'], function (){
+//
+//    });
+
+});

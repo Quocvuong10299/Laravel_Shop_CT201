@@ -11,5 +11,8 @@ class Category extends Model
     public function Product(){
         return $this->hasMany("App\Product","category_id");
     }
+    public function childs(){
+        return $this->hasMany('App\Category','parent_id');
+    }
     protected $primaryKey = 'category_id';
 }

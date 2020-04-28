@@ -1,0 +1,54 @@
+.input_quantity{
+  button{
+    width: 30px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+    color:$white;
+  }
+  input{
+    text-align: center;
+    border: 0;
+    &:focus{
+      border: none;
+    }
+  }
+  .quantity{
+    position: relative;
+    &:after{
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 1px;
+      background: $color10;
+      top: 0;
+      left: 0;
+    }
+    &:before{
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 1px;
+      background: $color10;
+      bottom: 0;
+      left: 0;
+    }
+  }
+}
+.btn{
+  width: 250px;
+  height: 50px;
+  border: 1px solid $color10;
+  color: $white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $color10;
+  font-weight: 700;
+  &:hover{
+    background: $white;
+    color: $color5;
+  }
+}

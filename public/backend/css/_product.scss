@@ -1,0 +1,16 @@
+.new_btn{
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: green;
+  .fa{
+    font-size: 25px;
+    color:#fff;
+  }
+}

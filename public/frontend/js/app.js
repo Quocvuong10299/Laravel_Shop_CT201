@@ -1,15 +1,19 @@
 (function ($) {
     //slider menu
-    $('.slider__content').slick({
+    $('.slider .slider__content').slick({
         dots: true,
+        fade: true,
         infinite: true,
-        speed: 300,
-        slidesToShow: 1,
+        autoplay:true,
         adaptiveHeight: true,
-        autoplay: true,
-        autoplaySpeed: 4000,
+        speed: 1100,
+        slidesToShow: 1,
+        slidesToScroll:1,
+        autoplaySpeed: 3000,
         prevArrow: false,
-        nextArrow: false
+        nextArrow: false,
+        cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)',
+        easing:'swing'
     });
 
     //slider products
@@ -41,4 +45,38 @@
     $('.overlay').click(function () {
         $('.header__overlay').removeClass("header__search--component");
     });
+//    click choose color product
+    $('.color').eq(0).addClass('active_color');
+    $('.click_color').click(function () {
+        let parent = $(this).parent();
+        if(parent.hasClass('active_color')){
+            return;
+        }else{
+            $('.color').removeClass('active_color');
+            parent.addClass('active_color');
+        }
+    });
+//    live search ajax
+    $('#search').on('keyup', function () {
+        let value = $(this).val().toLowerCase().trim();
+        $('#show_search_content').empty();
+        $.get('/search?value='+value, function (data) {
+          $.each(data, function (key, values) {
+              if(value.length > 0){
+                  $('#show_search_content').removeClass('invisible');
+                  $('#show_search_content').append(
+                      ` <a href="/san-pham/${values.product_id}">
+                       <div style="width: 100%; height: 80px;" class="d-flex justify-content-between align-items-center p-3">
+                           <p>${values.product_name}</p>
+                           <img src="${values.product_image}" style="width: 70px; height: 70px;">
+                       </div>
+                   </a>`
+                  )
+              }else {
+                  $('#show_search_content').addClass('invisible');
+              }
+          });
+        });
+    });
+
 })(jQuery);

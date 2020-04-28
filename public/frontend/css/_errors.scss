@@ -1,0 +1,24 @@
+.fieldset{
+  .field-error{
+    .has-error{
+      .field-input{
+        border: 1px solid red;
+      }
+    }
+  }
+}
+.error{
+  color:$color1;
+}
+.eye-hide{
+  &:after{
+    content: "";
+    width: 3px;
+    height: 15px;
+    background: #000;
+    position: absolute;
+    top:5px;
+    left: 6px;
+    transform: rotate(25deg);
+  }
+}

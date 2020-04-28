@@ -1,0 +1,40 @@
+.fieldset{
+  .field{
+    .field-label{
+      width: 100%;
+      z-index: 1;
+      opacity: 0;
+      display: block;
+    }
+    input{
+      transition: all 0.2s ease-out;
+      background-color: white;
+      color: $color12;
+      border-radius: 4px;
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      padding: 0.74em 2.8em 0.94em 0.8em;
+      outline: none;
+      border: 1px solid $color10;
+      &:focus{
+        border: 1px solid $color5;
+      }
+    }
+  }
+}
+.fields{
+  position: relative;
+  border-radius: 10px;
+  margin-top: 1.94rem;
+  select{
+    background: $white;
+    border-radius: 7px;
+    width: 12rem;
+    height: 3rem;
+    border: 1px solid $color10;
+    option{
+      color: $color12;
+    }
+  }
+}

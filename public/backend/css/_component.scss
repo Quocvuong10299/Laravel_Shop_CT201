@@ -1,0 +1,70 @@
+.router-link-exact-active{
+  background: #fff;
+  color: #000!important;
+  font-weight: bold;
+  //border-radius: 4px;
+  .fa{
+    color: #000!important;
+  }
+}
+
+.add_active{
+  .nav-link{
+    .fa{
+      color:#fff;
+    }
+  }
+}
+.rotate{
+  transform: rotate(-90deg);
+  transition: all 0.3s ease-in-out;
+}
+.fa-angle-left{
+  position: absolute;
+  top:10px;
+  right: 20px;
+  font-size: 25px;
+}
+  //pagination component
+  .pagination{
+    .page-item.active{
+      .page-link{
+        background-color: #000 ;
+        border: 0;
+        &:focus{
+          outline: none;
+          box-shadow: none;
+        }
+      }
+    }
+    .page-item{
+      &:last-child, &:first-child{
+        .page-link{
+          border-radius: 100%;
+        }
+      }
+    }
+    .disabled{
+      &:hover{
+        cursor: not-allowed;
+      }
+      .page-link{
+        color: #ccc!important;
+
+      }
+    }
+    .page-link{
+      color: #000;
+      background: #fff;
+      margin: 0 5px;
+      width: 36px;
+      height: 36px;
+      -webkit-border-radius: 100%;
+      -moz-border-radius: 100%;
+      border-radius: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      //border: 0;
+    }
+  }

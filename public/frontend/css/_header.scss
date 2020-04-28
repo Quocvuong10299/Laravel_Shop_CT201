@@ -33,11 +33,36 @@
         }
     }
     &__sub{
+        .header__sub--childs{
+            padding: 0 10px;
+            li{
+                position: relative;
+                width: 100%;
+                height: 25px;
+                margin: 0;
+            }
+            a{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                position: absolute;
+                top:0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                transition: $transition1;
+                transform: translateX(-5px);
+                &:hover{
+                    color: $color4;
+                    transform: translateX(0);
+                }
+            }
+        }
         z-index: 999999999;
         position: absolute;
         top:100%;
         left: 0;
-        width: 170px;
+        width: 180px;
         height: max-content;
         background: #fff;
         opacity: 0;
@@ -45,7 +70,7 @@
         transform: translateY(5px);
         transition: $transition1;
         box-shadow: $box-shadow1;
-        &:before{
+        &:after{
             content: "";
             position: absolute;
             top:0;
@@ -57,24 +82,10 @@
         li{
             position: relative;
             width: 100%;
-            height: 25px;
             margin: 0;
         }
-        a{
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            position: absolute;
-            top:0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            transition: $transition1;
-            transform: translateX(-5px);
-            &:hover{
-                color: $color4;
-                transform: translateX(0);
-            }
+        strong{
+            font-size: 17px;
         }
     }
     &__icons {
@@ -149,7 +160,7 @@
         &--show {
             overflow: hidden;
             position: absolute;
-            right: calc(100% - 10rem);
+            right: 0;
             width: 180px;
             height: 100px;
             z-index: 2000;

@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use DB;
 class Product extends Model
 {
     protected $table = 'products';
@@ -35,4 +35,13 @@ class Product extends Model
         return $this->hasMany("App\Product_attribute","product_id");
     }
     protected $primaryKey='product_id';
+    public static function getProductPages(){
+        $product_pages = DB::table('products')
+            ->join('category', 'products.category_id', '=', 'category.category_id')
+            ->select
+            ([
+                'category.*',
+            ])->get();
+        return $product_pages;
+    }
 }
