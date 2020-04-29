@@ -39,7 +39,7 @@ class HomeController extends Controller
                 getDiscount($dt);
             });
 //            get slide
-            $slides = Slide::all();
+            $slides = Slide::where('slide_show',1)->get();
             return view('pages.home', compact('data','data_sale','gender','slides'));
     }
 //    get API comments

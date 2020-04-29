@@ -2,7 +2,7 @@
     <div class="slider__content w-100 container-fluid">
         @foreach($slides as $slide)
             <div class="slider__content--component">
-                <img src="/frontend/images/{{$slide->slide_link}}">
+                <img src="{{asset('storage/uploads/'.$slide->slide_link)}}">
             </div>
         @endforeach
     </div>

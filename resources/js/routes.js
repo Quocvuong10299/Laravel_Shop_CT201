@@ -5,6 +5,8 @@ import productsComponent from './components/productsComponent'
 import categoryComponent from './components/categoryComponent'
 import editCategoryComponent from './components/editCategoryComponent'
 import slideComponent from './components/slideComponent'
+import colorComponent from './components/colorComponent'
+import sizeComponent from './components/sizeComponent'
 const routes = [
     {
         path: '/admin/dashboard',
@@ -40,6 +42,16 @@ const routes = [
         path: '/admin/dashboard/slide',
         component: slideComponent,
         name: 'slideComponent',
+    },
+    {
+        path: '/admin/dashboard/attribute/colors',
+        component: colorComponent,
+        name: 'colorComponent',
+    },
+    {
+        path: '/admin/dashboard/attribute/sizes',
+        component: sizeComponent,
+        name: 'sizeComponent',
     },
 ];
 

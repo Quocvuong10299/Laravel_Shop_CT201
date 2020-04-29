@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Slide extends Model
 {
+    public $timestamps = false;
     protected $table = 'slides';
+    protected $primaryKey = 'slide_id';
 }

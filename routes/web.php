@@ -66,7 +66,13 @@ Route::group(['prefix'=>'api','middleware' => 'adminLogin'], function(){
     Route::delete('comments/{id}', 'Api\apiController@removeComment');
 //    ROUTE SLIDE
     Route::get('/slides','Api\apiController@getSlide');
-    Route::post('/slides','Api\apiController@postSlide');
+    Route::post('/slides/edit/{id}','Api\apiController@editSlides');
+    Route::post('/slides/add','Api\apiController@addSlides');
+//    ROUTE ATTRIBUTE
+    Route::get('/colors','Api\apiController@getColor');
+    Route::post('/colors/add','Api\apiController@addColor');
+    Route::get('/sizes','Api\apiController@getSize');
+    Route::post('/sizes/add','Api\apiController@addSize');
 });
 
 Route::group(['prefix'=>'admin/dashboard','middleware' => 'adminLogin'], function(){

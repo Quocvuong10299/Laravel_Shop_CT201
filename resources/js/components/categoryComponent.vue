@@ -91,7 +91,7 @@
                             </select>
                         </div>
                     </div>
-                    <button type="submit" @click="isShow = false" class="btn bg-light">Hủy</button>
+                    <button @click="isShow = false" class="btn bg-light">Hủy</button>
                     <button type="submit" class="btn btn-success" @click="editCategory()">Lưu</button>
                 </form>
             </div>
@@ -212,13 +212,11 @@
                 let item_cat = document.getElementById('cat_item').value;
                 let gender_cat = document.getElementById('cat_gender').value;
                 let show_cat = document.getElementById('cat_show').value;
-                if(confirm('Bạn chắc chứ?')){
                     axios.post(RESOURCE + '/category/edit/' + id_cat, {val_1: name_cat, val_2: item_cat,val_3: gender_cat,val_4: show_cat })
                         .then(res => {
                             this.fetchCategories();
                             this.isShow=false
                         });
-                }
 
             },
             //Create CATEGORY

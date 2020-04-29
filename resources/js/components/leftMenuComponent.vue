@@ -36,12 +36,12 @@
             <li class="nav-item add_active position-relative">
                 <a class="nav-link" href="#"><i class="fa fa-info-circle mr-3 fa-fw" aria-hidden="true"></i> Attributes <i class="fa fa-angle-left" aria-hidden="true"></i></a>
                 <ul class="sub__menu flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Color</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Size</a>
-                    </li>
+                    <router-link :to="{name: 'colorComponent'}" class="nav-link font-italic">
+                        Color
+                    </router-link>
+                    <router-link :to="{name: 'sizeComponent'}" class="nav-link font-italic">
+                        Size
+                    </router-link>
                 </ul>
             </li>
             <li class="nav-item add_active">

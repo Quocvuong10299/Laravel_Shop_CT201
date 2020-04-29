@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Category;
 use App\Category_gender;
+use App\Color;
 use App\Comment;
 use App\Http\Controllers\Controller;
 use App\Product;
+use App\Size;
 use App\Slide;
 use App\Supplier;
 use Illuminate\Http\Request;
@@ -14,6 +16,7 @@ use App\User;
 use Auth;
 use Response;
 use DB;
+use Storage;
 use function App\Helper\Helper\toSlug;
 class apiController extends Controller
 {
@@ -126,5 +129,62 @@ class apiController extends Controller
     public function getSlide(){
         $slides = Slide::orderBy('slide_id','DESC')->paginate(2);
         return response()->json($slides);
+    }
+    public function editSlides(Request $request, $id){
+        $edit_slide = Slide::where('slide_id', $id)->first();
+        $edit_slide->slide_show = $request->get('val_show');
+        $edit_slide->save();
+        return $edit_slide;
+    }
+    public function addSlides(Request $request){
+        $image = $request->get('image');
+
+        $image_slide = new Slide;
+        $image_slide->slide_link = $this->saveImgBase64($image, 'uploads');
+        $image_slide->save();
+        return response()->json(['success' => 'You have successfully uploaded an image'], 200);
+    }
+    protected function saveImgBase64($param, $folder)
+    {
+        list($extension, $content) = explode(';', $param);
+        $tmpExtension = explode('/', $extension);
+        preg_match('/.([0-9]+) /', microtime(), $m);
+        $fileName = sprintf('img%s%s.%s', date('YmdHis'), $m[1], $tmpExtension[1]);
+        $content = explode(',', $content)[1];
+        $storage = Storage::disk('public');
+
+        $checkDirectory = $storage->exists($folder);
+
+        if (!$checkDirectory) {
+            $storage->makeDirectory($folder);
+        }
+
+        $storage->put($folder . '/' . $fileName, base64_decode($content), 'public');
+
+        return $fileName;
+    }
+
+//    color
+    public function getColor(){
+        $colors = DB::table('colors')->get();
+        return response()->json($colors);
+    }
+    public function addColor(Request $request){
+        $color = new Color;
+        $color->color_value = $request->get('color');
+        $color->color_name = $request->get('color_name');
+        $color->save();
+        return response()->json(['message'=>'create success']);
+    }
+//    size
+    public function getSize(){
+        $size = DB::table('sizes')->get();
+        return response()->json($size);
+    }
+    public function addSize(Request $request){
+        $add_size = new Size;
+        $add_size->size_value = $request->get('size');
+        $add_size->save();
+        return response()->json(['message'=>'create success']);
     }
 }
