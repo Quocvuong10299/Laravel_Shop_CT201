@@ -1,7 +1,7 @@
 <template>
-    <div class="container-fluid">
+    <div style="overflow: hidden" class="container-fluid position-relative">
         <!--<photoshop-picker v-model="colors" />-->
-      <div class="row w-100 mx-0">
+        <div class="row w-100 mx-0">
           <div class="col-12 col-md-6 col-lg-6 col-xl-6">
               <div class="my-3">
                   <!--<div style="width: 100px; height: 100px" class="header-bg" :style="{'background-color': bgc}"></div>-->
@@ -37,6 +37,10 @@
 
           </div>
       </div>
+            <div v-if="message.length > 0" class="animation_alert position-absolute" :class="{add_animation_class:is_mess}">
+                <p class="m-0">{{message}}</p>
+            </div>
+
     </div>
 </template>
 
@@ -75,6 +79,8 @@
                 colors:defaultProps,
                 name:'',
                 color_table:[],
+                message:'',
+                is_mess:true,
             }
         },
         mounted(){
@@ -96,9 +102,13 @@
             },
             addColor(){
                 axios.post(RESOURCE + '/colors/add', {color: this.colors.hex, color_name: this.name})
-                    .then(function (response) {
+                    .then(res => {
                         this.fetchColors();
-                        console.log(response.data);
+                        this.message = res.data.message;
+                        this.name='';
+                        setTimeout(()=>{
+                           this.is_mess = false
+                        }, 2000);
                     })
                     .catch(error => {
                         console.log(error)
@@ -112,5 +122,23 @@
 <style lang="scss">
 .vc-sketch{
     width: 95%!important;
+}
+.animation_alert{
+    width:30%;
+    height:60px;
+    background:#00C764;
+    top:0;
+    right:-350px;
+    transition:all 0.4s ease-in-out;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    opacity: 0;
+    font-size: 18px;
+}
+.add_animation_class{
+    right: 0;
+    opacity: 1;
 }
 </style>

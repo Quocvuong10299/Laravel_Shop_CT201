@@ -187,4 +187,15 @@ class apiController extends Controller
         $add_size->save();
         return response()->json(['message'=>'create success']);
     }
+//    supplier
+    public function getSupplier(){
+        $suppliers = Supplier::all();
+        return response()->json($suppliers);
+    }
+    public function postSupplier(Request $request){
+        $supp = new Supplier;
+        $supp->supplier_name = $request->get('name_supplier');
+        $supp->save();
+        return response()->json(['message'=>'created success']);
+    }
 }

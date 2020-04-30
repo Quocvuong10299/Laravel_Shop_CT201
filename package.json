@@ -24,6 +24,8 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "chart.js": "^2.9.3",
+        "vue-chartjs": "^3.5.0",
         "vue-color": "^2.7.1",
         "vue-router": "^3.1.6",
         "vuejs-paginate": "^2.1.0",

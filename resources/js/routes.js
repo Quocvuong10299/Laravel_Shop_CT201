@@ -7,6 +7,8 @@ import editCategoryComponent from './components/editCategoryComponent'
 import slideComponent from './components/slideComponent'
 import colorComponent from './components/colorComponent'
 import sizeComponent from './components/sizeComponent'
+import supplierComponent from './components/supplierComponent'
+import chartComponent from './components/chartComponent'
 const routes = [
     {
         path: '/admin/dashboard',
@@ -52,6 +54,16 @@ const routes = [
         path: '/admin/dashboard/attribute/sizes',
         component: sizeComponent,
         name: 'sizeComponent',
+    },
+    {
+        path: '/admin/dashboard/suppliers',
+        component: supplierComponent,
+        name: 'supplierComponent',
+    },
+    {
+        path: '/admin/dashboard/charts',
+        component: chartComponent,
+        name: 'chartComponent',
     },
 ];
 

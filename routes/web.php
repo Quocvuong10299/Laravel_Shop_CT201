@@ -73,6 +73,9 @@ Route::group(['prefix'=>'api','middleware' => 'adminLogin'], function(){
     Route::post('/colors/add','Api\apiController@addColor');
     Route::get('/sizes','Api\apiController@getSize');
     Route::post('/sizes/add','Api\apiController@addSize');
+//    ROUTE SUPPLIER
+    Route::get('/suppliers','Api\apiController@getSupplier');
+    Route::post('/suppliers/add','Api\apiController@postSupplier');
 });
 
 Route::group(['prefix'=>'admin/dashboard','middleware' => 'adminLogin'], function(){

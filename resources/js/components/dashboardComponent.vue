@@ -38,12 +38,41 @@
                     </div>
                 </div>
             </div>
+            <div class="container-fluid">
+                <canvas ref="canvas" width="900" height="400"></canvas>
+            </div>
         </div>
 </template>
 
 <script>
+    import { Line } from 'vue-chartjs'
     export default {
-        name: "dashboard-component"
+        extends: Line,
+        name: "dashboard-component",
+        data(){
+            return{
+                datacollection: {
+                    //Data to be represented on x-axis
+                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                    datasets: [{
+                        label: 'Data One',
+                        // backgroundColor: '#fff',
+                        pointBackgroundColor: 'white',
+                        borderWidth: 1,
+                        pointBorderColor: '#249EBF',
+                        //Data to be represented on y-axis
+                        data: [40, 20, 30, 50, 90, 10, 20, 40, 50, 70, 90, 100]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            }
+        },
+        mounted () {
+            this.renderChart(this.datacollection, this.options)
+        }
     }
 </script>
 

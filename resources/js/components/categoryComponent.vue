@@ -101,7 +101,6 @@
         <div class="show_cat" v-if="isAdd" :class="{show_cat_active : isAdd}">
             <div class="form_add">
                 <h1>Add The Category</h1>
-                <form @submit.prevent="createCategory">
                     <input type="hidden" disabled class="form-control" id="id_add" name="id_add" required />
                     <div class="form-group">
                         <label for="name_add">Tên Loại</label>
@@ -137,8 +136,7 @@
                         </div>
                     </div>
                     <button type="submit" class="btn bg-light" @click="isAdd = false">Hủy</button>
-                    <button type="submit" class="btn btn-success" @click="createCategory()">Tạo</button>
-                </form>
+                    <button type="submit" class="btn btn-success" @click.prevent="createCategory()">Tạo</button>
             </div>
             <div class="overlay_form"></div>
         </div>
@@ -222,12 +220,10 @@
             //Create CATEGORY
             createCategory(){
                 axios.post(RESOURCE + '/category/add', {name: this.newCat.name, items: this.newCat.items, gender: this.newCat.gender, show: this.newCat.show})
-                    .then(function (response) {
+                    .then( res => {
                         this.fetchCategories();
-                    })
-                    .catch(error => {
-                        console.log(error)
-                    })
+                        this.isAdd = false;
+                    });
             }
         }
     }

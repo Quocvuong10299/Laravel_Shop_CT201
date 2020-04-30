@@ -53,9 +53,9 @@
             },
             addSize(){
                 axios.post(RESOURCE + '/sizes/add', {size: this.type_size})
-                    .then(function (response) {
+                    .then(res => {
                         this.fetchSize();
-                        // console.log(response.data);
+                        this.type_size='';
                     })
                     .catch(error => {
                         console.log(error)

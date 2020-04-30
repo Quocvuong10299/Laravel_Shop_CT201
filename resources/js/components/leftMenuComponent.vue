@@ -13,7 +13,10 @@
                 </router-link>
             </li>
             <li class="nav-item add_active">
-                <a class="nav-link" href="#"><i class="fa fa-pie-chart mr-3 fa-fw" aria-hidden="true"></i> Chart</a>
+                <router-link :to="{name: 'chartComponent'}" class="nav-link font-italic">
+                    <i class="fa fa-pie-chart mr-3 fa-fw" aria-hidden="true"></i>Chart
+                </router-link>
+                <!--<a class="nav-link" href="#"><i class="fa fa-pie-chart mr-3 fa-fw" aria-hidden="true"></i> Chart</a>-->
             </li>
             <li class="nav-item add_active">
                 <router-link :to="{name: 'categoryComponent'}" class="nav-link font-italic">
@@ -63,7 +66,9 @@
                 <!--<a class="nav-link" href="./users.html"><i class="fa fa-user" aria-hidden="true"></i> Users</a>-->
             </li>
             <li class="nav-item add_active">
-                <a class="nav-link" href="#"><i class="fa fa-sliders mr-3 fa-fw" aria-hidden="true"></i> Manager</a>
+                <router-link :to="{name: 'supplierComponent'}" class="nav-link font-italic">
+                    <i class="fa fa-handshake-o" aria-hidden="true"></i>    Supplier
+                </router-link>
             </li>
         </ul>
     </div>
