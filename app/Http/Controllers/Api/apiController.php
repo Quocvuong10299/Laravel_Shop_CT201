@@ -34,7 +34,8 @@ class apiController extends Controller
     }
     public function logOutAdmin(){
         Auth::logout();
-        return redirect()->route('getAdminLogin');
+//        return redirect()->route('getAdminLogin');
+        return response()->json(['message'=>'logout success']);
     }
 //    category
     public function getCategory(){
@@ -197,5 +198,9 @@ class apiController extends Controller
         $supp->supplier_name = $request->get('name_supplier');
         $supp->save();
         return response()->json(['message'=>'created success']);
+    }
+//    order
+    public function getOrder(){
+
     }
 }

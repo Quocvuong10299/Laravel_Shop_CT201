@@ -44,7 +44,7 @@ Route::group(['prefix'=>'account'], function(){
    Route::get('/logout','accountController@getLogout')->name('getlogout');
 });
 
-//admin
+//admin auth
 
 Route::get('/admin','adminController@getAdminLogin')->name('getAdminLogin');
 Route::post('/admin','adminController@postAdminLogin')->name('postAdminLogin');
@@ -76,6 +76,8 @@ Route::group(['prefix'=>'api','middleware' => 'adminLogin'], function(){
 //    ROUTE SUPPLIER
     Route::get('/suppliers','Api\apiController@getSupplier');
     Route::post('/suppliers/add','Api\apiController@postSupplier');
+//    ROUTE ORDER
+    Route::get('/orders','Api\apiController@getOrder');
 });
 
 Route::group(['prefix'=>'admin/dashboard','middleware' => 'adminLogin'], function(){

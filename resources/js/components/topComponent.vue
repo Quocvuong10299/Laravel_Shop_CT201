@@ -16,7 +16,11 @@
                 </li>
                 <div class="">
                     <div class="sub_ ml-3">
-                            <a style="color:#000" href="/api/users/logout">Thoát</a>
+                        <form method="get" action="/api/users/logout">
+                            <button class="btn btn-warning" @click="btnLogout()">Thoát</button>
+                        </form>
+                            <!--<a style="color:#000" href="/api/users/logout">Thoát</a>-->
+
                     </div>
                 </div>
             </ul>
@@ -25,8 +29,25 @@
 </template>
 
 <script>
+    import {RESOURCE} from '../api';
     export default {
         name: "top-component",
+        data(){
+            return{
+                logout:'',
+            }
+        },
+        methods:{
+            btnLogout(){
+                axios.get(RESOURCE + '/users/logout')
+                    .then(res => {
+                        this.logout = res.data;
+                        // if(res.status === 200) {
+                        //     this.$router.push({ path : '/admin' });
+                        // }
+                    });
+            }
+        }
     }
 </script>
 

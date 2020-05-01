@@ -9,6 +9,8 @@ import colorComponent from './components/colorComponent'
 import sizeComponent from './components/sizeComponent'
 import supplierComponent from './components/supplierComponent'
 import chartComponent from './components/chartComponent'
+import orderComponent from './components/orderComponent'
+import dateComponent from './components/dateComponent'
 const routes = [
     {
         path: '/admin/dashboard',
@@ -64,6 +66,16 @@ const routes = [
         path: '/admin/dashboard/charts',
         component: chartComponent,
         name: 'chartComponent',
+    },
+    {
+        path: '/admin/dashboard/orders',
+        component: orderComponent,
+        name: 'orderComponent',
+    },
+    {
+        path: '/admin/dashboard/discount/date-component',
+        component: dateComponent,
+        name: 'dateComponent',
     },
 ];
 

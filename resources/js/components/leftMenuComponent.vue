@@ -31,10 +31,18 @@
                 <!--<a class="nav-link" href="products.html"><i class="fa fa-archive" aria-hidden="true"></i> Products</a>-->
             </li>
             <li class="nav-item add_active">
-                <a class="nav-link" href="#"><i class="fa fa-list-ul mr-3 fa-fw" aria-hidden="true"></i> Orders</a>
+                <router-link :to="{name: 'orderComponent'}" class="nav-link font-italic">
+                    <i class="fa fa-list-ul mr-3 fa-fw" aria-hidden="true"></i> Orders
+                </router-link>
+                <!--<a class="nav-link" href="#"><i class="fa fa-list-ul mr-3 fa-fw" aria-hidden="true"></i> Orders</a>-->
             </li>
-            <li class="nav-item add_active">
-                <a class="nav-link" href="#"><i class="fa fa-money mr-3 fa-fw" aria-hidden="true"></i> Discount</a>
+            <li class="nav-item add_active position-relative">
+                <a class="nav-link" href="#"><i class="fa fa-money mr-3 fa-fw" aria-hidden="true"></i> Discount  <i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                <ul class="sub__menu flex-column">
+                    <router-link :to="{name: 'dateComponent'}" class="nav-link font-italic">
+                        Date Sale
+                    </router-link>
+                </ul>
             </li>
             <li class="nav-item add_active position-relative">
                 <a class="nav-link" href="#"><i class="fa fa-info-circle mr-3 fa-fw" aria-hidden="true"></i> Attributes <i class="fa fa-angle-left" aria-hidden="true"></i></a>
@@ -81,9 +89,5 @@
 </script>
 
 <style lang="scss">
-    .sub__menu{
-        list-style: none;
-        padding-left: 25%;
-        display: none;
-    }
+
 </style>
