@@ -19,6 +19,7 @@ class accountController extends Controller
         $user->user_email = $request->email;
         $user->user_phone = $request->phone;
         $user->password = bcrypt($request->password);
+        $user->user_register_date = date('Y-m-d');
         $user->save();
         return redirect('account/login')->with('mess_register','Đăng kí thành công hãy đăng nhập');
     }

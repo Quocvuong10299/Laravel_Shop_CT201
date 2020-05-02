@@ -1,6 +1,6 @@
 <template>
     <div class="right__menu">
-        <div class="container px-5 top__menu">
+        <div class="container px-5 top__menu m-0">
             <ul class="nav top__menu--ul">
                 <li class="nav-item">
                     <a class="nav-link" href="#">

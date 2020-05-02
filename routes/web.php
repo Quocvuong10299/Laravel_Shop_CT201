@@ -53,6 +53,7 @@ Route::post('/admin','adminController@postAdminLogin')->name('postAdminLogin');
 Route::group(['prefix'=>'api','middleware' => 'adminLogin'], function(){
 //    ROUTE USERS
     Route::get('/users','Api\apiController@getUser');
+    Route::get('/users/to-day','Api\apiController@getUserToDay');
     Route::get('/users/logout','Api\apiController@logOutAdmin');
     Route::delete('users/{id}', 'Api\apiController@removeUser');
 //    ROUTE CATEGORY
@@ -77,7 +78,7 @@ Route::group(['prefix'=>'api','middleware' => 'adminLogin'], function(){
     Route::get('/suppliers','Api\apiController@getSupplier');
     Route::post('/suppliers/add','Api\apiController@postSupplier');
 //    ROUTE ORDER
-    Route::get('/orders','Api\apiController@getOrder');
+    Route::get('/orders/to-day','Api\apiController@getOrderToday');
 });
 
 Route::group(['prefix'=>'admin/dashboard','middleware' => 'adminLogin'], function(){

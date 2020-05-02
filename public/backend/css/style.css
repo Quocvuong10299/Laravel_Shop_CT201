@@ -177,4 +177,11 @@ body {
 .show_sub {
   display: block; }
 
+#sidebarCollapse {
+  position: absolute;
+  top: 10px;
+  left: 10px; }
+  #sidebarCollapse .fa-bars {
+    font-size: 35px; }
+
 /*# sourceMappingURL=style.css.map */

@@ -7,6 +7,7 @@ use App\Category_gender;
 use App\Color;
 use App\Comment;
 use App\Http\Controllers\Controller;
+use App\Order;
 use App\Product;
 use App\Size;
 use App\Slide;
@@ -26,6 +27,11 @@ class apiController extends Controller
     public function getUser(){
         $user =  User::orderBy('user_id','desc')->where('user_role',0)->paginate(6);
         return response()->json($user);
+    }
+    public function getUserToDay(){
+        $current_day = date('Y-m-d');
+        $member_today = DB::table('users')->where('user_register_date',$current_day)->get();
+        return response()->json($member_today);
     }
     public function removeUser($id){
         $delUser = User::find($id);
@@ -200,7 +206,9 @@ class apiController extends Controller
         return response()->json(['message'=>'created success']);
     }
 //    order
-    public function getOrder(){
-
+    public function getOrderToday(){
+        $current_day = date('Y-m-d');
+        $bill_today = DB::table('orders')->where('order_current_day',$current_day)->get();
+        return response()->json($bill_today);
     }
 }

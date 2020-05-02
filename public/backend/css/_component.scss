@@ -82,3 +82,11 @@
     //opacity: 1;
     //height: 100%;
   }
+  #sidebarCollapse{
+    position: absolute;
+    top:10px;
+    left:10px;
+    .fa-bars{
+      font-size:35px;
+    }
+  }

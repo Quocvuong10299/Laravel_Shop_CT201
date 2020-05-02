@@ -4,7 +4,9 @@
         <div class="page-content position-relative" id="content">
             <top-component/>
             <!-- Toggle button -->
-            <button id="sidebarCollapse" type="button" class="d-block d-lg-none btn btn-dark bg-dark rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Menu</small></button>
+                <button id="sidebarCollapse" type="button" class="d-block d-lg-none btn px-4 mb-4">
+                    <i class="fa fa-bars mr-2"></i>
+                </button>
             <router-view/>
         </div>
     </div>

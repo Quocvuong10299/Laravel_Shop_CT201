@@ -1923,6 +1923,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -2515,6 +2517,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api */ "./resources/js/api.js");
+//
+//
 //
 //
 //
@@ -2562,6 +2567,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+
+var yyyy = today.getFullYear();
+today = yyyy + '-' + mm + '-' + dd;
 /* harmony default export */ __webpack_exports__["default"] = ({
   "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Line"],
   name: "dashboard-component",
@@ -2584,11 +2596,41 @@ __webpack_require__.r(__webpack_exports__);
       options: {
         responsive: true,
         maintainAspectRatio: false
-      }
+      },
+      bill_today: [],
+      member: ''
     };
   },
   mounted: function mounted() {
     this.renderChart(this.datacollection, this.options);
+    this.countBillToDay();
+    this.countMemBerToDay();
+  },
+  computed: {
+    totalBillToDay: function totalBillToDay() {
+      return this.bill_today.length;
+    },
+    totalRevenueToDay: function totalRevenueToDay() {
+      return this.bill_today.reduce(function (total, item) {
+        return total + item.order_total;
+      }, 0);
+    }
+  },
+  methods: {
+    countBillToDay: function countBillToDay() {
+      var _this = this;
+
+      axios.get(_api__WEBPACK_IMPORTED_MODULE_1__["RESOURCE"] + '/orders/to-day').then(function (res) {
+        _this.bill_today = res.data;
+      });
+    },
+    countMemBerToDay: function countMemBerToDay() {
+      var _this2 = this;
+
+      axios.get(_api__WEBPACK_IMPORTED_MODULE_1__["RESOURCE"] + '/users/to-day').then(function (res) {
+        _this2.member = res.data.length;
+      });
+    }
   }
 });
 
@@ -74062,16 +74104,10 @@ var staticRenderFns = [
     return _c(
       "button",
       {
-        staticClass:
-          "d-block d-lg-none btn btn-dark bg-dark rounded-pill shadow-sm px-4 mb-4",
+        staticClass: "d-block d-lg-none btn px-4 mb-4",
         attrs: { id: "sidebarCollapse", type: "button" }
       },
-      [
-        _c("i", { staticClass: "fa fa-bars mr-2" }),
-        _c("small", { staticClass: "text-uppercase font-weight-bold" }, [
-          _vm._v("Menu")
-        ])
-      ]
+      [_c("i", { staticClass: "fa fa-bars mr-2" })]
     )
   }
 ]
@@ -75053,26 +75089,14 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container-fluid banner__component" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "container-fluid" }, [
-      _c("canvas", { ref: "canvas", attrs: { width: "900", height: "400" } })
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "row" }, [
       _c(
         "div",
         { staticClass: "col-12 col sm-12 col-md-3 col-lg-3 col-xl-3" },
         [
           _c("div", { staticClass: "banner__component--show bg-info" }, [
             _c("div", { staticClass: "number_render" }, [
-              _c("h1", [_vm._v("150")]),
+              _c("h1", [_vm._v(_vm._s(_vm.totalBillToDay))]),
               _vm._v(" "),
               _c("p", [_vm._v("Hóa Đơn Hôm Nay")])
             ]),
@@ -75091,7 +75115,11 @@ var staticRenderFns = [
         [
           _c("div", { staticClass: "banner__component--show bg-success" }, [
             _c("div", { staticClass: "number_render" }, [
-              _c("h1", [_vm._v("150")]),
+              _vm.totalRevenueToDay
+                ? _c("h1", [
+                    _vm._v(_vm._s((_vm.totalRevenueToDay / 1000).toFixed(3)))
+                  ])
+                : _c("h1", [_vm._v("0")]),
               _vm._v(" "),
               _c("p", [_vm._v("Doanh Thu Hôm Nay")])
             ]),
@@ -75110,7 +75138,9 @@ var staticRenderFns = [
         [
           _c("div", { staticClass: "banner__component--show bg-warning" }, [
             _c("div", { staticClass: "number_render" }, [
-              _c("h1", [_vm._v("150")]),
+              _vm.member
+                ? _c("h1", [_vm._v(_vm._s(_vm.member))])
+                : _c("h1", [_vm._v("0")]),
               _vm._v(" "),
               _c("p", [_vm._v("Thành Viên Mới")])
             ]),
@@ -75123,25 +75153,37 @@ var staticRenderFns = [
         ]
       ),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "col-12 col sm-12 col-md-3 col-lg-3 col-xl-3" },
-        [
-          _c("div", { staticClass: "banner__component--show bg-danger" }, [
-            _c("div", { staticClass: "number_render" }, [
-              _c("h1", [_vm._v("150")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Trả Hàng")])
-            ]),
-            _vm._v(" "),
-            _c("i", {
-              staticClass: "fa fa-undo",
-              attrs: { "aria-hidden": "true" }
-            })
-          ])
-        ]
-      )
+      _vm._m(0)
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "container-fluid" }, [
+      _c("canvas", { ref: "canvas", attrs: { width: "900", height: "400" } })
     ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "col-12 col sm-12 col-md-3 col-lg-3 col-xl-3" },
+      [
+        _c("div", { staticClass: "banner__component--show bg-danger" }, [
+          _c("div", { staticClass: "number_render" }, [
+            _c("h1", [_vm._v("150")]),
+            _vm._v(" "),
+            _c("p", [_vm._v("Trả Hàng")])
+          ]),
+          _vm._v(" "),
+          _c("i", {
+            staticClass: "fa fa-undo",
+            attrs: { "aria-hidden": "true" }
+          })
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -76515,7 +76557,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "right__menu" }, [
-    _c("div", { staticClass: "container px-5 top__menu" }, [
+    _c("div", { staticClass: "container px-5 top__menu m-0" }, [
       _c("ul", { staticClass: "nav top__menu--ul" }, [
         _vm._m(0),
         _vm._v(" "),
