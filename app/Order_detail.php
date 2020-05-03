@@ -14,5 +14,5 @@ class Order_detail extends Model
     public function Order(){
         return $this->belongsTo('App\Order','order_id');
     }
-    protected $primaryKey = ['orders_detail_id','order_id'];
+    protected $primaryKey = 'order_detail_id';
 }

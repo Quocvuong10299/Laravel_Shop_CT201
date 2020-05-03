@@ -17,5 +17,5 @@ class Order extends Model
     public function Order_detail(){
         return $this->hasMany('App\Order_detail','order_id');
     }
-    protected $primaryKey = 'orders_id';
+    protected $primaryKey = 'order_id';
 }

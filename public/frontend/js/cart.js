@@ -233,56 +233,39 @@
     };
 
 //    API POST checkout bill
-
-
+//     $(window).on('load',checkoutsBill());
     $('#btn-submit_checkouts').click(function (e) {
         e.preventDefault();
-            $.ajaxSetup({
+        $.ajaxSetup({
             headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-         });
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
         if(window.localStorage) {
             var fields_cart = JSON.parse(localStorage.getItem('cart'));
-            // for(let i = 0; i < fields_cart.length; i++){
-            //     var product_id = fields_cart[i].prodID;
-            //     var product_name = fields_cart[i].prodName;
-            //     var product_price= fields_cart[i].prodPrice;
-            //     var product_sku = fields_cart[i].proSKU;
-            //     var size = fields_cart[i].proSize;
-            //     var color =fields_cart[i].proColor;
-            //     var quantity = fields_cart[i].prodQty;
-            //     var percent_sale = fields_cart[i].prodSaleValue;
-            //     var price_sale = fields_cart[i].prodSalePrice;
-            //
-            //
-            // }
-            $.ajax({
-                url: "/checkouts",
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: "POST", //send it through get method
-                data: {
-                    // proid: product_id,
-                    // proname: product_name,
-                    // proprice: product_price,
-                    // sku: product_sku,
-                    // size: size,
-                    // color: color,
-                    // qty: quantity,
-                    cart: fields_cart,
-                },
-                success: function(response) {
-                    console.log(response);
-                },
-                error: function(xhr) {
-                }
-            });
+            // var arr_cart = [fields_cart];
+            var customer_name = $('#order_name').val();
+            var customer_mail = $('#order_email').val();
+            var customer_phone = $('#order_phone').val();
+            var customer_address = $('#order_address').val();
+            var customer_payment = $('#order_payment').val();
+            var customer_note = $('#order_note').val();
+            var customer_total = $('#order_total').val();
+            $.post('checkouts',{
+                cus_name:customer_name,
+                cus_mail:customer_mail,
+                cus_phone:customer_phone,
+                cus_address:customer_address,
+                cus_payment:customer_payment,
+                cus_note:customer_note,
+                cus_total:customer_total,
+                cus_carts:fields_cart
+            },function (data) {
+                $("#form_checkout").trigger("reset");
+                localStorage.removeItem('cart');
+            })
         }
     });
-
-
 
 })(jQuery);

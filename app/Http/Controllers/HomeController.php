@@ -145,37 +145,30 @@ class HomeController extends Controller
 //oder request
     public function postCheckOuts(Request $request){
         $order = new Order;
-        $order->order_address =  $request->order_address;
-        $order->order_phone =  $request->order_phone;
-        $order->order_note =  $request->order_note;
-        $order->order_total =  $request->order_total;
-        $order->payment_id =  $request->order_payment;
-//        $order->save();
-
-//       $detail = new Order_detail;
-//       $detail->order_id = $order->order_id;
-//       $detail->order_detail_id = random_int(99);
-//       $detail->product_id = $request->get('proid');
-//       $detail->product_id = $request->get('proname');
-//       $detail->order_detail_price = $request->get('proprice');
-////       $detail->product_id = $request->get('sku');
-//       $detail->order_detail_size = $request->get('size');
-//       $detail->order_detail_color = $request->get('color');
-//       $detail->order_detail_quantity = $request->get('qty');
-//       $detail->save();
-//       return $detail;
-
-        $cart = $request->get('cart');
-//        dd($cart);
-//        foreach ($cart as $key => $value){
-//            $detail = new Order_detail;
-//            $detail->order_id = $order->order_id;
-////            foreach()
-//            $detail->order_detail_id = random_int(999);
-//            $detail->product_id = $value['prodID'];
-//            $detail->save();
-////            dd($value);
-//        }
+        $order->order_address =  $request->get('cus_address');
+        $order->order_user_name =  $request->get('cus_name');
+        $order->order_phone =  $request->get('cus_phone');
+        $order->order_note =  $request->get('cus_note');
+        $order->order_total =  $request->get('cus_total');
+        $order->payment_id =  $request->get('cus_payment');
+        $order->order_current_day =  date('Y-m-d');
+        $order->save();
+        $carts = $request->get('cus_carts');
+        foreach ($carts as $value){
+            $detail = new Order_detail;
+            $detail->order_id = $order->order_id;
+            $detail->product_id = $value['prodID'];
+            $detail->order_detail_name = $value['prodName'];
+            $detail->order_detail_quantity = $value['prodQty'];
+            $detail->order_detail_color = $value['proColor'];
+            $detail->order_detail_size = $value['proSize'];
+            $detail->order_detail_price = $value['prodPrice'];
+            $detail->order_detail_percent_sale = $value['prodSaleValue'];
+            $detail->order_detail_sku = $value['proSKU'];
+            $detail->order_detail_price_sale = $value['prodSalePrice'];
+            $detail->save();
+        }
+        return response()->json(['message'=>'success']);
     }
 
 }

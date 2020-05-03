@@ -9,8 +9,10 @@
                 </ul>
             </div>
             <h4 class="main__title--component mb-5"> Đặt hàng</h4>
+            <div id="mess_checkout">
 
-            <form action="{{route('postCheckOuts')}}" method="POST">
+            </div>
+            <form action="{{route('postCheckOuts')}}" method="POST" id="form_checkout" name="form_checkout">
                 @csrf
                 <div class="row w-100">
 
@@ -25,7 +27,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-12 col-md-6 col-lg-6 col-xs-12 col-xl-6 field  field-two-thirds  ">
+                                <div class="col-sm-12 col-md-6 col-lg-6 col-xs-12 col-xl-6 field  field-two-thirds field-error">
                                     <div class="field-input-wrapper">
                                         <label class="field-label" for="checkout_user_email">Email</label>
                                         <input placeholder="Email" autocapitalize="off" spellcheck="false" class="field-input" type="email" id="order_email" name="order_email">
@@ -114,6 +116,51 @@
     </div>
 @endsection
 @section('js')
+    <script src="/frontend/js/jquery.validate.min.js"></script>
     <script src="/frontend/js/cart.js"></script>
+    <script>
+        // $("form[name='form_checkout']").validate({
+        //     rules: {
+        //         order_email: {
+        //             required: true,
+        //             email: true
+        //         },
+        //         order_name: {
+        //             required: true,
+        //             maxlength:30
+        //         },
+        //         order_phone: {
+        //             required: true,
+        //             digits: true
+        //         },
+        //         order_address: {
+        //             required: true
+        //         },
+        //     },
+        //     messages: {
+        //         order_name: {
+        //             required: "*Password không được để trống!",
+        //             maxlength:"*Tên không được vượt quá 30 kí tự",
+        //         },
+        //         order_email: "*Email không được để trống! 'vd: ABC@gmail.com'",
+        //         order_address:"*Địa chỉ không được để trống",
+        //         order_phone:"Số điện thoại không được để trống"
+        //     },
+        //     highlight: function(element) {
+        //         $(element).parent().addClass('has-error');
+        //     },
+        //     unhighlight: function(element) {
+        //         $(element).parent().removeClass('has-error');
+        //     },
+        //     submitHandler: function(form) {
+        //     //     $.ajax({
+        //     //
+        //     // });
+        //         $(form).ajaxSubmit();
+        //         return false; // extra insurance preventing the default form action
+        //     }
+        // });
+    </script>
+    <script src="/frontend/js/validateForm.js"></script>
     {{--<script src="/frontend/js/ajaxChooseCity.js"></script>--}}
 @endsection
