@@ -71,7 +71,7 @@
                         borderWidth: 2,
                         pointBorderColor: '#249EBF',
                         //Data to be represented on y-axis
-                        data: [0, 0, 0, 0, 90, 10, 20, 40, 50, 70, 90, 100]
+                        data: [0, 0, 0, 0, 90, 10, 20, 40, 50, 35, 90, 100]
                     }]
                 },
                 options: {
@@ -95,6 +95,9 @@
             },
             totalRevenueToDay(){
                return this.bill_today.reduce((total, item) => total + item.order_total, 0)
+            },
+            totalRevenueMonth(){
+                return this.revenueMonth.reduce((total, item) => total + item.order_total, 0)
             }
         },
         methods:{
@@ -113,7 +116,7 @@
             countRevenueMonth(){
                 axios.get(RESOURCE + '/orders/revenue/month')
                     .then(res => {
-                        this.revenueMonth = console.log(res.data);
+                        this.revenueMonth = res.data;
                     })
             }
         }

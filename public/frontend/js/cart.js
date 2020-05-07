@@ -234,38 +234,42 @@
 
 //    API POST checkout bill
 //     $(window).on('load',checkoutsBill());
-    $('#btn-submit_checkouts').click(function (e) {
-        e.preventDefault();
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+    $('#btn-submit_checkouts').on("click", function (e) {
 
-        if(window.localStorage) {
-            var fields_cart = JSON.parse(localStorage.getItem('cart'));
-            // var arr_cart = [fields_cart];
-            var customer_name = $('#order_name').val();
-            var customer_mail = $('#order_email').val();
-            var customer_phone = $('#order_phone').val();
-            var customer_address = $('#order_address').val();
-            var customer_payment = $('#order_payment').val();
-            var customer_note = $('#order_note').val();
-            var customer_total = $('#order_total').val();
-            $.post('checkouts',{
-                cus_name:customer_name,
-                cus_mail:customer_mail,
-                cus_phone:customer_phone,
-                cus_address:customer_address,
-                cus_payment:customer_payment,
-                cus_note:customer_note,
-                cus_total:customer_total,
-                cus_carts:fields_cart
-            },function (data) {
-                $("#form_checkout").trigger("reset");
-                localStorage.removeItem('cart');
-            })
+        if ($("#form_checkout").valid()) {
+        e.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            if(window.localStorage) {
+                var fields_cart = JSON.parse(localStorage.getItem('cart'));
+                // var arr_cart = [fields_cart];
+                var customer_name = $('#order_name').val();
+                var customer_mail = $('#order_email').val();
+                var customer_phone = $('#order_phone').val();
+                var customer_address = $('#order_address').val();
+                var customer_payment = $('#order_payment').val();
+                var customer_note = $('#order_note').val();
+                var customer_total = $('#order_total').val();
+                $.post('checkouts',{
+                    cus_name:customer_name,
+                    cus_mail:customer_mail,
+                    cus_phone:customer_phone,
+                    cus_address:customer_address,
+                    cus_payment:customer_payment,
+                    cus_note:customer_note,
+                    cus_total:customer_total,
+                    cus_carts:fields_cart
+                },function (data) {
+                    $("#form_checkout").trigger("reset");
+                    localStorage.removeItem('cart');
+                })
+            }
         }
+
     });
 
 })(jQuery);

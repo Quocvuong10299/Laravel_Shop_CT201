@@ -119,47 +119,48 @@
     <script src="/frontend/js/jquery.validate.min.js"></script>
     <script src="/frontend/js/cart.js"></script>
     <script>
-        // $("form[name='form_checkout']").validate({
-        //     rules: {
-        //         order_email: {
-        //             required: true,
-        //             email: true
-        //         },
-        //         order_name: {
-        //             required: true,
-        //             maxlength:30
-        //         },
-        //         order_phone: {
-        //             required: true,
-        //             digits: true
-        //         },
-        //         order_address: {
-        //             required: true
-        //         },
-        //     },
-        //     messages: {
-        //         order_name: {
-        //             required: "*Password không được để trống!",
-        //             maxlength:"*Tên không được vượt quá 30 kí tự",
-        //         },
-        //         order_email: "*Email không được để trống! 'vd: ABC@gmail.com'",
-        //         order_address:"*Địa chỉ không được để trống",
-        //         order_phone:"Số điện thoại không được để trống"
-        //     },
-        //     highlight: function(element) {
-        //         $(element).parent().addClass('has-error');
-        //     },
-        //     unhighlight: function(element) {
-        //         $(element).parent().removeClass('has-error');
-        //     },
-        //     submitHandler: function(form) {
-        //     //     $.ajax({
-        //     //
-        //     // });
-        //         $(form).ajaxSubmit();
-        //         return false; // extra insurance preventing the default form action
-        //     }
-        // });
+        $("#form_checkout").validate({
+            rules: {
+                order_email: {
+                    required: true,
+                    email: true
+                },
+                order_name: {
+                    required: true,
+                    maxlength:30
+                },
+                order_phone: {
+                    required: true,
+                    digits: true,
+                    maxlength:11,
+                },
+                order_address: {
+                    required: true
+                },
+            },
+            messages: {
+                order_name: {
+                    required: "*Password không được để trống!",
+                    maxlength:"*Tên không được vượt quá 30 kí tự",
+                },
+                order_email: "*Email không được để trống! 'vd: ABC@gmail.com'",
+                order_address:"*Địa chỉ không được để trống",
+                order_phone:{
+                    digits:"Số điện thoại phải là số",
+                    required: "Số điện thoại không được để trống",
+                    maxlength: "Số điện thoại không được quá 11 số",
+                }
+            },
+            highlight: function(element) {
+                $(element).parent().addClass('has-error');
+            },
+            unhighlight: function(element) {
+                $(element).parent().removeClass('has-error');
+            },
+            submitHandler: function(form) {
+                form.submit();
+            }
+        });
     </script>
     <script src="/frontend/js/validateForm.js"></script>
     {{--<script src="/frontend/js/ajaxChooseCity.js"></script>--}}

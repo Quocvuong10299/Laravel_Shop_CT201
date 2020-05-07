@@ -234,10 +234,36 @@ class apiController extends Controller
         return response()->json($bill_today);
     }
     public function getRevenueMonth(){
-        $revenueMonth = DB::table('orders')->orderBy('order_date','desc')->whereMonth('order_date',04)->get()->groupBy('order_date');
-        return response()->json($revenueMonth);
+        $year = date('Y');
+        $revenueMonth_1 = DB::table('orders')->orderBy('order_date','desc')->whereMonth('order_date','=',1)->whereYear('order_date','=',$year)->get(['order_total']);
+        $revenueMonth_2 = DB::table('orders')->orderBy('order_date','desc')->whereMonth('order_date','=',2)->whereYear('order_date','=',$year)->get(['order_total']);
+        $revenueMonth_3 = DB::table('orders')->orderBy('order_date','desc')->whereMonth('order_date','=',3)->whereYear('order_date','=',$year)->get(['order_total']);
+        $revenueMonth_4 = DB::table('orders')->orderBy('order_date','desc')->whereMonth('order_date','=',4)->whereYear('order_date','=',$year)->get(['order_total']);
+        $revenueMonth_5 = DB::table('orders')->orderBy('order_date','desc')->whereMonth('order_date','=',5)->whereYear('order_date','=',$year)->get(['order_total']);
+        $revenueMonth_6 = DB::table('orders')->orderBy('order_date','desc')->whereMonth('order_date','=',6)->whereYear('order_date','=',$year)->get(['order_total']);
+        $revenueMonth_7 = DB::table('orders')->orderBy('order_date','desc')->whereMonth('order_date','=',7)->whereYear('order_date','=',$year)->get(['order_total']);
+        $revenueMonth_8 = DB::table('orders')->orderBy('order_date','desc')->whereMonth('order_date','=',8)->whereYear('order_date','=',$year)->get(['order_total']);
+        $revenueMonth_9 = DB::table('orders')->orderBy('order_date','desc')->whereMonth('order_date','=',9)->whereYear('order_date','=',$year)->get(['order_total']);
+        $revenueMonth_10 = DB::table('orders')->orderBy('order_date','desc')->whereMonth('order_date','=',10)->whereYear('order_date','=',$year)->get(['order_total']);
+        $revenueMonth_11 = DB::table('orders')->orderBy('order_date','desc')->whereMonth('order_date','=',11)->whereYear('order_date','=',$year)->get(['order_total']);
+        $revenueMonth_12 = DB::table('orders')->orderBy('order_date','desc')->whereMonth('order_date','=',12)->whereYear('order_date','=',$year)->get(['order_total']);
+        return Response::json(array(
+            'revenueMonth_1' => $revenueMonth_1,
+            'revenueMonth_2' => $revenueMonth_2,
+            'revenueMonth_3' => $revenueMonth_3,
+            'revenueMonth_4' => $revenueMonth_4,
+            'revenueMonth_5' => $revenueMonth_5,
+            'revenueMonth_6' => $revenueMonth_6,
+            'revenueMonth_7' => $revenueMonth_7,
+            'revenueMonth_8' => $revenueMonth_8,
+            'revenueMonth_9' => $revenueMonth_9,
+            'revenueMonth_10' => $revenueMonth_10,
+            'revenueMonth_11' => $revenueMonth_11,
+            'revenueMonth_12' => $revenueMonth_12,
+        ));
     }
     public function getNumberOrder(){
-//        $count_lenth = DB::table('orders')
+        $count_length = DB::table('orders')->where('order_state',0)->get();
+        return response()->json($count_length);
     }
 }

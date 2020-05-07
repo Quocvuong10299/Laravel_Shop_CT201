@@ -168,7 +168,7 @@ class HomeController extends Controller
             $detail->order_detail_price_sale = $value['prodSalePrice'];
             $detail->save();
         }
-        return response()->json(['message'=>'success']);
+        return response()->json(['success' => true]);
     }
 
 }

@@ -2590,7 +2590,7 @@ today = yyyy + '-' + mm + '-' + dd;
           borderWidth: 2,
           pointBorderColor: '#249EBF',
           //Data to be represented on y-axis
-          data: [0, 0, 0, 0, 90, 10, 20, 40, 50, 70, 90, 100]
+          data: [0, 0, 0, 0, 90, 10, 20, 40, 50, 35, 90, 100]
         }]
       },
       options: {
@@ -2616,6 +2616,11 @@ today = yyyy + '-' + mm + '-' + dd;
       return this.bill_today.reduce(function (total, item) {
         return total + item.order_total;
       }, 0);
+    },
+    totalRevenueMonth: function totalRevenueMonth() {
+      return this.revenueMonth.reduce(function (total, item) {
+        return total + item.order_total;
+      }, 0);
     }
   },
   methods: {
@@ -2637,7 +2642,7 @@ today = yyyy + '-' + mm + '-' + dd;
       var _this3 = this;
 
       axios.get(_api__WEBPACK_IMPORTED_MODULE_1__["RESOURCE"] + '/orders/revenue/month').then(function (res) {
-        _this3.revenueMonth = console.log(res.data);
+        _this3.revenueMonth = res.data;
       });
     }
   }
@@ -2692,6 +2697,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../api */ "./resources/js/api.js");
 //
 //
 //
@@ -2779,15 +2785,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "left-menu-component",
   data: function data() {
     return {
-      count_order: ''
+      count_order: []
     };
   },
-  computed: {},
-  methods: {}
+  mounted: function mounted() {
+    this.count_noti();
+  },
+  // computed:{
+  //   countNotify(){
+  //       return this.count_order.length;
+  //   }
+  // },
+  methods: {
+    count_noti: function count_noti() {
+      var _this = this;
+
+      axios.get(_api__WEBPACK_IMPORTED_MODULE_0__["RESOURCE"] + '/orders/count-length').then(function (res) {
+        _this.count_order = res.data.length;
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -75646,7 +75668,9 @@ var render = function() {
                 }),
                 _vm._v(" Orders\n                "),
                 _c("div", { staticClass: "notifi_number" }, [
-                  _c("p", { staticClass: "number_order" }, [_vm._v("0")])
+                  _c("p", { staticClass: "number_order" }, [
+                    _vm._v(_vm._s(_vm.count_order))
+                  ])
                 ])
               ]
             )

@@ -34,7 +34,7 @@
                 <router-link :to="{name: 'orderComponent'}" class="nav-link font-italic">
                     <i class="fa fa-list-ul mr-3 fa-fw" aria-hidden="true"></i> Orders
                     <div class="notifi_number">
-                        <p class="number_order">0</p>
+                        <p class="number_order">{{count_order}}</p>
                     </div>
                 </router-link>
                 <!--<a class="nav-link" href="#"><i class="fa fa-list-ul mr-3 fa-fw" aria-hidden="true"></i> Orders</a>-->
@@ -86,18 +86,29 @@
 </template>
 
 <script>
+    import {RESOURCE} from '../api';
     export default {
         name: "left-menu-component",
         data(){
             return{
-                count_order:''
+                count_order:[],
             }
         },
-        computed:{
-
+        mounted(){
+            this.count_noti();
         },
+        // computed:{
+        //   countNotify(){
+        //       return this.count_order.length;
+        //   }
+        // },
         methods:{
-
+            count_noti(){
+                axios.get(RESOURCE + '/orders/count-length')
+                    .then(res => {
+                        this.count_order = res.data.length;
+                    })
+            }
         }
     }
 </script>
