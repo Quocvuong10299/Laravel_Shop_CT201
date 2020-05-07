@@ -4,7 +4,7 @@
                 <div class="col-12 col sm-12 col-md-3 col-lg-3 col-xl-3">
                     <div class="banner__component--show bg-info">
                         <div class="number_render">
-                            <h1>{{totalBillToDay}}</h1>
+                            <h1>+ {{totalBillToDay}}</h1>
                             <p>Hóa Đơn Hôm Nay</p>
                         </div>
                         <i class="fa fa-shopping-bag" aria-hidden="true"></i>
@@ -79,13 +79,15 @@
                     maintainAspectRatio: false
                 },
                 bill_today:[],
-                member:''
+                member:'',
+                revenueMonth:[],
             }
         },
         mounted () {
             this.renderChart(this.datacollection, this.options);
             this.countBillToDay();
             this.countMemBerToDay();
+            this.countRevenueMonth();
         },
         computed:{
             totalBillToDay(){
@@ -108,6 +110,12 @@
                         this.member = res.data.length;
                     })
             },
+            countRevenueMonth(){
+                axios.get(RESOURCE + '/orders/revenue/month')
+                    .then(res => {
+                        this.revenueMonth = console.log(res.data);
+                    })
+            }
         }
     }
 </script>

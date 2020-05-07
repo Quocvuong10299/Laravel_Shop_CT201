@@ -30,9 +30,12 @@
                 </router-link>
                 <!--<a class="nav-link" href="products.html"><i class="fa fa-archive" aria-hidden="true"></i> Products</a>-->
             </li>
-            <li class="nav-item add_active">
+            <li class="nav-item add_active position-relative">
                 <router-link :to="{name: 'orderComponent'}" class="nav-link font-italic">
                     <i class="fa fa-list-ul mr-3 fa-fw" aria-hidden="true"></i> Orders
+                    <div class="notifi_number">
+                        <p class="number_order">0</p>
+                    </div>
                 </router-link>
                 <!--<a class="nav-link" href="#"><i class="fa fa-list-ul mr-3 fa-fw" aria-hidden="true"></i> Orders</a>-->
             </li>
@@ -85,9 +88,32 @@
 <script>
     export default {
         name: "left-menu-component",
+        data(){
+            return{
+                count_order:''
+            }
+        },
+        computed:{
+
+        },
+        methods:{
+
+        }
     }
 </script>
 
 <style lang="scss">
-
+    .notifi_number{
+        position: absolute;
+        top:25%;
+        right:10px;
+        .number_order{
+            width: 20px;
+            height: 20px;
+            border-radius: 100%;
+            background: red;
+            text-align: center;
+            color:#fff;
+        }
+    }
 </style>

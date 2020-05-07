@@ -8,6 +8,7 @@ use App\Color;
 use App\Comment;
 use App\Http\Controllers\Controller;
 use App\Order;
+use App\Order_detail;
 use App\Product;
 use App\Size;
 use App\Slide;
@@ -206,9 +207,37 @@ class apiController extends Controller
         return response()->json(['message'=>'created success']);
     }
 //    order
+    public function getAllOrder(){
+        $all_order = Order::orderBy('order_date','DESC')->paginate(20);
+        return response()->json($all_order);
+    }
+    public function getDetailOrder($id){
+        $order_detail = DB::table('order_detail')
+            ->join('orders','order_detail.order_id','=','orders.order_id')
+            ->join('products','order_detail.product_id','=','products.product_id')
+            ->select([
+                'orders.*',
+                'order_detail.*'
+            ])
+            ->where('orders.order_id',$id)
+            ->get();
+        return response()->json($order_detail);
+    }
+    public function stateStatus(Request $request,$id){
+        $new_state = Order::findOrFail($id);
+        $new_state->order_state = $request->get('val_state');
+        $new_state->save();
+    }
     public function getOrderToday(){
         $current_day = date('Y-m-d');
-        $bill_today = DB::table('orders')->where('order_current_day',$current_day)->get();
+        $bill_today = DB::table('orders')->whereDate('order_date',$current_day)->get();
         return response()->json($bill_today);
+    }
+    public function getRevenueMonth(){
+        $revenueMonth = DB::table('orders')->orderBy('order_date','desc')->whereMonth('order_date',04)->get()->groupBy('order_date');
+        return response()->json($revenueMonth);
+    }
+    public function getNumberOrder(){
+//        $count_lenth = DB::table('orders')
     }
 }

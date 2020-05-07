@@ -78,7 +78,12 @@ Route::group(['prefix'=>'api','middleware' => 'adminLogin'], function(){
     Route::get('/suppliers','Api\apiController@getSupplier');
     Route::post('/suppliers/add','Api\apiController@postSupplier');
 //    ROUTE ORDER
+    Route::get('/orders','Api\apiController@getAllOrder');
+    Route::get('/orders/detail/{id}','Api\apiController@getDetailOrder');
+    Route::put('/orders/state-status/{id}','Api\apiController@stateStatus');
     Route::get('/orders/to-day','Api\apiController@getOrderToday');
+    Route::get('/orders/revenue/month','Api\apiController@getRevenueMonth');
+    Route::get('/orders/count-length','Api\apiController@getNumberOrder');
 });
 
 Route::group(['prefix'=>'admin/dashboard','middleware' => 'adminLogin'], function(){
