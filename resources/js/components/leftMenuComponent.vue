@@ -3,7 +3,7 @@
         <div class="py-4 px-3 mb-4 bg-dark">
             <div class="media-body">
                 <h4 class="font-weight-white text-muted mb-0">King's Admin</h4>
-                <p class="font-weight-grey text-muted mb-0">since 2020</p>
+                <p class="font-weight-grey text-muted mb-0">since 2020 By QVuong</p>
             </div>
         </div>
         <ul class="nav flex-column bg-dark mb-0">
@@ -97,11 +97,11 @@
         mounted(){
             this.count_noti();
         },
-        // computed:{
-        //   countNotify(){
-        //       return this.count_order.length;
-        //   }
-        // },
+        computed:{
+          // countNotify(){
+          //     return this.count_order.length;
+          // }
+        },
         methods:{
             count_noti(){
                 axios.get(RESOURCE + '/orders/count-length')

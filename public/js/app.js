@@ -2796,11 +2796,10 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.count_noti();
   },
-  // computed:{
-  //   countNotify(){
-  //       return this.count_order.length;
-  //   }
-  // },
+  computed: {// countNotify(){
+    //     return this.count_order.length;
+    // }
+  },
   methods: {
     count_noti: function count_noti() {
       var _this = this;
@@ -3158,6 +3157,107 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3171,11 +3271,25 @@ __webpack_require__.r(__webpack_exports__);
       category: [],
       gender: [],
       pagination_pro: {},
-      showProduct: false
+      showProduct: false,
+      showDetail: false,
+      is_add: false,
+      data_pro_detail: [],
+      newPro: {
+        name: '',
+        category_id: '',
+        category_gender_id: '',
+        supplier_id: '',
+        show: 1,
+        product_image: '',
+        product_active: 1,
+        product_new: 1
+      }
     };
   },
   mounted: function mounted() {
     this.fetchProducts();
+    this.showDetailProduct();
   },
   methods: {
     fetchProducts: function fetchProducts(url_pro) {
@@ -3200,12 +3314,17 @@ __webpack_require__.r(__webpack_exports__);
       this.pagination_pro.current_page = Number(pageNum);
       this.fetchProducts(this.pagination_pro.path_page + '?page=' + this.pagination_pro.current_page);
     },
-    setValPro: function setValPro(val_id, val_name, val_item, val_gender, val_show) {
-      this.cat_id = val_id;
-      this.cat_name = val_name;
-      this.cat_item = val_item;
-      this.cat_gender = val_gender;
-      this.cat_show = val_show;
+    setValPro: function setValPro(val_id, val_name, val_cat_name, val_cat_id, val_gender, val_show, val_new, val_description, val_supplier_name, val_supplier_id) {
+      this.pro_id = val_id;
+      this.pro_name = val_name;
+      this.pro_cat_name = val_cat_name;
+      this.pro_cat_id = val_cat_id;
+      this.pro_gender = val_gender;
+      this.pro_supplier_id = val_supplier_id;
+      this.pro_supplier_name = val_supplier_name; // this.pro_show= val_show;
+
+      this.pro_new = val_new;
+      this.pro_description = val_description;
     },
     //Edit CATEGORY
     editCategory: function editCategory() {
@@ -3229,6 +3348,32 @@ __webpack_require__.r(__webpack_exports__);
           _this2.isShow = false;
         });
       }
+    },
+    showDetailProduct: function showDetailProduct(index) {
+      var _this3 = this;
+
+      if (this.showDetail === true) {
+        var id_pro = this.products[index].product_id;
+      }
+
+      axios.get(_api__WEBPACK_IMPORTED_MODULE_1__["RESOURCE"] + '/products/detail/' + id_pro).then(function (res) {
+        _this3.data_pro_detail = res.data;
+      });
+    },
+    createProduct: function createProduct() {
+      var _this4 = this;
+
+      axios.post(_api__WEBPACK_IMPORTED_MODULE_1__["RESOURCE"] + '/products/add', {
+        name: this.newPro.name,
+        category: this.newPro.category_id,
+        gender: this.newPro.category_gender_id,
+        supplier: this.newPro.supplier_id,
+        image: this.newPro.product_image
+      }).then(function (res) {
+        _this4.fetchCategories();
+
+        _this4.isAdd = false;
+      });
     }
   }
 });
@@ -24556,7 +24701,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".edit_pro {\n  width: 100%;\n  visibility: hidden;\n  opacity: 0;\n}\n.form_edit_pro {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 999;\n  background: #fff;\n  padding: 20px;\n  border-radius: 5px;\n  width: 100%;\n}\n.show_edit_pro {\n  visibility: inherit;\n  opacity: 1;\n}", ""]);
+exports.push([module.i, ".edit_pro {\n  width: 100%;\n  visibility: hidden;\n  opacity: 0;\n}\n.form_edit_pro {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 999;\n  background: #fff;\n  padding: 20px;\n  border-radius: 5px;\n  width: 100%;\n}\n.show_edit_pro {\n  visibility: inherit;\n  opacity: 1;\n}\n.detail_product {\n  display: none;\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  background: #fff;\n  height: 100vh;\n  z-index: 9999;\n}\n.active_showdetail_product {\n  display: block;\n}\n.add_pro {\n  display: none;\n}\n.active_add_pro {\n  display: block;\n}", ""]);
 
 // exports
 
@@ -75830,7 +75975,7 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("p", { staticClass: "font-weight-grey text-muted mb-0" }, [
-          _vm._v("since 2020")
+          _vm._v("since 2020 By QVuong")
         ])
       ])
     ])
@@ -76177,18 +76322,37 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "main position-relative" }, [
-    _vm._m(0),
+    _c("div", { staticClass: "row w-100 mx-0" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 bg-white px-0 mx-0 d-flex justify-content-end"
+        },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-success my-1 mr-2",
+              on: {
+                click: function($event) {
+                  _vm.is_add = true
+                }
+              }
+            },
+            [_vm._v("Thêm mới")]
+          )
+        ]
+      )
+    ]),
     _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "container-fluid banner__component px-0",
-        staticStyle: { height: "400px" }
-      },
-      [
-        _c("div", { staticClass: "table-responsive" }, [
+    _c("div", { staticClass: "container-fluid banner__component px-0" }, [
+      _c(
+        "div",
+        { staticClass: "table-responsive", staticStyle: { height: "400px" } },
+        [
           _c("table", { staticClass: "table table-hover" }, [
-            _vm._m(1),
+            _vm._m(0),
             _vm._v(" "),
             _c(
               "tbody",
@@ -76224,7 +76388,25 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("td", [
-                    _vm._m(2, true),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-info",
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.showDetail = true
+                            _vm.showDetailProduct(index)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-eye",
+                          attrs: { "aria-hidden": "true" }
+                        })
+                      ]
+                    ),
                     _vm._v(" "),
                     _c(
                       "button",
@@ -76245,7 +76427,7 @@ var render = function() {
                               pro.product_description,
                               pro.product_active,
                               pro.product_new,
-                              _vm.product_show
+                              pro.product_show
                             )
                           }
                         }
@@ -76263,9 +76445,9 @@ var render = function() {
               0
             )
           ])
-        ])
-      ]
-    ),
+        ]
+      )
+    ]),
     _vm._v(" "),
     _c(
       "div",
@@ -76324,22 +76506,62 @@ var render = function() {
                       id: "pro_id",
                       name: "id",
                       required: ""
-                    }
+                    },
+                    domProps: { value: this.pro_id }
                   }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "pro_name" } }, [
+                      _vm._v("Tên Sản Phẩm")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        id: "pro_name",
+                        placeholder: "Name",
+                        required: ""
+                      },
+                      domProps: { value: this.pro_name }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "" } }, [
+                        _vm._v("Thương hiệu")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          staticClass: "form-control",
+                          attrs: { id: "pro_supplier", name: "pro_supplier" }
+                        },
+                        [
+                          _c(
+                            "option",
+                            {
+                              attrs: { disabled: "", selected: "" },
+                              domProps: { value: this.pro_supplier_id }
+                            },
+                            [_vm._v(_vm._s(_vm.products.supplier_name))]
+                          )
+                        ]
+                      )
+                    ])
+                  ]),
                   _vm._v(" "),
                   _vm._m(3),
                   _vm._v(" "),
                   _vm._m(4),
                   _vm._v(" "),
                   _vm._m(5),
-                  _vm._v(" "),
-                  _vm._m(6),
-                  _vm._v(" "),
-                  _vm._m(7),
-                  _vm._v(" "),
-                  _vm._m(8),
-                  _vm._v(" "),
-                  _vm._m(9),
                   _vm._v(" "),
                   _c(
                     "button",
@@ -76370,29 +76592,238 @@ var render = function() {
             _c("div", { staticClass: "overlay_form" })
           ]
         )
+      : _vm._e(),
+    _vm._v(" "),
+    _c("div", [
+      _vm.showDetail
+        ? _c(
+            "div",
+            {
+              staticClass: "position-absolute w-100 detail_product",
+              class: { active_showdetail_product: _vm.showDetail }
+            },
+            [
+              _c("h5", [_vm._v("Chi tiết sản phẩm")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "table-responsive" }, [
+                _c("table", { staticClass: "table table-hover table-sm" }, [
+                  _vm._m(6),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.data_pro_detail, function(prod, index) {
+                      return _c("tr", { key: prod.product_id }, [
+                        _c("td", [
+                          _c("img", {
+                            attrs: {
+                              width: "80",
+                              height: "80",
+                              src: prod.product_image
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("Cái")]),
+                        _vm._v(" "),
+                        _c("td", { staticStyle: { "max-width": "20rem" } }, [
+                          _vm._v(_vm._s(prod.product_description))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(prod.product_new === 1 ? "Mới" : "Cũ"))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(prod.created_at))])
+                      ])
+                    }),
+                    0
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-warning mx-2",
+                  on: {
+                    click: function($event) {
+                      _vm.showDetail = false
+                    }
+                  }
+                },
+                [_vm._v("Back")]
+              )
+            ]
+          )
+        : _vm._e()
+    ]),
+    _vm._v(" "),
+    _vm.is_add
+      ? _c(
+          "div",
+          { staticClass: "add_pro", class: { active_add_pro: _vm.is_add } },
+          [
+            _c("div", { staticClass: "form_edit_pro" }, [
+              _c("h1", [_vm._v("Add The Product")]),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                    }
+                  }
+                },
+                [
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "hidden",
+                      disabled: "",
+                      id: "id_add",
+                      name: "id_add",
+                      required: ""
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "pro_name_add" } }, [
+                      _vm._v("Tên Sản Phẩm")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.newPro.name,
+                          expression: "newPro.name"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        id: "pro_name_add",
+                        placeholder: "Name",
+                        required: ""
+                      },
+                      domProps: { value: _vm.newPro.name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.newPro, "name", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "pro_item" } }, [
+                        _vm._v("Danh mục")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.newPro.category_id,
+                              expression: "newPro.category_id"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { id: "pro_item", name: "pro_item" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.newPro,
+                                "category_id",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "option",
+                            {
+                              attrs: { value: "", disabled: "", selected: "" }
+                            },
+                            [_vm._v(" Chọn Danh Mục ")]
+                          ),
+                          _vm._v(" "),
+                          _vm._l(_vm.category, function(categorys, index) {
+                            return _c(
+                              "option",
+                              { domProps: { value: categorys.category_id } },
+                              [_vm._v(_vm._s(categorys.category_name))]
+                            )
+                          })
+                        ],
+                        2
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(7),
+                  _vm._v(" "),
+                  _vm._m(8),
+                  _vm._v(" "),
+                  _vm._m(9),
+                  _vm._v(" "),
+                  _vm._m(10),
+                  _vm._v(" "),
+                  _vm._m(11),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn bg-light",
+                      attrs: { type: "submit" },
+                      on: {
+                        click: function($event) {
+                          _vm.is_add = false
+                        }
+                      }
+                    },
+                    [_vm._v("Hủy")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-success",
+                      attrs: { type: "submit" }
+                    },
+                    [_vm._v("Lưu")]
+                  )
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "overlay_form" })
+          ]
+        )
       : _vm._e()
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row w-100 mx-0" }, [
-      _c(
-        "div",
-        {
-          staticClass:
-            "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 bg-white px-0 mx-0 d-flex justify-content-end"
-        },
-        [
-          _c("button", { staticClass: "btn btn-success my-1 mr-2" }, [
-            _vm._v("Thêm mới")
-          ])
-        ]
-      )
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -76413,32 +76844,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Action")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("button", { staticClass: "btn btn-info" }, [
-      _c("i", { staticClass: "fa fa-eye", attrs: { "aria-hidden": "true" } })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "pro_name" } }, [_vm._v("Tên Sản Phẩm")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          type: "text",
-          id: "pro_name",
-          placeholder: "Name",
-          required: ""
-        }
-      })
     ])
   },
   function() {
@@ -76497,7 +76902,82 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group" }, [
       _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "" } }, [_vm._v("Thương hiệu")]),
+        _c("label", { attrs: { for: "" } }, [_vm._v("Tồn kho")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          { staticClass: "form-control", attrs: { name: "cat_gender" } },
+          [_c("option", { attrs: { value: "", disabled: "", selected: "" } })]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "" } }, [_vm._v("SP mới")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          { staticClass: "form-control", attrs: { name: "cat_gender" } },
+          [_c("option", { attrs: { value: "", disabled: "", selected: "" } })]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "cat_show" } }, [_vm._v("Ẩn / Hiện")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            staticClass: "form-control",
+            attrs: { id: "cat_show", name: "cat_show" }
+          },
+          [
+            _c("option", { attrs: { value: "", disabled: "", selected: "" } }),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "1" } }, [_vm._v("Hiện")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "0" } }, [_vm._v("Ẩn")])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Image")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Đơn vị")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Mô tả")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Mới")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Thời gian tạo")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "cat_gender" } }, [_vm._v("Dành cho")]),
         _vm._v(" "),
         _c(
           "select",
@@ -76505,7 +76985,29 @@ var staticRenderFns = [
             staticClass: "form-control",
             attrs: { id: "", name: "cat_gender" }
           },
-          [_c("option", { attrs: { value: "", disabled: "", selected: "" } })]
+          [
+            _c("option", { attrs: { value: "", disabled: "", selected: "" } }),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "1" } }, [_vm._v("Nam")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "2" } }, [_vm._v("Nữ")])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "" } }, [_vm._v("Thương hiệu")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          { staticClass: "form-control", attrs: { name: "pro_supplier" } },
+          [_c("option", { attrs: { disabled: "", selected: "" } })]
         )
       ])
     ])

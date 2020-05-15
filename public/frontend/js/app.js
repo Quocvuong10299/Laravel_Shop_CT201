@@ -33,8 +33,12 @@
         const scrollHeader = $(window).scrollTop();
         if(scrollHeader > 70){
             $('.header').addClass("header__scroll--component");
+            $('.header').addClass("dropdown");
+            $('.header').removeClass("clear_dropdown");
         }else {
             $('.header').removeClass("header__scroll--component");
+            $('.header').removeClass("dropdown");
+            $('.header').addClass("clear_dropdown");
         }
     });
 

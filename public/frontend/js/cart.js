@@ -4,11 +4,15 @@
     //-------------------------------------------------
     $('#add_to_cart').click(addToCart);
     let cart = [];
+
+    //get cart
     if (localStorage.getItem('cart')) {
         cart = JSON.parse(localStorage.getItem('cart'));
         showCart();
     }
-    //add cart
+
+
+    //add to cart
     function addToCart() {
         let prodid = id;
         let prodname = $('#prodName').text();
@@ -45,17 +49,23 @@
         saveCart();
         showCart();
     }
+
+
     //save cart
     function saveCart() {
         let parsed = JSON.stringify(cart);
         localStorage.setItem('cart', parsed);
     }
+
+
     //delete item cart
     function deleteItem(index){
         cart.splice(index,1); // delete item at index
         showCart();
         saveCart();
     };
+
+
     //count quantity cart
     function countTotalItem() {
         var total = 0;
@@ -64,6 +74,8 @@
         }
         return total;
     }
+
+
     //count total price cart
     function totalPrice() {
         var sum = 0.0;
@@ -76,7 +88,11 @@
         }
         return sum;
     }
+
+
     $('#order_total').attr('value',totalPrice());
+
+
     //total price simple product
     function totalPriceSingle() {
         // let value = $('#input_quantitys').val();
@@ -84,6 +100,8 @@
             return Number(cart[i].prodQty) * Number(cart[i].prodPrice);
         }
     }
+
+
     //plus and minius value
     $('.buttons').click(function () {
         var $button = $(this);
@@ -110,11 +128,14 @@
         }
        $button.parent().find("input").attr('value',newVal);
     });
+
+
     //update cart
     function updateCart() {
 
     }
-    //show cart in page
+
+    //show cart in page and checkouts
     function showCart() {
         //each component cart
         $('.carts').empty();
@@ -158,7 +179,7 @@
                                         </div>
                                         <div class="mb-0 d-flex">
                                             <label> Màu: ${data.proColor} </label>
-                     
+
                                             <label>/ Size:</label>
                                             <div class="border border-secondary rounded text-center mx-2" style="width: 20px; height: 20px;line-height: 20px;">${data.proSize}</div>
                                         </div>
@@ -167,7 +188,7 @@
                             </div>
                             <div class="col-md-1 col-lg-2 col-sm-12 col-xs-12 col-xl-2 d-flex align-items-center">
                                 <div class="input_quantity">
-                            
+
                                <div class="quantity d-flex">
                                    <button class="buttons">-</button>
                                    <input id="input_quantitys" style="width: 40px" name="qty" type="number" max="2" min="1" value="${data.prodQty}" readonly="readonly">
@@ -216,8 +237,10 @@
                      <strong>Tổng: ${totalPrice()}VND</strong>
                       `
             );
-        }else{
-            $('.number_item').empty();
+        }
+        if(cart.length < 1){
+            // $('.number_item').empty();
+            console.log('ok');
             $('.number_item').append(`0`);
             $('.total_cart').empty();
             $('.total_cart').append(`<strong>Giỏ hàng đang trống</strong><i class="fa fa-frown-o" aria-hidden="true"></i>`);
@@ -233,7 +256,10 @@
     };
 
 //    API POST checkout bill
-//     $(window).on('load',checkoutsBill());
+    $('#btn-submit_checkouts').addClass('invisible');
+    if(cart.length > 0){
+        $('#btn-submit_checkouts').removeClass('invisible');
+    }
     $('#btn-submit_checkouts').on("click", function (e) {
 
         if ($("#form_checkout").valid()) {
@@ -263,13 +289,14 @@
                     cus_note:customer_note,
                     cus_total:customer_total,
                     cus_carts:fields_cart
-                },function (data) {
+                }, (data) => {
                     $("#form_checkout").trigger("reset");
-                    localStorage.removeItem('cart');
+                    localStorage.clear();
+                    // $('#mess_checkout').append(data.success);
+                    window.location.replace("http://127.0.0.1:8000/checkouts");
                 })
             }
         }
 
     });
-
 })(jQuery);

@@ -109,6 +109,36 @@ class apiController extends Controller
             'gender' => $product_gender,
         ));
     }
+    public function getDetailProduct($id){
+        $product_detail = DB::table('products')
+            ->join('category','products.category_id','=','category.category_id')
+            ->join('category_gender','products.category_gender_id','=','category_gender.category_gender_id')
+            ->join('supplier','products.supplier_id','=','supplier.supplier_id')
+            ->select([
+                'category.category_name',
+                'products.product_id',
+                'products.product_name',
+                'products.product_active',
+                'products.product_image',
+                'products.product_description',
+                'products.created_at',
+                'products.product_active',
+                'products.product_new',
+                'products.product_show',
+                'category.category_id',
+                'category_gender.category_gender_id',
+                'category_gender.category_gender_name',
+                'supplier.supplier_name',
+                'supplier.supplier_id',
+            ])
+            ->orderBy('product_id','DESC')
+            ->where('products.product_id', $id)
+            ->get();
+        return response()->json($product_detail);
+    }
+    public function addProduct(){
+
+    }
 
 //    comments
     public function getComment(){

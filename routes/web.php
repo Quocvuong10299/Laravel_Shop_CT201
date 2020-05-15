@@ -62,6 +62,8 @@ Route::group(['prefix'=>'api','middleware' => 'adminLogin'], function(){
     Route::post('/category/add','Api\apiController@addCategory');
 //    ROUTE PRODUCTS
     Route::get('/products','Api\apiController@getProduct');
+    Route::get('/products/detail/{id}','Api\apiController@getDetailProduct');
+    Route::post('/products/add','Api\apiController@addProduct');
 //    ROUTE COMMENTS
     Route::get('/comments','Api\apiController@getComment');
     Route::delete('comments/{id}', 'Api\apiController@removeComment');

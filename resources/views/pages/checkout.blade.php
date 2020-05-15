@@ -9,9 +9,9 @@
                 </ul>
             </div>
             <h4 class="main__title--component mb-5"> Đặt hàng</h4>
-            <div id="mess_checkout">
+{{--            <div id="mess_checkout" class="alert alert-success">--}}
 
-            </div>
+{{--            </div>--}}
             <form action="{{route('postCheckOuts')}}" method="POST" id="form_checkout" name="form_checkout">
                 @csrf
                 <div class="row w-100">
@@ -140,7 +140,7 @@
             },
             messages: {
                 order_name: {
-                    required: "*Password không được để trống!",
+                    required: "*Tên không được để trống!",
                     maxlength:"*Tên không được vượt quá 30 kí tự",
                 },
                 order_email: "*Email không được để trống! 'vd: ABC@gmail.com'",
