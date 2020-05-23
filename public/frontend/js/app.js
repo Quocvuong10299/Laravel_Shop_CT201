@@ -82,5 +82,18 @@
           });
         });
     });
+//click change icon menu
+    $('.icon-menu').click(function () {
+       $(this).toggleClass('change_icon');
+    })
 
+//    active menu
+//     let menu_item = $('.header__main-nav nav ul li');
+//     menu_item.click(function () {
+//       if($(this).hasClass('active-menu')){
+//           return;
+//       }else{
+//           $(this).addClass('active-menu')
+//       }
+//     })
 })(jQuery);

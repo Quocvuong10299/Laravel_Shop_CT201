@@ -3,14 +3,15 @@
     <div class="container position-relative">
         <div class="header__wrapper d-flex justify-content-between">
             <div class="header__logo">
-                <a href="#">King's</a>
+                <a href="{{route('home')}}">King's</a>
             </div>
             <div class="header__main-nav d-none d-lg-block">
                 <nav>
                     <ul class="d-flex justify-content-between align-items-center my-0 px-0">
-                        <li><a href="{{route('home')}}"> Trang Chủ</a></li>
+                        <li class="{{ request()->is('/*') ? 'active-menu' : '' }}">
+                            <a href="{{route('home')}}"> Trang Chủ</a></li>
                         @foreach($category_gender as $cats_gender)
-                            <li class="position-relative header__parent--sub"><a href="#">{{$cats_gender->category_gender_name}}</a>
+                            <li class="position-relative header__parent--sub {{ request()->is('/collections/1/6') ? 'active-menu' : '' }}"><a href="#">{{$cats_gender->category_gender_name}}</a>
                                 @if($cats_gender->category_gender_id === 1)
                                     <ul class="header__sub p-3 rounded-bottom">
                                         @foreach($menus_men as $menu_men)
@@ -57,7 +58,7 @@
                             </li>
                         @endforeach
                         <li><a href="#"> Giảm Giá </a></li>
-                        <li><a href="{{route('contactUS')}}"> Liên Hệ </a></li>
+                        <li class="{{ request()->is('more/*') ? 'active-menu' : '' }}"><a href="{{route('contactUS')}}"> Liên Hệ </a></li>
                     </ul>
                 </nav>
             </div>
@@ -95,6 +96,11 @@
                                 </ul>
                             </div>
                         @endif
+                    </div>
+                    <div class="icon-menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
                     </div>
                 </div>
             </div>

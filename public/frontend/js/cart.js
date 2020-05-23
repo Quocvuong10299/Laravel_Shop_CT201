@@ -239,7 +239,7 @@
             );
         }
         if(cart.length < 1){
-            // $('.number_item').empty();
+            $('.number_item').empty();
             console.log('ok');
             $('.number_item').append(`0`);
             $('.total_cart').empty();

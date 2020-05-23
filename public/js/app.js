@@ -2205,6 +2205,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api */ "./resources/js/api.js");
 //
 //
 //
@@ -2217,6 +2218,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Pie"],
   name: "chart-component",
@@ -2224,26 +2226,35 @@ __webpack_require__.r(__webpack_exports__);
     return {
       datacollection: {
         //Data to be represented on x-axis
-        labels: ['Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7', 'Chủ nhật'],
+        labels: ['Quí 1', 'Quí 2', 'Quí 3', 'Quí 4'],
         datasets: [{
           label: 'Test',
-          backgroundColor: ['rgba(0, 115, 250, 1)', 'rgba(248, 231, 28, 1)', 'rgba(246, 97, 131, 1)', 'rgba(126, 211, 33, 1)', 'rgba(208, 2, 27, 1)', 'rgba(255, 159, 64, 1)', 'rgba(0, 255, 255, 1)'],
+          backgroundColor: ['rgba(248, 231, 28, 1)', 'rgba(126, 211, 33, 1)', 'rgba(208, 2, 27, 1)', 'rgba(255, 159, 64, 1)'],
           // borderColor:'rgb(75, 192, 192)',
           pointBackgroundColor: 'white',
           borderWidth: 2,
           pointBorderColor: '#249EBF',
           //Data to be represented on y-axis
-          data: [40, 20, 30, 50, 90, 10, 20]
+          data: [40, 20, 30, 50]
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false
-      }
+      },
+      test: []
     };
   },
   mounted: function mounted() {
     this.renderChart(this.datacollection, this.options);
+    this.fetchData();
+  },
+  methods: {
+    fetchData: function fetchData() {
+      axios.get(_api__WEBPACK_IMPORTED_MODULE_1__["RESOURCE"] + '/category').then(function (res) {
+        console.log(res.data);
+      });
+    }
   }
 });
 
@@ -75197,7 +75208,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", {}, [
       _c("h3", { staticClass: "d-flex justify-content-center" }, [
-        _vm._v("Doanh thu tuần")
+        _vm._v("Doanh thu theo Quí")
       ])
     ])
   }
