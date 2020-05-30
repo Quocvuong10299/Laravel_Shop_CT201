@@ -136,8 +136,19 @@ class apiController extends Controller
             ->get();
         return response()->json($product_detail);
     }
-    public function addProduct(){
-
+    public function addProduct(Request $request){
+        $add_pro = new Product;
+        $add_pro->product_name = $request->get('name');
+        $add_pro->product_slug = toSlug($request->get('name'));
+        $add_pro->category_id = $request->get('category');
+        $add_pro->category_gender_id = $request->get('gender');
+        $add_pro->supplier_id = $request->get('supplier');
+        $add_pro->product_description = $request->get('description');
+        $add_pro->product_active = $request->get('active');
+        $add_pro->product_new = $request->get('pro_new');
+        $add_pro->product_show = $request->get('show');
+        $add_pro->save();
+        return $add_pro;
     }
 
 //    comments

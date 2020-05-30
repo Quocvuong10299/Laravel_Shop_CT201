@@ -28,7 +28,9 @@ import {store} from './store/store';
 
 // use router
 Vue.use(VueRouter);
+import CKEditor from 'ckeditor4-vue';
 
+Vue.use( CKEditor );
 const router = new VueRouter({
     routes,
     mode: 'history'

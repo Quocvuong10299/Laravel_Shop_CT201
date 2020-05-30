@@ -37,6 +37,7 @@ class Price extends Model
                 'products.category_id',
                 'products.category_gender_id',
                 'products.product_slug',
+                'products.product_description',
             ])->get();
         return $datas;
     }

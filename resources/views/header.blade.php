@@ -7,7 +7,7 @@
             </div>
             <div class="header__main-nav d-none d-lg-block">
                 <nav>
-                    <ul class="d-flex justify-content-between align-items-center my-0 px-0">
+                    <ul class="d-flex justify-content-center align-items-center my-0 px-0">
                         <li class="{{ request()->is('/*') ? 'active-menu' : '' }}">
                             <a href="{{route('home')}}"> Trang Chủ</a></li>
                         @foreach($category_gender as $cats_gender)

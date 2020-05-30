@@ -168,7 +168,7 @@
     .list__url--component {
         justify-content: flex-start;
         align-items: center;
-
+        list-style: none;
         .item__url--component {
             &:first-child {
                 &:before {

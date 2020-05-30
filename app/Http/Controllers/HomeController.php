@@ -74,6 +74,7 @@ class HomeController extends Controller
     public function productDetail($id){
 //        Carbon::setLocale('vi');
 //        $product_detail = Product::where('product_id', $id)->cursor();
+//        $descr = Product::all(['product_description']);
         $attribute = DB::table('product_attribute')->where('product_id',$id)->get();
         $price_detail = Price::getProduct()->where('product_id',$id);
         $price_detail->each(function ($dt) {

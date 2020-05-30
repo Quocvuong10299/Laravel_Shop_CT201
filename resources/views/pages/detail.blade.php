@@ -65,6 +65,15 @@
                                </div>
                             </div>
                             <div id="add_to_cart" class="btn my-5">Thêm Vào Giỏ Hàng</div>
+
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                   {!! $detail->product_description !!}
+                                </div>
+                            </div>
+
                         </div>
                     @endforeach
                 </div>
