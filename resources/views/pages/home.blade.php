@@ -75,12 +75,12 @@
             <div class="row">
                 @foreach($data as $product_data)
                     <div class="col-6 col-lg-3 col-md-4 col-xl-3 col-xs-6 col-sm-6 product__layout">
-                        <div class="label-sale mx-2 my-3">
+                        <div class="label-sale mx-2 my-3 z-99">
                             <p>new</p>
                         </div>
                         <a href="{{route('productDetail', $product_data->product_id)}}" class="w-100">
-                            <div class="scale__image">
-                                <img style="width:255px;height: 255px;" src="{{$product_data->product_image}}"/>
+                            <div class="scale__image overflow-hidden">
+                                <img style="width:255px;height: 255px;" src="{{$product_data->product_image}}" class="product_hover"/>
                             </div>
                             <div class="info__products--component">
                                 <h5>{{substr($product_data->product_name,0,15).' . . .'}}</h5>
@@ -105,6 +105,11 @@
             </div>
         </div>
         <!--end new products-->
+{{--        out client--}}
+        <div class="container mt-5">
+            @include('out_client')
+        </div>
+{{--        end out client--}}
         <!--start news-->
         <div class="container my-5">
             <h4 class="main__title--component mb-5">Bộ Sưu Tập</h4>

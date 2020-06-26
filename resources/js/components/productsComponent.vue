@@ -183,7 +183,7 @@
                         <tr v-for="(prod, index) in data_pro_detail" :key="prod.product_id">
                             <td><img width="80" height="80" :src="prod.product_image"/></td>
                             <td>Cái</td>
-                            <td style="max-width: 20rem">{{prod.product_description}}</td>
+                            <td v-html="prod.product_description" style="max-width: 20rem"></td>
                             <td>{{(prod.product_new === 1) ? 'Mới' : 'Cũ' }}</td>
                             <td>{{prod.created_at}}</td>
                         </tr>
@@ -197,10 +197,10 @@
         <!--        add product-->
         <div style="overflow-y: scroll; height: 100%" class="add_pro" v-if="is_add" :class="{active_add_pro: is_add}">
             <div class="form_edit_pro">
-                <h1>Add The Product</h1>
+                <h4>Add The Product</h4>
                 <form @submit.prevent="">
                     <input type="hidden" disabled class="form-control" id="id_add" name="id_add" required>
-                   <div class="d-flex justify-content-between">
+                   <div class="d-flex justify-content-between flex-wrap">
                        <div class="form-group">
                            <label for="pro_name_add">Tên Sản Phẩm</label>
                            <input v-model="newPro.name" type="text" class="form-control" id="pro_name_add"
@@ -216,6 +216,14 @@
                            </select>
                        </div>
                        <div class="form-group">
+                           <label for="pro_gender">Dành cho</label>
+                           <select v-model="newPro.category_gender_id" class="form-control" id="pro_gender" name="pro_gender">
+                               <option value="" disabled selected></option>
+                               <option value="1">Nam</option>
+                               <option value="2">Nữ</option>
+                           </select>
+                       </div>
+                       <div class="form-group">
                            <label for="">Thương hiệu</label>
                            <select v-model="newPro.supplier_id" class="form-control" name="pro_supplier">
                                <option disabled selected></option>
@@ -225,15 +233,7 @@
                            </select>
                        </div>
                    </div>
-                   <div class="d-flex justify-content-between">
-                       <div class="form-group">
-                           <label for="pro_gender">Dành cho</label>
-                           <select v-model="newPro.category_gender_id" class="form-control" id="pro_gender" name="pro_gender">
-                               <option value="" disabled selected></option>
-                               <option value="1">Nam</option>
-                               <option value="2">Nữ</option>
-                           </select>
-                       </div>
+                   <div class="d-flex justify-content-between flex-wrap">
                        <div class="form-group">
                            <label for="">Trạng thái</label>
                            <select v-model="newPro.product_active" class="form-control" name="">
@@ -258,11 +258,34 @@
                                <option value="0">Ẩn</option>
                            </select>
                        </div>
+<!--                       <div class="form-group">-->
+<!--                           <label>Mã Ngày Sale</label>-->
+<!--                           <select v-model="newPro.day_sale" class="form-control">-->
+<!--                               <option disabled selected> Chọn Ngày Giảm </option>-->
+<!--                               <option v-for="(date_discount, index) in date_sale" :value="date_discount.date_id">-->
+<!--                                   {{date_discount.date_start + ' đến ' + date_discount.date_end}}-->
+<!--                               </option>-->
+<!--                           </select>-->
+<!--                       </div>-->
+<!--                       <div class="form-group">-->
+<!--                           <label for="pro_percent">% giảm</label>-->
+<!--                           <select v-model="newPro.percent_sale" class="form-control" id="pro_percent" name="pro_percent">-->
+<!--                               <option disabled selected> Chọn % Giảm </option>-->
+<!--                               <option v-for="(percent, index) in percent_discount" :value="percent.percent_value">-->
+<!--                                   {{percent.percent_value}}-->
+<!--                               </option>-->
+<!--                           </select>-->
+<!--                       </div>-->
                    </div>
+<!--                    <div class="form-group">-->
+<!--                        <label>Giá</label>-->
+<!--                        <input style="border: 1px solid #ccc" v-model="newPro.price" type="number">-->
+<!--                    </div>-->
                     <div class="form-group">
                         <label>Mô Tả</label>
                         <ckeditor v-model="newPro.product_description" :config="editorConfig"></ckeditor>
                     </div>
+
                     <button type="submit" class="btn bg-light" @click="is_add = false">Hủy</button>
                     <button type="submit" class="btn btn-success" @click.prevent="createProduct()">Lưu</button>
                 </form>
@@ -290,6 +313,8 @@
                 category: [],
                 gender: [],
                 supplier:[],
+                date_sale:[],
+                percent_discount:[],
                 pagination_pro: {},
                 showProduct: false,
                 showDetail: false,
@@ -305,6 +330,9 @@
                     product_active: 1,
                     product_new: 1,
                     product_description: '',
+                    percent_sale:0,
+                    day_sale:1,
+                    price:''
                 },
                 editorConfig: {}
             }
@@ -312,6 +340,8 @@
         mounted() {
             this.fetchProducts();
             this.showDetailProduct();
+            this.fetchDateSale();
+            this.fetchPercentSale();
         },
         methods: {
             fetchProducts(url_pro) {
@@ -329,6 +359,18 @@
                         };
                     })
                     .catch(err => console.log(err));
+            },
+            fetchDateSale(){
+                axios.get(`${RESOURCE}/products/date_sale`)
+                .then(res => {
+                    this.date_sale = res.data;
+                })
+            },
+            fetchPercentSale(){
+                axios.get(`${RESOURCE}/products/percent_sale`)
+                    .then(res => {
+                        this.percent_discount = res.data;
+                    })
             },
             // CallBack Pagination
             clickCallback_pro(pageNum) {
@@ -386,14 +428,17 @@
                     category: this.newPro.category_id,
                     gender: this.newPro.category_gender_id,
                     supplier: this.newPro.supplier_id,
-                   description: this.newPro.product_description,
+                    description: this.newPro.product_description,
                     show:this.newPro.show,
                     active:this.newPro.product_active,
                     pro_new:this.newPro.product_new,
+                    date_sale:this.newPro.day_sale,
+                    percent_discount:this.newPro.percent_sale,
+                    pro_price: this.newPro.price,
                 })
                     .then(res => {
                         this.fetchProducts();
-                        this.isAdd = false;
+                        this.is_add = false;
                     });
             }
         }

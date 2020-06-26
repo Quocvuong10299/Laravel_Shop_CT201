@@ -11,6 +11,8 @@ import supplierComponent from './components/supplierComponent'
 import chartComponent from './components/chartComponent'
 import orderComponent from './components/orderComponent'
 import dateComponent from './components/dateComponent'
+import productAttributeComponent from './components/productAttributeComponent'
+import priceComponent from './components/priceComponent'
 const routes = [
     {
         path: '/admin/dashboard',
@@ -76,6 +78,16 @@ const routes = [
         path: '/admin/dashboard/discount/date-component',
         component: dateComponent,
         name: 'dateComponent',
+    },
+    {
+        path: '/admin/dashboard/product-attribute',
+        component: productAttributeComponent,
+        name: 'productAttributeComponent',
+    },
+    {
+        path: '/admin/dashboard/price',
+        component: priceComponent,
+        name: 'priceComponent',
     },
 ];
 

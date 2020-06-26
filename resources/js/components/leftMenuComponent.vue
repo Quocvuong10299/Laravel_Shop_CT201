@@ -1,6 +1,6 @@
 <template>
     <div class="vertical-nav bg-dark" id="sidebar">
-        <div class="py-4 px-3 mb-4 bg-dark">
+        <div class="py-4 px-3 bg-dark">
             <div class="media-body">
                 <h4 class="font-weight-white text-muted mb-0">King's Admin</h4>
                 <p class="font-weight-grey text-muted mb-0">since 2020 By QVuong</p>
@@ -30,6 +30,18 @@
                 </router-link>
                 <!--<a class="nav-link" href="products.html"><i class="fa fa-archive" aria-hidden="true"></i> Products</a>-->
             </li>
+            <li class="nav-item add_active">
+                <router-link :to="{name: 'productAttributeComponent'}" class="nav-link font-italic">
+                    <i class="fa fa-info mr-3 fa-fw" aria-hidden="true"></i> Product Properties
+                </router-link>
+                <!--<a class="nav-link" href="products.html"><i class="fa fa-archive" aria-hidden="true"></i> Products</a>-->
+            </li>
+            <li class="nav-item add_active">
+                <router-link :to="{name: 'priceComponent'}" class="nav-link font-italic">
+                    <i class="fa fa-usd mr-3 fa-fw" aria-hidden="true"></i>Product Price
+                </router-link>
+                <!--<a class="nav-link" href="products.html"><i class="fa fa-archive" aria-hidden="true"></i> Products</a>-->
+            </li>
             <li class="nav-item add_active position-relative">
                 <router-link :to="{name: 'orderComponent'}" class="nav-link font-italic">
                     <i class="fa fa-list-ul mr-3 fa-fw" aria-hidden="true"></i> Orders
@@ -40,12 +52,13 @@
                 <!--<a class="nav-link" href="#"><i class="fa fa-list-ul mr-3 fa-fw" aria-hidden="true"></i> Orders</a>-->
             </li>
             <li class="nav-item add_active position-relative">
-                <a class="nav-link" href="#"><i class="fa fa-money mr-3 fa-fw" aria-hidden="true"></i> Discount  <i class="fa fa-angle-left" aria-hidden="true"></i></a>
-                <ul class="sub__menu flex-column">
-                    <router-link :to="{name: 'dateComponent'}" class="nav-link font-italic">
-                        Date Sale
-                    </router-link>
-                </ul>
+                <a class="nav-link" href="#"></a>
+<!--                <ul class="sub__menu flex-column">-->
+<!--                   -->
+<!--                </ul>-->
+                <router-link :to="{name: 'dateComponent'}" class="nav-link font-italic">
+                    <i class="fa fa-money mr-3 fa-fw" aria-hidden="true"></i>Date Sale
+                </router-link>
             </li>
             <li class="nav-item add_active position-relative">
                 <a class="nav-link" href="#"><i class="fa fa-info-circle mr-3 fa-fw" aria-hidden="true"></i> Attributes <i class="fa fa-angle-left" aria-hidden="true"></i></a>

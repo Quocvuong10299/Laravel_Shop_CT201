@@ -1,13 +1,14 @@
-<div class="header container-fluid d-flex w-100">
+<div class="header container-fluid d-flex w-100 ">
     <!--header-->
     <div class="container position-relative">
         <div class="header__wrapper d-flex justify-content-between">
             <div class="header__logo">
                 <a href="{{route('home')}}">King's</a>
             </div>
-            <div class="header__main-nav d-none d-lg-block">
+            <div class="header__main-nav d-none d-lg-block position-relative">
                 <nav>
                     <ul class="d-flex justify-content-center align-items-center my-0 px-0">
+                        <div id="close"><i class="fa fa-times font-size25" aria-hidden="true"></i></div>
                         <li class="{{ request()->is('/*') ? 'active-menu' : '' }}">
                             <a href="{{route('home')}}"> Trang Chủ</a></li>
                         @foreach($category_gender as $cats_gender)

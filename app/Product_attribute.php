@@ -20,6 +20,7 @@ class Product_attribute extends Model
     public function Import_coupon(){
         return $this->belongsTo('App\Import_coupon','coupon_id');
     }
-    protected $primaryKey = ['size_value','color_value','product_id','coupon_id'];
+//    protected $primaryKey = ['size_value','color_value','product_id','coupon_id'];
+    protected $primaryKey = 'size_value';
 
 }

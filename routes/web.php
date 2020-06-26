@@ -62,8 +62,16 @@ Route::group(['prefix'=>'api','middleware' => 'adminLogin'], function(){
     Route::post('/category/add','Api\apiController@addCategory');
 //    ROUTE PRODUCTS
     Route::get('/products','Api\apiController@getProduct');
+    Route::get('/products/date_sale','Api\apiController@getDateSale');
+    Route::get('/products/percent_sale','Api\apiController@getPercentSale');
     Route::get('/products/detail/{id}','Api\apiController@getDetailProduct');
+    Route::get('/products/product_attributes','Api\apiController@getProductAttribute');
     Route::post('/products/add','Api\apiController@addProduct');
+
+//    ROUTE PRODUCT ATTRIBUTE
+    Route::get('/attribute/all-pro','Api\apiController@getProAttr');
+    Route::post('/attribute/addAttr','Api\apiController@postProAttr');
+//    Route::post('/attribute/edit/{pro_id}','Api\apiController@editAttr');
 //    ROUTE COMMENTS
     Route::get('/comments','Api\apiController@getComment');
     Route::delete('comments/{id}', 'Api\apiController@removeComment');
@@ -76,6 +84,18 @@ Route::group(['prefix'=>'api','middleware' => 'adminLogin'], function(){
     Route::post('/colors/add','Api\apiController@addColor');
     Route::get('/sizes','Api\apiController@getSize');
     Route::post('/sizes/add','Api\apiController@addSize');
+    Route::delete('/attr/delete/{sku}','Api\apiController@removeAttr');
+//    ROUTE PRICE
+    Route::get('/prices','Api\apiController@getPrice');
+    Route::get('/percent','Api\apiController@getPercent');
+    Route::get('/date-sale','Api\apiController@getDateId');
+    Route::get('/pro-price','Api\apiController@getProPrice');
+    Route::post('/price/add','Api\apiController@addPrice');
+    Route::post('/price/edit/{id}','Api\apiController@editPrice');
+//    ROUTE DATE
+    Route::get('/date','Api\apiController@getDay');
+    Route::post('/add_day','Api\apiController@postDay');
+    Route::post('/date-edit/{id}','Api\apiController@updateDay');
 //    ROUTE SUPPLIER
     Route::get('/suppliers','Api\apiController@getSupplier');
     Route::post('/suppliers/add','Api\apiController@postSupplier');
@@ -86,6 +106,7 @@ Route::group(['prefix'=>'api','middleware' => 'adminLogin'], function(){
     Route::get('/orders/to-day','Api\apiController@getOrderToday');
     Route::get('/orders/revenue/month','Api\apiController@getRevenueMonth');
     Route::get('/orders/count-length','Api\apiController@getNumberOrder');
+    Route::get('/orders/list-day','Api\apiController@getListDay');
 });
 
 Route::group(['prefix'=>'admin/dashboard','middleware' => 'adminLogin'], function(){

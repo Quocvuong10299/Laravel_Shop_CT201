@@ -260,8 +260,8 @@
         opacity: 1;
     }
     .show_cat_active{
-        visibility: inherit;
-        opacity: 1;
+        visibility: inherit!important;
+        opacity: 1!important;
     }
     #close{
         position: absolute;

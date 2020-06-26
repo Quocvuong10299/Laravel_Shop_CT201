@@ -2,22 +2,41 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c66cf434-1c25-4ab0-90ca-19e7d70fbea7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Helper/Date.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/frontend/css/_size.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/priceComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/productAttributeComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/out_client.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Date_sale.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Date_sale.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/apiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/apiController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Price.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Price.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Product_attribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Product_attribute.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/frontend/css/_component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/frontend/css/_component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/css/_fonts.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/frontend/css/_fonts.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/frontend/css/_global.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/frontend/css/_global.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/frontend/css/_responsive.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/frontend/css/_responsive.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/css/_slider.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/frontend/css/_slider.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/frontend/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/frontend/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/frontend/css/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/frontend/css/style.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/css/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/frontend/css/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/js/ajaxProductOption.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/frontend/js/ajaxProductOption.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/frontend/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/categoryComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/categoryComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/dashboardComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/dashboardComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/dateComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/dateComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/leftMenuComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/leftMenuComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/productsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/productsComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/footer.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/detail.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/products.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/products.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +51,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
-        <option value="Vue Single File Component" />
         <option value="SCSS File" />
+        <option value="Vue Single File Component" />
       </list>
     </option>
   </component>
@@ -281,6 +300,34 @@
       <workItem from="1590675400871" duration="2884000" />
       <workItem from="1590715687380" duration="2878000" />
       <workItem from="1590759641157" duration="6355000" />
+      <workItem from="1590803933903" duration="59000" />
+      <workItem from="1590805075456" duration="4829000" />
+      <workItem from="1590853098057" duration="2197000" />
+      <workItem from="1590889113758" duration="9165000" />
+      <workItem from="1590978331594" duration="7399000" />
+      <workItem from="1591023834525" duration="4960000" />
+      <workItem from="1591093354744" duration="3676000" />
+      <workItem from="1591109116637" duration="4595000" />
+      <workItem from="1591152051698" duration="4937000" />
+      <workItem from="1591189818605" duration="5238000" />
+      <workItem from="1591236300644" duration="1392000" />
+      <workItem from="1591338750603" duration="4121000" />
+      <workItem from="1591344490283" duration="7418000" />
+      <workItem from="1591367688830" duration="3414000" />
+      <workItem from="1591408692147" duration="11378000" />
+      <workItem from="1591489476330" duration="2742000" />
+      <workItem from="1591583091082" duration="2923000" />
+      <workItem from="1591599887790" duration="7498000" />
+      <workItem from="1591634053260" duration="1297000" />
+      <workItem from="1592963452773" duration="4799000" />
+      <workItem from="1592982697495" duration="5920000" />
+      <workItem from="1592989771024" duration="2398000" />
+      <workItem from="1593009967828" duration="1697000" />
+      <workItem from="1593050969698" duration="7360000" />
+      <workItem from="1593074863701" duration="9740000" />
+      <workItem from="1593093934235" duration="10330000" />
+      <workItem from="1593137269123" duration="8302000" />
+      <workItem from="1593173492784" duration="5957000" />
     </task>
     <servers />
   </component>
@@ -288,14 +335,22 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="545" y="236" width="458" height="328" key="#Notifications" timestamp="1591345012594">
+      <screen x="0" y="25" width="1328" height="743" />
+    </state>
+    <state x="545" y="236" width="458" height="328" key="#Notifications/0.25.1328.743@0.25.1328.743" timestamp="1591345012594" />
+    <state x="403" y="109" width="511" height="581" key="NewPhpClassDialog" timestamp="1593173656312">
+      <screen x="0" y="25" width="1328" height="743" />
+    </state>
+    <state x="403" y="109" width="511" height="581" key="NewPhpClassDialog/0.25.1328.743@0.25.1328.743" timestamp="1593173656312" />
     <state x="168" y="31" width="992" height="737" key="SettingsEditor" timestamp="1589366887080">
       <screen x="0" y="25" width="1328" height="743" />
     </state>
     <state x="168" y="31" width="992" height="737" key="SettingsEditor/0.25.1328.743@0.25.1328.743" timestamp="1589366887080" />
     <state x="173" y="31" key="SettingsEditor/0.25.1366.743@0.25.1366.743" timestamp="1589075465823" />
-    <state x="328" y="173" key="run.anything.popup" timestamp="1590763835105">
+    <state x="328" y="173" key="run.anything.popup" timestamp="1593099772772">
       <screen x="0" y="25" width="1328" height="743" />
     </state>
-    <state x="328" y="173" key="run.anything.popup/0.25.1328.743@0.25.1328.743" timestamp="1590763835105" />
+    <state x="328" y="173" key="run.anything.popup/0.25.1328.743@0.25.1328.743" timestamp="1593099772772" />
   </component>
 </project>

@@ -60,9 +60,10 @@
         name: "dashboard-component",
         data(){
             return{
+                listday:'',
                 datacollection: {
                     //Data to be represented on x-axis
-                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                    labels: [""],
                     datasets: [{
                         label: 'Doanh thu hằng tháng',
                         backgroundColor: 'rgba(0, 0, 0, 0.1)',
@@ -88,6 +89,7 @@
             this.countBillToDay();
             this.countMemBerToDay();
             this.countRevenueMonth();
+            this.listDay();
         },
         computed:{
             totalBillToDay(){
@@ -116,7 +118,15 @@
             countRevenueMonth(){
                 axios.get(RESOURCE + '/orders/revenue/month')
                     .then(res => {
-                        this.revenueMonth = res.data;
+                        this.revenueMonth =res.data;
+                    })
+            } ,
+            listDay(){
+                axios.get(RESOURCE + '/orders/list-day')
+                    .then(res => {
+                        this.datacollection = {
+                            labels:res.data,
+                        }
                     })
             }
         }

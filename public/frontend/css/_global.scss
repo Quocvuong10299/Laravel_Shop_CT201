@@ -44,3 +44,17 @@ input[type=number]:focus,
 [contenteditable].form-control:focus {
   box-shadow: inset 0 -1px 0 #fff;
 }
+.product_hover{
+    overflow: hidden;
+    transform: scale(1);
+    transition: all 0.3s ease-in-out;
+    &:hover{
+        transform: scale(1.05);
+    }
+}
+.overflow-hidden{
+    overflow: hidden!important;
+}
+.z-99{
+    z-index: 99;
+}

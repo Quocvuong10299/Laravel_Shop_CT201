@@ -43,7 +43,7 @@
        $('#selSize').change(function (e) {
            let size = e.target.value;
            const color = $('.color--picker:checked').val();
-           $.get('/select-size?size='+ size +'&color='+ encodeURIComponent( color ) +'&id='+ id, function (data) {
+               $.get('/select-size?size='+ size +'&color='+ encodeURIComponent( color ) +'&id='+ id, function (data) {
                $('#sl').html(data[0].quantity_current);
                $('#sku').html(data[0].sku);
                $('#size_selected').html(data[0].size_value);
@@ -102,7 +102,7 @@
                                            <strong>${data[i].user_name.slice(0,1).toUpperCase()}</strong>
                                        </div>
                                        <div>
-                                           <div class="ml-3 content__comment--component">
+                                           <div class="ml-3 content__comment--component max-270">
                                                <small><strong>${data[i].user_name}</strong></small>
                                                <div class="content__comments">
                                                    <span>${data[i].comment_content}</span>
@@ -110,7 +110,7 @@
                                            </div>
                                            <div class="time__post text-right">
                                                <small class="text-muted"></small>
-                                              
+
                                            </div>
                                        </div>
                                    </div>`

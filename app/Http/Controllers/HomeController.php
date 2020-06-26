@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers;
+use App\Helper\Date;
 use function App\Helper\Helper\getDiscount;
+use function App\Helper\Date;
 use function App\Helper\Helper\toSlug;
 use App\Payment;
 use App\Slide;
@@ -34,7 +36,8 @@ class HomeController extends Controller
                 getDiscount($dt);
             });
 //        get product sale and calc days in order to discount
-            $data_sale = Price::getProduct()->take(8)->where('date_start','<>',null)->Where('date_end','<>',null);
+            $data_sale = Price::getProductSale()->take(8);
+//            dd($data_sale);
             $data_sale->each(function ($dt){
                 getDiscount($dt);
             });
