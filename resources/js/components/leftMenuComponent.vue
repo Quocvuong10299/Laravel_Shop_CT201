@@ -12,12 +12,12 @@
                 <i class="fa fa-tachometer mr-3 fa-fw" aria-hidden="true"></i>Dashboard
                 </router-link>
             </li>
-            <li class="nav-item add_active">
-                <router-link :to="{name: 'chartComponent'}" class="nav-link font-italic">
-                    <i class="fa fa-pie-chart mr-3 fa-fw" aria-hidden="true"></i>Chart
-                </router-link>
-                <!--<a class="nav-link" href="#"><i class="fa fa-pie-chart mr-3 fa-fw" aria-hidden="true"></i> Chart</a>-->
-            </li>
+<!--            <li class="nav-item add_active">-->
+<!--                <router-link :to="{name: 'chartComponent'}" class="nav-link font-italic">-->
+<!--                    <i class="fa fa-pie-chart mr-3 fa-fw" aria-hidden="true"></i>Chart-->
+<!--                </router-link>-->
+<!--                &lt;!&ndash;<a class="nav-link" href="#"><i class="fa fa-pie-chart mr-3 fa-fw" aria-hidden="true"></i> Chart</a>&ndash;&gt;-->
+<!--            </li>-->
             <li class="nav-item add_active">
                 <router-link :to="{name: 'categoryComponent'}" class="nav-link font-italic">
                     <i class="fa fa-tags mr-3 fa-fw" aria-hidden="true"></i> Category

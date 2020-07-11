@@ -12,6 +12,7 @@
 */
 
 Route::get('/','HomeController@index')->name('home');
+Route::get('/search_content','HomeController@search_content')->name('search_content');
 Route::get('/cart','HomeController@showCart')->name('showCart');
 Route::get('/checkouts','HomeController@checkOuts')->name('checkOuts');
 Route::post('/checkouts','HomeController@postCheckOuts')->name('postCheckOuts');
@@ -42,6 +43,8 @@ Route::group(['prefix'=>'account'], function(){
    Route::get('/login','accountController@getLogin')->name('getlogin');
    Route::post('/login','accountController@postLogin')->name('postlogin');
    Route::get('/logout','accountController@getLogout')->name('getlogout');
+   Route::get('/forgot-password','accountController@getForgot')->name('getforgot');
+   Route::post('/forgot-password','accountController@postForgot')->name('postforgot');
 });
 
 //admin auth

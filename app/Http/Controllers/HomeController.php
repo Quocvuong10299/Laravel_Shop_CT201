@@ -146,6 +146,15 @@ class HomeController extends Controller
         $products = DB::table('products')->where('product_name', 'like', '%' .$seach_value. '%')->get();
         return response()->json($products);
     }
+    public function search_content(Request $request){
+        $search_content = $request->search;
+        $data_search = Price::getSearch($search_content);
+        $data_search->each(function ($dt) {
+            getDiscount($dt);
+        });
+       // $data_search = DB::table('products')->where('product_name', 'like', '%' .$search_content. '%')->get();
+        return view('search_data', compact('data_search'));
+    }
 //oder request
     public function postCheckOuts(Request $request){
         $order = new Order;

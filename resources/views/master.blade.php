@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="/frontend/css/style.css" />
 </head>
 <body>
+<div id="preload" class="preload-container text-center">
+    <img class="icon_loading" src="/frontend/images/loading.gif">
+</div>
 <div class="wrapper">
     @include('header')
     @yield('content')
@@ -25,9 +28,15 @@
 </div>
 <!-- Optional JavaScript -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 {{--<script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>--}}
 <script src="/frontend/js/pagination.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.0/slick.min.js"></script>
+<script>
+    $(window).on('load', function () {
+       $('.preload-container').hide('slow');
+    });
+</script>
 <script src="/frontend/js/app.js"></script>
 {{--<script src="/frontend/js/ajaxProductOption.js"></script>--}}
 @yield('js')
@@ -41,5 +50,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+
 </body>
 </html>

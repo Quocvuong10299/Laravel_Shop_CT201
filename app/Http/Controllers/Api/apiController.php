@@ -20,6 +20,7 @@ use App\Supplier;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
+use Session;
 use Response;
 use DB;
 use Storage;
@@ -46,6 +47,7 @@ class apiController extends Controller
     }
     public function logOutAdmin(){
         Auth::logout();
+        Session::flush();
 //        return redirect()->route('getAdminLogin');
         return response()->json(['message'=>'logout success']);
     }

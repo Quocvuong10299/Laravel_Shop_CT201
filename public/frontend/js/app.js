@@ -115,4 +115,11 @@
     $('.fa-times').click(function () {
         selector_menu.removeClass('active_menu');
     })
+
+//    icon loading page
+//     $(window).load(function() {
+//         // $('body').removeClass('preload-container');
+//         $('.preload-container').css('display','none');
+//         // $('#preload').delay(1000).fadeOut('fast');
+//     });
 })(jQuery);

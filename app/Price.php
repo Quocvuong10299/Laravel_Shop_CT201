@@ -87,4 +87,28 @@ class Price extends Model
             ]);
         return $data_paginate;
     }
+    public static function getSearch($search_content){
+        $search = DB::table('prices')
+            ->join('products', 'prices.product_id', '=', 'products.product_id')
+            ->join('date_sale', 'prices.date_id', '=', 'date_sale.date_id')
+            ->select
+            ([
+                'prices.unit_price',
+                'prices.percent_value',
+                'prices.promotion_price',
+                'prices.date_id',
+                'date_sale.date_start',
+                'date_sale.date_end',
+                'prices.product_id',
+                'products.product_name',
+                'products.product_image',
+                'products.category_id',
+                'products.category_gender_id',
+                'products.product_slug',
+                'products.product_description',
+            ])
+            ->where('products.product_name', 'like', '%' .$search_content. '%')
+            ->get();
+        return $search;
+    }
 }

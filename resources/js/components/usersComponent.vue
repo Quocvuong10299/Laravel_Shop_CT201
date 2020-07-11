@@ -1,5 +1,8 @@
 <template>
     <div class="main">
+        <div class="container d-flex justify-content-end my-2">
+            <input style="width: 300px;border:1px solid #ccc;" type="text" v-model="search" placeholder="Tìm kiếm người dùng" class="form-control" />
+        </div>
         <div style="height:400px;" class="container-fluid banner__component px-0 table-responsive">
             <table class="table table-hover">
                 <thead class="thead-dark">
@@ -14,7 +17,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="(user, index) in users" :key="index">
+                <tr v-for="(user, index) in filterUser" :key="index">
                     <th>{{user.user_id}}</th>
                     <td>{{user.user_name}}</td>
                     <td>{{user.user_email}}</td>
@@ -61,13 +64,24 @@
             return{
                 users:[],
                 pagination: {},
+                search: '',
             }
         },
         mounted(){
             this.fetchUsers();
         },
         computed:{
+            filterUser(){
+                if(this.search){
+                    return this.users
+                        .filter((item) => {
+                        return item.user_name.toLowerCase().indexOf(this.search.toLowerCase()) > -1;
+                        })
+                }else{
+                    return this.users;
+                }
 
+            }
         },
         methods:{
             fetchUsers(urlBase) {
@@ -95,7 +109,8 @@
                             console.log(res.data.message);
                         })
                 }
-            }
+            },
+
         }
     }
 </script>

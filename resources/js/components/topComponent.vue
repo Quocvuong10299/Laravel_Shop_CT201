@@ -17,6 +17,7 @@
                 <div class="">
                     <div class="sub_ ml-3">
                         <form method="get" action="/api/users/logout">
+<!--                            <input type="hidden" name="_token" value="{{ csrf_token() }}">-->
                             <button class="btn btn-warning" @click="btnLogout()">Thoát</button>
                         </form>
                             <!--<a style="color:#000" href="/api/users/logout">Thoát</a>-->
@@ -42,9 +43,9 @@
                 axios.get(RESOURCE + '/users/logout')
                     .then(res => {
                         this.logout = res.data;
-                        // if(res.status === 200) {
-                        //     this.$router.push({ path : '/admin' });
-                        // }
+                        if(res.status === 200) {
+                            this.$router.push({ path : '/admin' });
+                        }
                     });
             }
         }

@@ -34,6 +34,11 @@
                                     <input placeholder="Mật khẩu" autocapitalize="off" spellcheck="false" class="field-input" type="password" id="login_password" name="login_password" value="">
                                 </div>
                             </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="remember_me" name="remember_me">
+                                <label class="form-check-label" for="exampleCheck1">Lưu mật khẩu</label>
+                            </div>
+                            <a href="{{route('getforgot')}}">Quên mật khẩu?</a>
                         </div>
                         <button id="loginBtn" class="btn mt-5" type="submit">Đăng nhập</button>
                     </form>

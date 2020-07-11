@@ -110,7 +110,7 @@
         <div class="header__overlay">
             <div class="overlay"></div>
             <div class="header__search--content position-relative w-75">
-                <form class="form-inline d-flex justify-content-center">
+                <form action="{{route('search_content')}}" method="GET" class="form-inline d-flex justify-content-center">
                     <input class="form-control form-control-sm w-100" type="text" placeholder=" Tìm kiếm "
                            aria-label="Search" name="search" id="search">
                 </form>

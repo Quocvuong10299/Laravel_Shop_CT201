@@ -4616,6 +4616,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "top-component",
@@ -4629,9 +4630,13 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get(_api__WEBPACK_IMPORTED_MODULE_0__["RESOURCE"] + '/users/logout').then(function (res) {
-        _this.logout = res.data; // if(res.status === 200) {
-        //     this.$router.push({ path : '/admin' });
-        // }
+        _this.logout = res.data;
+
+        if (res.status === 200) {
+          _this.$router.push({
+            path: '/admin'
+          });
+        }
       });
     }
   }
@@ -4702,6 +4707,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4712,21 +4720,34 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       users: [],
-      pagination: {}
+      pagination: {},
+      search: ''
     };
   },
   mounted: function mounted() {
     this.fetchUsers();
   },
-  computed: {},
+  computed: {
+    filterUser: function filterUser() {
+      var _this = this;
+
+      if (this.search) {
+        return this.users.filter(function (item) {
+          return item.user_name.toLowerCase().indexOf(_this.search.toLowerCase()) > -1;
+        });
+      } else {
+        return this.users;
+      }
+    }
+  },
   methods: {
     fetchUsers: function fetchUsers(urlBase) {
-      var _this = this;
+      var _this2 = this;
 
       urlBase = urlBase || "".concat(_api__WEBPACK_IMPORTED_MODULE_1__["RESOURCE"], "/users");
       axios.get(urlBase).then(function (res) {
-        _this.users = res.data.data;
-        _this.pagination = {
+        _this2.users = res.data.data;
+        _this2.pagination = {
           current_page: res.data.current_page,
           last_page: res.data.last_page,
           path_page: res.data.path
@@ -4740,11 +4761,11 @@ __webpack_require__.r(__webpack_exports__);
       this.fetchUsers(this.pagination.path_page + '?page=' + this.pagination.current_page);
     },
     deleteUser: function deleteUser(id) {
-      var _this2 = this;
+      var _this3 = this;
 
       if (confirm('Bạn chắc xóa người dùng này chứ?')) {
         axios["delete"]("".concat(_api__WEBPACK_IMPORTED_MODULE_1__["RESOURCE"], "/users/").concat(id)).then(function (res) {
-          _this2.fetchUsers();
+          _this3.fetchUsers();
 
           console.log(res.data.message);
         });
@@ -94671,28 +94692,6 @@ var render = function() {
               "router-link",
               {
                 staticClass: "nav-link font-italic",
-                attrs: { to: { name: "chartComponent" } }
-              },
-              [
-                _c("i", {
-                  staticClass: "fa fa-pie-chart mr-3 fa-fw",
-                  attrs: { "aria-hidden": "true" }
-                }),
-                _vm._v("Chart\n                ")
-              ]
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "li",
-          { staticClass: "nav-item add_active" },
-          [
-            _c(
-              "router-link",
-              {
-                staticClass: "nav-link font-italic",
                 attrs: { to: { name: "categoryComponent" } }
               },
               [
@@ -97980,6 +97979,31 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "main" }, [
+    _c("div", { staticClass: "container d-flex justify-content-end my-2" }, [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.search,
+            expression: "search"
+          }
+        ],
+        staticClass: "form-control",
+        staticStyle: { width: "300px", border: "1px solid #ccc" },
+        attrs: { type: "text", placeholder: "Tìm kiếm người dùng" },
+        domProps: { value: _vm.search },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.search = $event.target.value
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
     _c(
       "div",
       {
@@ -97992,7 +98016,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "tbody",
-            _vm._l(_vm.users, function(user, index) {
+            _vm._l(_vm.filterUser, function(user, index) {
               return _c("tr", { key: index }, [
                 _c("th", [_vm._v(_vm._s(user.user_id))]),
                 _vm._v(" "),
