@@ -83,79 +83,72 @@
             <div class="form_edit_pro">
                 <h1>Edit The Product</h1>
                 <form @submit.prevent="">
-                    <input type="hidden" disabled class="form-control" :value="this.pro_id" id="pro_id" name="id"
+                    <input type="hidden" disabled class="form-control" :value="this.pro_id" id="pro_edit_id" name="id"
                            required>
-                    <div class="form-group">
-                        <label for="pro_name">Tên Sản Phẩm</label>
-                        <input type="text" class="form-control" :value="this.pro_name" id="pro_name" placeholder="Name"
-                               required/>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-group">
-                            <label for="">Danh mục</label>
-                            <select class="form-control" id="">
-                                <option :value="this.pro_cat_id" disabled selected>{{this.pro_cat_name}}</option>
-                                <option v-for="pro_parents in category" :value="pro_parents.category_id">
-                                    {{pro_parents.category_name}}
-                                </option>
+
+                   <div class="d-flex">
+                       <div class="form-group mx-4">
+                           <label for="pro_edit_name">Tên Sản Phẩm</label>
+                           <input type="text" class="form-control" :value="this.pro_name" id="pro_edit_name" placeholder="Name"
+                                  required/>
+                       </div>
+                       <div class="form-group mx-4">
+                           <label for="pro_edit_item">Danh mục</label>
+                           <select class="form-control" id="pro_edit_item">
+                               <option :value="this.pro_cat_id" disabled selected>{{this.pro_cat_name}}</option>
+                               <option v-for="pro_parents in category" :value="pro_parents.category_id">
+                                   {{pro_parents.category_name}}
+                               </option>
+                           </select>
+                       </div>
+                       <div class="form-group mx-4">
+                           <label for="pro_edit_gender">Dành cho</label>
+                           <select class="form-control" id="pro_edit_gender" name="pro_edit_gender">
+                               <option :value="this.pro_gender" disabled selected> {{(this.pro_gender === 1 ? 'Nam' :
+                                   'Nữ')}}
+                               </option>
+                               <option value="1">Nam</option>
+                               <option value="2">Nữ</option>
+                           </select>
+                       </div>
+                   </div>
+                    <div class="d-flex">
+                        <div class="form-group mx-4">
+                            <label for="pro_edit_supplier">Thương hiệu</label>
+                            <select class="form-control" id="pro_edit_supplier" name="pro_edit_supplier">
+                                <option :value="this.pro_supplier_id" disabled selected>{{this.pro_supplier_name}}</option>
+                                <option v-for="sup in supplier" :value="sup.supplier_id">{{sup.supplier_name}}</option>
                             </select>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-group">
-                            <label for="cat_gender">Dành cho</label>
-                            <select class="form-control" id="cat_gender" name="cat_gender">
-                                <option :value="this.pro_gender" disabled selected> {{(this.pro_gender === 1 ? 'Nam' :
-                                    'Nữ')}}
-                                </option>
-                                <option value="1">Nam</option>
-                                <option value="2">Nữ</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-group">
-                            <label for="">Thương hiệu</label>
-                            <select class="form-control" id="pro_supplier" name="pro_supplier">
-                                <option :value="this.pro_supplier_id" disabled selected></option>
-                                <!--                                <option v-for="supplier in products" :value="supplier.supplier_id">{{supplier.supplier_name}}</option>-->
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-group">
-                            <label for="">Tồn kho</label>
-                            <select class="form-control" name="">
-                                <option value="" disabled selected></option>
+                        <div class="form-group mx-4">
+                            <label for="pro_edit_active">Tồn kho</label>
+                            <select class="form-control" name="" id="pro_edit_active">
+                                <option :value="this.pro_active" disabled selected>{{(this.pro_active === 1) ? 'Còn hàng' : 'Hết hàng'}}</option>
                                 <option value="1">Còn Hàng</option>
                                 <option value="0">Hết Hàng</option>
                             </select>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-group">
-                            <label for="">SP mới</label>
-                            <select class="form-control" name="">
-                                <option value="" disabled selected></option>
+                        <div class="form-group mx-4">
+                            <label for="pro_edit_new">SP mới</label>
+                            <select class="form-control" name="" id="pro_edit_new">
+                                <option value="" disabled selected>{{(this.pro_new === 1) ? 'Mới' : 'Cũ'}}</option>
                                 <option value="1">Mới</option>
                                 <option value="0">Cữ</option>
                             </select>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-group">
-                            <label for="cat_show">Ẩn / Hiện</label>
-                            <select class="form-control" id="cat_show" name="cat_show">
-                                <option value="" disabled selected></option>
+                        <div class="form-group mx-4">
+                            <label for="pro_edit_show">Ẩn / Hiện</label>
+                            <select class="form-control" id="pro_edit_show" name="cat_show">
+                                <option :value="this.pro_show" disabled selected>{{(this.pro_show === 1) ? 'Hiện' : 'Ẩn'}}</option>
                                 <option value="1">Hiện</option>
                                 <option value="0">Ẩn</option>
                             </select>
                         </div>
                     </div>
-                    <!--                    <div class="form-group">-->
-                    <!--                        <label>Mô Tả</label>-->
-                    <!--                        <ckeditor v-model="editorData" :config="editorConfig"></ckeditor>-->
-                    <!--                    </div>-->
+                    <div class="form-group">
+                        <label>Mô Tả</label>
+                        <ckeditor v-model="des_edit" :value="this.pro_description" :config="editorConfigEdit"></ckeditor>
+                    </div>
                     <button type="submit" class="btn bg-light" @click="showProduct = false">Hủy</button>
                     <button type="submit" class="btn btn-success">Lưu</button>
                 </form>
@@ -334,7 +327,9 @@
                     day_sale:1,
                     price:''
                 },
-                editorConfig: {}
+                editorConfig: {},
+                editorConfigEdit:{},
+                des_edit:'',
             }
         },
         mounted() {
@@ -378,7 +373,7 @@
                 this.fetchProducts(this.pagination_pro.path_page + '?page=' + this.pagination_pro.current_page);
             },
 
-            setValPro(val_id, val_name, val_cat_name, val_cat_id, val_gender, val_show, val_new, val_description, val_supplier_name, val_supplier_id) {
+            setValPro(val_id, val_name, val_cat_name, val_cat_id, val_gender,val_supplier_id,val_supplier_name,val_img, val_description,val_active,val_new, val_show) {
                 this.pro_id = val_id;
                 this.pro_name = val_name;
                 this.pro_cat_name = val_cat_name;
@@ -386,25 +381,27 @@
                 this.pro_gender = val_gender;
                 this.pro_supplier_id = val_supplier_id;
                 this.pro_supplier_name = val_supplier_name;
-                // this.pro_show= val_show;
+                this.pro_active = val_active;
+                this.pro_show= val_show;
                 this.pro_new = val_new;
+                this.pro_img = val_img;
                 this.pro_description = val_description;
 
 
             },
             //Edit CATEGORY
             editCategory() {
-                let id_cat = document.getElementById('cat_id').value;
-                let name_cat = document.getElementById('cat_name').value;
+                let id_pro = document.getElementById('pro_edit_id').value;
+                let name_pro = document.getElementById('cat_name').value;
                 let item_cat = document.getElementById('cat_item').value;
                 let gender_cat = document.getElementById('cat_gender').value;
                 let show_cat = document.getElementById('cat_show').value;
                 if (confirm('Bạn chắc chứ?')) {
                     axios.post(RESOURCE + '/category/edit/' + id_cat, {
-                        val_1: name_cat,
-                        val_2: item_cat,
-                        val_3: gender_cat,
-                        val_4: show_cat
+                        // val_1: name_cat,
+                        // val_2: item_cat,
+                        // val_3: gender_cat,
+                        // val_4: show_cat
                     })
                         .then(res => {
                             this.fetchCategories();

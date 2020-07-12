@@ -165,13 +165,13 @@ class apiController extends Controller
         $add_pro->save();
 //        return $add_pro;
 
-        $pro_price = new Price;
-        $pro_price->date_id = $request->get('date_sale');
-        $pro_price->percent_value = $request->get('percent_discount');
-        $pro_price->product_id = $add_pro->product_id;
-        $pro_price->unit_price =  $request->get('pro_price');
-        $pro_price->save();
-        return response()->json(['success' => 'success']);
+//        $pro_price = new Price;
+//        $pro_price->date_id = $request->get('date_sale');
+//        $pro_price->percent_value = $request->get('percent_discount');
+//        $pro_price->product_id = $add_pro->product_id;
+//        $pro_price->unit_price =  $request->get('pro_price');
+//        $pro_price->save();
+//        return response()->json(['success' => 'success']);
     }
     public function getProductAttribute(){
         $attr = DB::table('product_attribute')
