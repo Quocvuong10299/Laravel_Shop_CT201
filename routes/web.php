@@ -19,6 +19,8 @@ Route::post('/checkouts','HomeController@postCheckOuts')->name('postCheckOuts');
 Route::get('/san-pham/{id}','HomeController@productDetail')->name('productDetail');
 Route::get('/product/comment/{id}','HomeController@getComment')->name('getComment');
 Route::post('/san-pham/{id}','HomeController@postComment')->name('postComment');
+Route::get('/time-comment','HomeController@getTimePost')->name('getTimePost');
+Route::get('/sale-product','HomeController@getProductSale')->name('getProductSale');
 //route get ajax
 Route::get('/select-color','HomeController@selectColor');
 Route::get('/select-size','HomeController@selectSize')->name('changeSize');
@@ -70,6 +72,7 @@ Route::group(['prefix'=>'api','middleware' => 'adminLogin'], function(){
     Route::get('/products/detail/{id}','Api\apiController@getDetailProduct');
     Route::get('/products/product_attributes','Api\apiController@getProductAttribute');
     Route::post('/products/add','Api\apiController@addProduct');
+    Route::post('/products/edit/{id}','Api\apiController@editProduct');
 
 //    ROUTE PRODUCT ATTRIBUTE
     Route::get('/attribute/all-pro','Api\apiController@getProAttr');
@@ -107,9 +110,11 @@ Route::group(['prefix'=>'api','middleware' => 'adminLogin'], function(){
     Route::get('/orders/detail/{id}','Api\apiController@getDetailOrder');
     Route::put('/orders/state-status/{id}','Api\apiController@stateStatus');
     Route::get('/orders/to-day','Api\apiController@getOrderToday');
-    Route::get('/orders/revenue/month','Api\apiController@getRevenueMonth');
+//    Route::get('/orders/revenue/month','Api\apiController@getRevenueMonth');
     Route::get('/orders/count-length','Api\apiController@getNumberOrder');
     Route::get('/orders/list-day','Api\apiController@getListDay');
+    Route::get('/orders/revenue-order','Api\apiController@getPrice_Filter_onday');
+    Route::post('/orders/revenue-order','Api\apiController@post_revenue_one_day');
 });
 
 Route::group(['prefix'=>'admin/dashboard','middleware' => 'adminLogin'], function(){

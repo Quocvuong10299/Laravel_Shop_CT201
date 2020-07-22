@@ -39,7 +39,13 @@ class Price extends Model
                 'products.category_gender_id',
                 'products.product_slug',
                 'products.product_description',
-            ])->get();
+                'products.product_show',
+                'products.product_new',
+            ])
+            ->where('products.product_show',1)
+            ->where('products.product_new',1)
+            ->orderBy('products.updated_at','DESC')
+            ->get();
         return $datas;
     }
     public static function getProductSale(){
@@ -61,9 +67,37 @@ class Price extends Model
                 'products.category_gender_id',
                 'products.product_slug',
                 'products.product_description',
+                'products.product_show'
             ])
             ->where('prices.date_id','>',1)
+            ->where('products.product_show',1)
             ->get();
+        return $datas_sale;
+    }
+    public static function getProductSalePaginate(){
+        $datas_sale = DB::table('prices')
+            ->join('products', 'prices.product_id', '=', 'products.product_id')
+            ->join('date_sale', 'prices.date_id', '=', 'date_sale.date_id')
+            ->select
+            ([
+                'prices.unit_price',
+                'prices.percent_value',
+                'prices.promotion_price',
+                'prices.date_id',
+                'date_sale.date_start',
+                'date_sale.date_end',
+                'prices.product_id',
+                'products.product_name',
+                'products.product_image',
+                'products.category_id',
+                'products.category_gender_id',
+                'products.product_slug',
+                'products.product_description',
+                'products.product_show'
+            ])
+            ->where('prices.date_id','>',1)
+            ->where('products.product_show',1)
+            ->paginate(9);
         return $datas_sale;
     }
     public static function getProductPaginate(){
@@ -84,7 +118,8 @@ class Price extends Model
                 'products.category_gender_id',
                 'products.supplier_id',
                 'products.product_slug',
-            ]);
+            ])
+            ->where('products.product_show',1);
         return $data_paginate;
     }
     public static function getSearch($search_content){
@@ -107,6 +142,7 @@ class Price extends Model
                 'products.product_slug',
                 'products.product_description',
             ])
+            ->where('products.product_show',1)
             ->where('products.product_name', 'like', '%' .$search_content. '%')
             ->get();
         return $search;

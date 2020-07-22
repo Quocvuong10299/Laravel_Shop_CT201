@@ -33,7 +33,7 @@
                 <div class="col-12 col sm-12 col-md-3 col-lg-3 col-xl-3">
                     <div class="banner__component--show bg-danger">
                         <div class="number_render">
-                            <h1>150</h1>
+                            <h1>0</h1>
                             <p>Trả Hàng</p>
                         </div>
                         <i class="fa fa-undo" aria-hidden="true"></i>
@@ -60,19 +60,20 @@
         name: "dashboard-component",
         data(){
             return{
-                listday:'',
+                revenue_day:'',
+                loading: false,
                 datacollection: {
                     //Data to be represented on x-axis
-                    labels: [""],
+                    labels: Array(31).fill(null),
                     datasets: [{
-                        label: 'Doanh thu hằng tháng',
+                        label: 'Doanh thu',
                         backgroundColor: 'rgba(0, 0, 0, 0.1)',
                         borderColor:'rgb(75, 192, 192)',
                         pointBackgroundColor: 'white',
                         borderWidth: 2,
                         pointBorderColor: '#249EBF',
                         //Data to be represented on y-axis
-                        data: [0, 0, 0, 0, 90, 10, 20, 40, 50, 35, 90, 100]
+                        data: [100, 20, 30, 50, 90, 10, 20, 40, 50, 35, 90, 100,12,12,50,12,14,15,16,89,200,12,45,78,78,98,52,85,96,30,31]
                     }]
                 },
                 options: {
@@ -85,11 +86,11 @@
             }
         },
         mounted () {
-            this.renderChart(this.datacollection, this.options);
+            this.listDay();
             this.countBillToDay();
             this.countMemBerToDay();
-            this.countRevenueMonth();
-            this.listDay();
+            this.get_revenue_one_day();
+            // this.countRevenueMonth();
         },
         computed:{
             totalBillToDay(){
@@ -115,19 +116,37 @@
                         this.member = res.data.length;
                     })
             },
-            countRevenueMonth(){
-                axios.get(RESOURCE + '/orders/revenue/month')
+            // countRevenueMonth(){
+            //     axios.get(RESOURCE + '/orders/revenue/month')
+            //         .then(res => {
+            //             this.revenueMonth =res.data;
+            //         })
+            // } ,
+            async listDay(){
+                const res = await axios.get(RESOURCE + '/orders/list-day');
+                // console.log(res.data);
+                this.datacollection.labels = res.data;
+                this.loading = true;
+            },
+            async get_revenue_one_day(){
+                axios.get(RESOURCE + '/orders/revenue-order')
                     .then(res => {
-                        this.revenueMonth =res.data;
+                        this.revenue_day =res.data;
                     })
-            } ,
-            listDay(){
-                axios.get(RESOURCE + '/orders/list-day')
+            },
+            async post_revenue_one_day(){
+                // var item = this.revenue_day;
+                this.loading = false;
+                axios.post(RESOURCE + '/orders/revenue-order',{items:this.revenue_day})
                     .then(res => {
-                        this.datacollection = {
-                            labels:res.data,
-                        }
+
                     })
+                setTimeout(() => this.loading = true, 2000);
+            }
+        },
+        watch: {
+            loading: function() {
+                this.renderChart(this.datacollection, this.options);
             }
         }
     }

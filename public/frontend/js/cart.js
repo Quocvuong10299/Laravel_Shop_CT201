@@ -103,31 +103,32 @@
 
 
     //plus and minius value
-    $('.buttons').click(function () {
-        var $button = $(this);
-        let oldValue = $button.parent().find("input").val();
-        let maxAtrribute = $('#input_quantitys').attr('max');
-        if ($button.text() == "+") {
-            if(oldValue < maxAtrribute){
-                var newVal = parseFloat(oldValue) + 1;
-
-            }else{
-                alert('Sản phẩm đã vượt tồn kho!');
-                return false;
-            }
-        } else {
-            // Don't allow decrementing below zero
-            if (oldValue > 0) {
-                var newVal = parseFloat(oldValue) - 1;
-                if(newVal < 1){
-                    return false
-                }
-            } else {
-                newVal = 1;
-            }
-        }
-       $button.parent().find("input").attr('value',newVal);
-    });
+    // $('.buttons').on('click',function () {
+    //     var button = $(this);
+    //     let oldValue = $button.parent().find("input").val();
+    //     let maxAtrribute = $('#input_quantitys').attr('max');
+    //     if (button.text() == "+") {
+    //         if(oldValue < maxAtrribute){
+    //             var newVal = parseFloat(oldValue) + 1;
+    //             return  newVal;
+    //
+    //         }else{
+    //             alert('Sản phẩm đã vượt tồn kho!');
+    //             return false;
+    //         }
+    //     } else {
+    //         // Don't allow decrementing below zero
+    //         if (oldValue > 0) {
+    //             var newVal = parseFloat(oldValue) - 1;
+    //             if(newVal < 1){
+    //                 return false
+    //             }
+    //         } else {
+    //             newVal = 1;
+    //         }
+    //     }
+    //    $button.parent().find("input").attr('value',newVal);
+    // });
 
 
     //update cart

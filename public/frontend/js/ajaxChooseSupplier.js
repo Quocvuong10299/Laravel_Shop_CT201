@@ -12,13 +12,13 @@
                         ` <div class="col-6 col-lg-3 col-md-4 col-xl-3 col-xs-6 col-sm-6 product__layout">
                                     <a href="/san-pham/${values.product_id}" class="w-100">
                                         <div class="scale__image">
-                                            <img style="width:100%;height: 183.75px;" src="${values.product_image}"/>
+                                            <img style="width:100%;height: 210px;" src="${'/storage/uploads/'+values.product_image}"/>
                                         </div>
                                         <div class="info__products--component mt-2 p-0">
                                             <h5>${values.product_name.slice(0,15)+'. . .'}</h5>
                                             <div class="show__price d-flex">
                                                 ${values.promotion_price > 0 ? `<p class="header--price_1">${values.unit_price}<small>đ</small></p><p class="header--price_2">${values.promotion_price}<small>đ</small></p>` : `<p class="header--price_2">${values.unit_price}<small>đ</small></p>`}
-                                                   
+
                                             </div>
                               </div>
                             </a>
@@ -60,7 +60,7 @@
                             `<div class="col-6 col-lg-3 col-md-4 col-xl-3 col-xs-6 col-sm-6 product__layout">
                                     <a href="/san-pham/${data[i].product_id}" class="w-100">
                                         <div class="scale__image">
-                                            <img style="width:100%;height: 183.75px;" src="${data[i].product_image}"/>
+                                            <img style="width:100%;height: 210px;" src="/storage/uploads/${data[i].product_image}"/>
                                         </div>
                                         <div class="info__products--component mt-2 p-0">
                                            <h5>${data[i].product_name.slice(0,15)+'. . .'}</h5>
@@ -105,7 +105,7 @@
                                 `<div class="col-6 col-lg-3 col-md-4 col-xl-3 col-xs-6 col-sm-6 product__layout">
                                     <a href="/san-pham/${data[i].product_id}" class="w-100">
                                         <div class="scale__image">
-                                            <img style="width:100%;height: 183.75px;" src="${data[i].product_image}"/>
+                                            <img style="width:100%;height: 210px;" src="/storage/uploads/${data[i].product_image}"/>
                                         </div>
                                         <div class="info__products--component mt-2 p-0">
                                            <h5>${data[i].product_name.slice(0,15)+'. . .'}</h5>

@@ -15,7 +15,7 @@
                 <div class="row">
                     @foreach($price_detail as $detail)
                         <div class="col-sm-12 col-md-6 col-lg-6 xs-12 col-xl-6">
-                            <img id="prodImage" style="width: 100%; height: 100%" src="{{$detail->product_image}}"/>
+                            <img id="prodImage" style="width: 100%; height: 100%" src="/storage/uploads/{{$detail->product_image}}"/>
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6 xs-12 col-xl-6">
                             <h4><strong id="prodName">{{$detail->product_name}}</strong></h4>

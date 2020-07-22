@@ -24,7 +24,9 @@
                     <td>{{(day.date_start===null)?"0":day.date_start}}</td>
                     <td>{{(day.date_end===null)?"0":day.date_end}}</td>
 <!--                    <td><button class="btn btn-warning" @click="date_edit = true">Sửa</button></td>-->
-                   <td> <button @click="date_edit = true; setValDate(day.date_id, day.date_start,day.date_end)" class="btn bg-warning" >Sửa</button></td>
+                   <td> <button @click="date_edit = true; setValDate(day.date_id, day.date_start,day.date_end)" class="btn bg-warning" >
+                       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                   </button></td>
                 </tr>
                 </tbody>
             </table>

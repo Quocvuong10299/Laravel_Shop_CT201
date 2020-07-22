@@ -25,3 +25,8 @@
 
     }
 </script>
+<style lang="scss">
+    .fa-pencil-square-o,.fa-trash-o{
+        color:#fff;
+    }
+</style>

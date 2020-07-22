@@ -19,7 +19,9 @@
                     <tr v-for="(slides, index) in slide" :key="index">
                         <th>{{slides.slide_id}}</th>
                         <td><img style="width:400px; height:200px" :src="'/storage/uploads/'+ slides.slide_link"/></td>
-                        <td><button class="btn btn-warning" @click="see = true; setValSlide(slides.slide_id, slides.slide_show)">Sửa</button></td>
+                        <td><button class="btn btn-warning" @click="see = true; setValSlide(slides.slide_id, slides.slide_show)">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </button></td>
                     </tr>
                     </tbody>
                 </table>

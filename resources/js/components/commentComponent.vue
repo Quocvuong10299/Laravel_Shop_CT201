@@ -26,7 +26,9 @@
                             </div>
                         </td>
                         <td>{{cmt.created_at}}</td>
-                        <td><button class="btn btn-danger" @click="deleteCmt(cmt.comment_id)">Xóa</button></td>
+                        <td><button class="btn btn-danger" @click="deleteCmt(cmt.comment_id)">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        </button></td>
                     </tr>
                     </tbody>
                 </table>

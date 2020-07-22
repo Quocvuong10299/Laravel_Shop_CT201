@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 use App\Helper\Date;
 use function App\Helper\Helper\getDiscount;
-use function App\Helper\Date;
+//use function App\Helper\Date;
 use function App\Helper\Helper\toSlug;
 use App\Payment;
 use App\Slide;
@@ -31,7 +31,7 @@ class HomeController extends Controller
     {
 //        get category gender
             $gender = Category_gender::all(['category_gender_id','category_gender_name']);
-            $data = Price::getProduct()->take(8)->sortByDesc('product_id');
+            $data = Price::getProduct()->take(8);
             $data->each(function ($dt) {
                 getDiscount($dt);
             });
@@ -44,6 +44,14 @@ class HomeController extends Controller
 //            get slide
             $slides = Slide::where('slide_show',1)->get();
             return view('pages.home', compact('data','data_sale','gender','slides'));
+    }
+//    get sale product
+    public function getProductSale(){
+        $pro_sale = Price::getProductSalePaginate();
+        $pro_sale->each(function ($dt){
+            getDiscount($dt);
+        });
+        return view('pages.sale_page', compact('pro_sale'));
     }
 //    get API comments
     public function getComment($id){
@@ -92,7 +100,13 @@ class HomeController extends Controller
     }
     public function getTimePost(){
         Carbon::setLocale('vi');
-//        $commentPost = Comment::
+        $timer = DB::table('comments')->get(['created_at']);
+//        foreach ($timer as $timers){
+//            $timeComment = Carbon::createFromFormat('Y-m-d',$timers)->diffForHumans();
+//            return response()->json($timeComment);
+//        }
+//        $timeComment = Carbon::createFromFormat('Y-m-d',$timer)->diffForHumans();
+//        return response()->json($timer);
     }
 //    API color option
     public function selectColor(Request $request){
@@ -143,7 +157,10 @@ class HomeController extends Controller
     public function searchIndex(Request $request){
         $seach_value = $request->value;
 
-        $products = DB::table('products')->where('product_name', 'like', '%' .$seach_value. '%')->get();
+        $products = DB::table('products')
+            ->where('products.product_show',1)
+            ->where('product_name', 'like', '%' .$seach_value. '%')
+            ->get();
         return response()->json($products);
     }
     public function search_content(Request $request){

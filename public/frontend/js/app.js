@@ -83,7 +83,7 @@
                       ` <a href="/san-pham/${values.product_id}">
                        <div style="width: 100%; height: 80px;" class="d-flex justify-content-between align-items-center p-3">
                            <p>${values.product_name}</p>
-                           <img src="${values.product_image}" style="width: 70px; height: 70px;">
+                           <img src="/storage/uploads/${values.product_image}" style="width: 70px; height: 70px;">
                        </div>
                    </a>`
                   )

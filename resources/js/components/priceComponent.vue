@@ -14,7 +14,7 @@
                         <th scope="col">% Giảm</th>
                         <th scope="col">Sản Phẩm</th>
                         <th scope="col">Giá</th>
-                        <th scope="col">Sản Phẩm</th>
+                        <th scope="col">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -26,7 +26,9 @@
                         <td>{{prices.unit_price}}</td>
                         <td>
                             <!--<button class="btn btn-warning">Ẩn</button>-->
-                            <button @click.prevent="priceEdit = true;setPrice(prices.product_id, prices.percent_value, prices.unit_price, prices.date_id,prices.product_name)" class="btn bg-warning" >Sửa</button>
+                            <button @click.prevent="priceEdit = true;setPrice(prices.product_id, prices.percent_value, prices.unit_price, prices.date_id,prices.product_name)" class="btn bg-warning" >
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </button>
                         </td>
                     </tr>
                     </tbody>
@@ -111,7 +113,7 @@
                         <label for="">Chương trình KM</label>
                         <select class="form-control" id="date_of_sale" name="">
                             <option disabled selected :value="this.date_of_sale">{{this.date_of_sale}}</option>
-                            <option v-for="(date_id, index) in dateID">
+                            <option v-for="(date_id, index) in dateID" :value="date_id.date_id">
                                 {{date_id.date_id}}-
                                 <span>(từ {{date_id.date_start}} đến {{date_id.date_end}})</span>
                             </option>
@@ -122,7 +124,7 @@
                             <label for="">% Giam Gia</label>
                             <select id="percent_of_sale" class="form-control" name="">
                                 <option disabled selected :value="this.percent_of_sale">{{this.percent_of_sale}}</option>
-                                <option v-for="(percents, index) in percent">
+                                <option v-for="(percents, index) in percent" :value="percents.percent_value">
                                     {{percents.percent_value}}%
                                 </option>
                             </select>

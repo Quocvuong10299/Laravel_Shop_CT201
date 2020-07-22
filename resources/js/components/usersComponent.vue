@@ -25,7 +25,9 @@
                     <!--<td v-if="user.user_role === 0">Khách Hàng</td>-->
                     <!--<td v-else>Admin</td>-->
                     <td>{{user.created_at}}</td>
-                    <td><button class="btn btn-danger" @click="deleteUser(user.user_id)">Xóa</button></td>
+                    <td><button class="btn btn-danger" @click="deleteUser(user.user_id)">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </button></td>
                 </tr>
                 </tbody>
             </table>

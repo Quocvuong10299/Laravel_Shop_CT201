@@ -25,6 +25,7 @@ use Response;
 use DB;
 use Storage;
 use App\Helper\Date;
+use Carbon\Carbon;
 use function App\Helper\Helper\toSlug;
 class apiController extends Controller
 {
@@ -152,6 +153,7 @@ class apiController extends Controller
         return response()->json($percent_sale);
     }
     public function addProduct(Request $request){
+        $image_pro = $request->get('pro_image');
         $add_pro = new Product;
         $add_pro->product_name = $request->get('name');
         $add_pro->product_slug = toSlug($request->get('name'));
@@ -162,6 +164,8 @@ class apiController extends Controller
         $add_pro->product_active = $request->get('active');
         $add_pro->product_new = $request->get('pro_new');
         $add_pro->product_show = $request->get('show');
+//        $add_pro->product_image= $request->get('pro_image');
+        $add_pro->product_image = $this->saveImgBase64($image_pro, 'uploads');
         $add_pro->save();
 //        return $add_pro;
 
@@ -172,6 +176,21 @@ class apiController extends Controller
 //        $pro_price->unit_price =  $request->get('pro_price');
 //        $pro_price->save();
 //        return response()->json(['success' => 'success']);
+    }
+    public function editProduct(Request $request,$id){
+        $edit_pro = Product::where('product_id', $id)->first();
+        $edit_pro->category_id = $request->get('val_pro_2');
+        $edit_pro->category_gender_id = $request->get('val_pro_3');
+        $edit_pro->supplier_id = $request->get('val_pro_7');
+        $edit_pro->product_name = $request->get('val_pro_1');
+        $edit_pro->product_slug = toSlug($request->get('val_pro_1'));
+//        $edit_pro->product_image = $request->get('val_4');
+//        $edit_pro->product_description = $request->get('val_4');
+        $edit_pro->product_active = $request->get('val_pro_5');
+        $edit_pro->product_new = $request->get('val_pro_6');
+        $edit_pro->product_show = $request->get('val_pro_4');
+        $edit_pro->save();
+        return $edit_pro;
     }
     public function getProductAttribute(){
         $attr = DB::table('product_attribute')
@@ -411,35 +430,6 @@ class apiController extends Controller
         $bill_today = DB::table('orders')->whereDate('order_date',$current_day)->get();
         return response()->json($bill_today);
     }
-    public function getRevenueMonth(){
-        $year = date('Y');
-        $revenueMonth_1 = DB::table('orders')->orderBy('order_date','desc')->whereMonth('order_date','=',1)->whereYear('order_date','=',$year)->get(['order_total']);
-        $revenueMonth_2 = DB::table('orders')->orderBy('order_date','desc')->whereMonth('order_date','=',2)->whereYear('order_date','=',$year)->get(['order_total']);
-        $revenueMonth_3 = DB::table('orders')->orderBy('order_date','desc')->whereMonth('order_date','=',3)->whereYear('order_date','=',$year)->get(['order_total']);
-        $revenueMonth_4 = DB::table('orders')->orderBy('order_date','desc')->whereMonth('order_date','=',4)->whereYear('order_date','=',$year)->get(['order_total']);
-        $revenueMonth_5 = DB::table('orders')->orderBy('order_date','desc')->whereMonth('order_date','=',5)->whereYear('order_date','=',$year)->get(['order_total']);
-        $revenueMonth_6 = DB::table('orders')->orderBy('order_date','desc')->whereMonth('order_date','=',6)->whereYear('order_date','=',$year)->get(['order_total']);
-        $revenueMonth_7 = DB::table('orders')->orderBy('order_date','desc')->whereMonth('order_date','=',7)->whereYear('order_date','=',$year)->get(['order_total']);
-        $revenueMonth_8 = DB::table('orders')->orderBy('order_date','desc')->whereMonth('order_date','=',8)->whereYear('order_date','=',$year)->get(['order_total']);
-        $revenueMonth_9 = DB::table('orders')->orderBy('order_date','desc')->whereMonth('order_date','=',9)->whereYear('order_date','=',$year)->get(['order_total']);
-        $revenueMonth_10 = DB::table('orders')->orderBy('order_date','desc')->whereMonth('order_date','=',10)->whereYear('order_date','=',$year)->get(['order_total']);
-        $revenueMonth_11 = DB::table('orders')->orderBy('order_date','desc')->whereMonth('order_date','=',11)->whereYear('order_date','=',$year)->get(['order_total']);
-        $revenueMonth_12 = DB::table('orders')->orderBy('order_date','desc')->whereMonth('order_date','=',12)->whereYear('order_date','=',$year)->get(['order_total']);
-        return Response::json(array(
-            'revenueMonth_1' => $revenueMonth_1,
-            'revenueMonth_2' => $revenueMonth_2,
-            'revenueMonth_3' => $revenueMonth_3,
-            'revenueMonth_4' => $revenueMonth_4,
-            'revenueMonth_5' => $revenueMonth_5,
-            'revenueMonth_6' => $revenueMonth_6,
-            'revenueMonth_7' => $revenueMonth_7,
-            'revenueMonth_8' => $revenueMonth_8,
-            'revenueMonth_9' => $revenueMonth_9,
-            'revenueMonth_10' => $revenueMonth_10,
-            'revenueMonth_11' => $revenueMonth_11,
-            'revenueMonth_12' => $revenueMonth_12,
-        ));
-    }
     public function getNumberOrder(){
         $count_length = DB::table('orders')->where('order_state',0)->get();
         return response()->json($count_length);
@@ -447,5 +437,30 @@ class apiController extends Controller
     public function getListDay(){
         $listDay = Date::getListDayInMonth();
         return response()->json($listDay);
+    }
+    public function getPrice_Filter_onday(Request $request){
+//        $start_date = '2020-07-01';
+//        $end_date = '2020-07-20';
+//        $start = Carbon::parse($start_date);
+//        $end = Carbon::parse($end_date);
+//        $filter_order = Order::where('order_current_day','<=',$end)
+//            ->where('order_current_day','>=',$start)
+//            ->get(['order_total','order_current_day']);
+//        $sum = 0;
+//        foreach ($filter_order as $key=>$value){
+//            $sum += $value->order_total;
+//        }
+//        return response()->json($filter_order);
+        $today = Carbon::now();
+        $day_filter = Carbon::parse($today);
+        $get_filter_day = Order::whereDate('order_date',$day_filter)->get(['order_total']);
+        $sum = 0;
+        foreach ($get_filter_day as $key=>$value){
+            $sum += $value->order_total;
+        }
+        return response()->json($sum);
+    }
+    public function post_revenue_one_day(Request $request){
+
     }
 }

@@ -58,7 +58,7 @@
                                 @endif
                             </li>
                         @endforeach
-                        <li><a href="#"> Giảm Giá </a></li>
+                        <li><a href="{{route('getProductSale')}}"> Giảm Giá </a></li>
                         <li class="{{ request()->is('more/*') ? 'active-menu' : '' }}"><a href="{{route('contactUS')}}"> Liên Hệ </a></li>
                     </ul>
                 </nav>

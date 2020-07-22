@@ -13,7 +13,11 @@ class PagesController extends Controller
         $data_products = Price::getProductPaginate()
             ->where('category_gender_id',$gender)
             ->where('category_id',$slug)
+            ->where('product_show',1)
             ->paginate(9);
+        $data_products->each(function ($dt) {
+            getDiscount($dt);
+        });
         return view('pages.products',compact('data_products'));
     }
 //    API show all product follow gender

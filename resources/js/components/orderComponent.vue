@@ -7,6 +7,7 @@
                     <th scope="col">Mã HD</th>
                     <th scope="col">Tên Khách Hàng</th>
                     <th scope="col">Ngày Đặt</th>
+                    <th scope="col">SDT</th>
                     <th scope="col">Tổng Tiền</th>
                     <th scope="col">Trạng thái</th>
                     <th scope="col">Hành động</th>
@@ -18,6 +19,7 @@
                     <th scope="row">#{{orders.order_id}}</th>
                     <td>{{orders.order_user_name}}</td>
                     <td>{{orders.order_date}}</td>
+                    <td>{{orders.order_phone}}</td>
                     <td>VND <strong>{{orders.order_total}}</strong></td>
                     <td>
                         <select @change="changeState($event, index)" v-model="orders.order_state" :class="(orders.order_state === 0) ? 'text-danger' :'text-success'" class="form-control form-control-sm">

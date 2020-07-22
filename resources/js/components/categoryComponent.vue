@@ -13,7 +13,7 @@
                     <thead class="thead-dark">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Loại SP</th>
+                        <th scope="col">Loại Sản Phẩm</th>
                         <th scope="col">Dành cho</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -25,7 +25,9 @@
                         <td>{{(cat.category_gender_id === 1) ? 'Nam' : 'Nữ'}}</td>
                         <td>
                             <!--<button class="btn btn-warning">Ẩn</button>-->
-                            <button @click="isShow = true; setVal(cat.category_id, cat.category_name, cat.parent_id, cat.category_gender_id, cat.category_show)" class="btn bg-warning" >Sửa</button>
+                            <button @click="isShow = true; setVal(cat.category_id, cat.category_name, cat.parent_id, cat.category_gender_id, cat.category_show)" class="btn bg-warning" >
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </button>
                         </td>
                     </tr>
                     </tbody>

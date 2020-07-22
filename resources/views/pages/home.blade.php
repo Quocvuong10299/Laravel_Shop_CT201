@@ -22,7 +22,7 @@
                 <div class="col-lg-4 col-sm-12 col-md-4 col-xs-12 gender__component">
                         <div class="gender__component--image my-2">
                             <img src="/frontend/images/image3.webp"/>
-                            <a href="#">
+                            <a href="{{route('getProductSale')}}">
                                 <div class="overlay-image">
                                     <div class="gender__component--title btn_1">
                                         <h5 class="text-dark font_1"> Giảm Giá </h5>
@@ -45,7 +45,7 @@
                             <div class="label-sale mx-2 my-3">
                                 <p>-{{$sale->percent_value}}%</p>
                             </div>
-                            <img style="height: 192px;" src="{{$sale->product_image}}"/>
+                            <img style="height: 192px;" src="/storage/uploads/{{$sale->product_image}}"/>
                             <div class="info__products--component">
                                 <h5>{{substr($sale->product_name,0,15).' . . .'}}</h5>
                                 <div class="show__price d-flex">
@@ -80,7 +80,7 @@
                         </div>
                         <a href="{{route('productDetail', $product_data->product_id)}}" class="w-100">
                             <div class="scale__image overflow-hidden">
-                                <img style="width:255px;height: 255px;" src="{{$product_data->product_image}}" class="product_hover"/>
+                                <img style="width:255px;height: 255px;" src="/storage/uploads/{{$product_data->product_image}}" class="product_hover"/>
                             </div>
                             <div class="info__products--component">
                                 <h5>{{substr($product_data->product_name,0,15).' . . .'}}</h5>

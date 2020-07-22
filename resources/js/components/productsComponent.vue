@@ -1,7 +1,8 @@
 <template>
     <div class="main position-relative">
         <div class="row w-100 mx-0">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 bg-white px-0 mx-0 d-flex justify-content-end">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 bg-white px-0 mx-0 d-flex align-items-center justify-content-end">
+                <input style="width: 300px;border:1px solid #ccc;" type="text" v-model="search_pro" placeholder="Tìm kiếm sản phảm" class="form-control mr-2" />
                 <button @click="is_add = true" class="btn btn-success my-1 mr-2">Thêm mới</button>
             </div>
         </div>
@@ -21,7 +22,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="(pro, index) in products" :key="pro.product_id">
+                    <tr v-for="(pro, index) in filterPro" :key="pro.product_id">
                         <th scope="row">{{pro.product_id}}</th>
                         <td>{{pro.product_name}}</td>
                         <td>{{pro.category_name}}</td>
@@ -131,7 +132,7 @@
                         <div class="form-group mx-4">
                             <label for="pro_edit_new">SP mới</label>
                             <select class="form-control" name="" id="pro_edit_new">
-                                <option value="" disabled selected>{{(this.pro_new === 1) ? 'Mới' : 'Cũ'}}</option>
+                                <option :value="this.pro_new" disabled selected>{{(this.pro_new === 1) ? 'Mới' : 'Cũ'}}</option>
                                 <option value="1">Mới</option>
                                 <option value="0">Cữ</option>
                             </select>
@@ -147,10 +148,10 @@
                     </div>
                     <div class="form-group">
                         <label>Mô Tả</label>
-                        <ckeditor v-model="des_edit" :value="this.pro_description" :config="editorConfigEdit"></ckeditor>
+                        <ckeditor id="des_edit" :value="this.pro_description" name="DSC" :config="editorConfigEdit"></ckeditor>
                     </div>
                     <button type="submit" class="btn bg-light" @click="showProduct = false">Hủy</button>
-                    <button type="submit" class="btn btn-success">Lưu</button>
+                    <button type="submit" class="btn btn-success" @click.prevent="editCategory()">Lưu</button>
                 </form>
             </div>
             <div class="overlay_form"></div>
@@ -174,7 +175,7 @@
                         </thead>
                         <tbody>
                         <tr v-for="(prod, index) in data_pro_detail" :key="prod.product_id">
-                            <td><img width="80" height="80" :src="prod.product_image"/></td>
+                            <td><img width="80" height="80" :src="'/storage/uploads/'+prod.product_image"/></td>
                             <td>Cái</td>
                             <td v-html="prod.product_description" style="max-width: 20rem"></td>
                             <td>{{(prod.product_new === 1) ? 'Mới' : 'Cũ' }}</td>
@@ -251,29 +252,18 @@
                                <option value="0">Ẩn</option>
                            </select>
                        </div>
-<!--                       <div class="form-group">-->
-<!--                           <label>Mã Ngày Sale</label>-->
-<!--                           <select v-model="newPro.day_sale" class="form-control">-->
-<!--                               <option disabled selected> Chọn Ngày Giảm </option>-->
-<!--                               <option v-for="(date_discount, index) in date_sale" :value="date_discount.date_id">-->
-<!--                                   {{date_discount.date_start + ' đến ' + date_discount.date_end}}-->
-<!--                               </option>-->
-<!--                           </select>-->
-<!--                       </div>-->
-<!--                       <div class="form-group">-->
-<!--                           <label for="pro_percent">% giảm</label>-->
-<!--                           <select v-model="newPro.percent_sale" class="form-control" id="pro_percent" name="pro_percent">-->
-<!--                               <option disabled selected> Chọn % Giảm </option>-->
-<!--                               <option v-for="(percent, index) in percent_discount" :value="percent.percent_value">-->
-<!--                                   {{percent.percent_value}}-->
-<!--                               </option>-->
-<!--                           </select>-->
-<!--                       </div>-->
+                       <div class="">
+                           <div class="col-12 col-md-12 my-3" v-if="">
+                               <img :src="image" class="img-responsive" height="70" width="90">
+                           </div>
+                           <div class="col-12 col-md-12 my-3">
+                               <input type="file" v-on:change="onImageChange" class="form-control">
+                           </div>
+                       </div>
                    </div>
-<!--                    <div class="form-group">-->
-<!--                        <label>Giá</label>-->
-<!--                        <input style="border: 1px solid #ccc" v-model="newPro.price" type="number">-->
-<!--                    </div>-->
+
+
+
                     <div class="form-group">
                         <label>Mô Tả</label>
                         <ckeditor v-model="newPro.product_description" :config="editorConfig"></ckeditor>
@@ -313,6 +303,7 @@
                 showDetail: false,
                 is_add: false,
                 data_pro_detail: [],
+                image: null,
                 newPro: {
                     name: '',
                     category_id: '',
@@ -330,6 +321,7 @@
                 editorConfig: {},
                 editorConfigEdit:{},
                 des_edit:'',
+                search_pro:'',
             }
         },
         mounted() {
@@ -392,20 +384,26 @@
             //Edit CATEGORY
             editCategory() {
                 let id_pro = document.getElementById('pro_edit_id').value;
-                let name_pro = document.getElementById('cat_name').value;
-                let item_cat = document.getElementById('cat_item').value;
-                let gender_cat = document.getElementById('cat_gender').value;
-                let show_cat = document.getElementById('cat_show').value;
+                let name_pro = document.getElementById('pro_edit_name').value;
+                let item_pro = document.getElementById('pro_edit_item').value;
+                let gender_pro = document.getElementById('pro_edit_gender').value;
+                let show_pro = document.getElementById('pro_edit_show').value;
+                let active_pro = document.getElementById('pro_edit_active').value;
+                let new_pro = document.getElementById('pro_edit_new').value;
+                let supplier_pro = document.getElementById('pro_edit_supplier').value;
                 if (confirm('Bạn chắc chứ?')) {
-                    axios.post(RESOURCE + '/category/edit/' + id_cat, {
-                        // val_1: name_cat,
-                        // val_2: item_cat,
-                        // val_3: gender_cat,
-                        // val_4: show_cat
+                    axios.post(RESOURCE + '/products/edit/' + id_pro, {
+                        val_pro_1: name_pro,
+                        val_pro_2: item_pro,
+                        val_pro_3: gender_pro,
+                        val_pro_4: show_pro,
+                        val_pro_5: active_pro,
+                        val_pro_6: new_pro,
+                        val_pro_7: supplier_pro,
                     })
                         .then(res => {
-                            this.fetchCategories();
-                            this.isShow = false
+                            this.fetchProducts();
+                            this.showProduct = false
                         });
                 }
 
@@ -432,11 +430,38 @@
                     date_sale:this.newPro.day_sale,
                     percent_discount:this.newPro.percent_sale,
                     pro_price: this.newPro.price,
+                    pro_image:this.image,
                 })
                     .then(res => {
                         this.fetchProducts();
                         this.is_add = false;
                     });
+            },
+            onImageChange(e) {
+                let files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                this.createImage(files[0]);
+            },
+            createImage(file) {
+                let reader = new FileReader();
+                reader.onload = (e) => {
+                    this.image = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        },
+        computed:{
+            filterPro(){
+                if(this.search_pro){
+                    return this.products
+                        .filter((item) => {
+                            return item.product_name.toLowerCase().indexOf(this.search_pro.toLowerCase()) > -1;
+                        })
+                }else{
+                    return this.products;
+                }
+
             }
         }
     }

@@ -1,7 +1,8 @@
 <template>
     <div class="main position-relative">
         <div class="row w-100 mx-0">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 bg-white px-0 mx-0 d-flex justify-content-end">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 bg-white px-0 mx-0 d-flex align-items-center justify-content-end">
+                <input style="width: 300px;border:1px solid #ccc;" type="text" v-model="search_sku" placeholder="Tìm kiếm sku" class="form-control mr-2" />
                 <button class="btn btn-success my-1 mr-2" @click="is_add_attr = true">Thêm mới</button>
             </div>
         </div>
@@ -20,7 +21,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="(attr, index) in attribute" :key="index">
+                    <tr v-for="(attr, index) in filterSku" :key="index">
                         <th scope="row">{{attr.product_id}}</th>
                         <th scope="row">{{attr.product_name}}</th>
                         <td>
@@ -32,7 +33,9 @@
                         <td>
                             <!--<button class="btn btn-warning">Ẩn</button>-->
 <!--                            <button @click="is_edit_attr = true; setValEdit(attr.product_id,attr.product_name,attr.size_value,attr.sku,attr.quantity_current,attr.color_name)" class="btn bg-warning" >Sửa</button>-->
-                            <button class="btn bg-danger" @click="deleteAttr(attr.sku)">Xóa</button>
+                            <button class="btn bg-danger" @click="deleteAttr(attr.sku)">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
                         </td>
                     </tr>
                     </tbody>
@@ -169,6 +172,7 @@
                 color_attr:[],
                 size_attr:[],
                 pro_attr:[],
+                search_sku:'',
                 new_attr:{
                     pro_id:'',
                     sku:'',
@@ -276,6 +280,19 @@
             //
             // },
         },
+        computed:{
+            filterSku(){
+                if(this.search_sku){
+                    return this.attribute
+                        .filter((item) => {
+                            return item.sku.toLowerCase().indexOf(this.search_sku.toLowerCase()) > -1;
+                        })
+                }else{
+                    return this.attribute;
+                }
+
+            }
+        }
     }
 </script>
 

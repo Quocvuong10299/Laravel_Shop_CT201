@@ -52,15 +52,16 @@
        });
 //    click minus and plus quantity
        $('.button').click(function () {
-           var $button = $(this);
-           let oldValue = $button.parent().find("input").val();
-           let maxAtrribute = $('#input_quantity').attr('max');
-           if ($button.text() == "+") {
-               if(oldValue < maxAtrribute){
-                   var newVal = parseFloat(oldValue) + 1;
-               }else{
-                   alert('Sản phẩm đã vượt tồn kho!');
-                   return false;
+           var button = $(this);
+           var oldValue = button.parent().find("input").val();
+           // var current_num = $('#input_quantity').val();
+           var maxAtrribute = $('#input_quantity').attr('max');
+           if (button.text() == "+") {
+               var newVal = parseFloat(oldValue) + 1;
+
+               if(newVal > maxAtrribute){
+                  alert('Vượt quá số lượng tồn kho!');
+                  return false;
                }
 
            } else {
@@ -74,7 +75,7 @@
                    newVal = 1;
                }
            }
-           $button.parent().find("input").attr('value',newVal);
+           button.parent().find("input").attr('value',newVal);
        });
     //show comment ajax
     window.onload = comments();

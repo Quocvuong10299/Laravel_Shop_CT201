@@ -1,7 +1,7 @@
 @extends('master')
 @section('content')
     <!--start main-->
-    <div class="main mt-5 container-fluid">
+    <div style="min-height: 50vh" class="main mt-5 container-fluid">
         <div class="container my-5">
             <div class="line__url--component">
                 <ul class="d-flex list__url--component px-2">
@@ -17,7 +17,7 @@
                                 <div class="col-md-3  col-sm-6 product__layout">
                                     <a href="{{route('productDetail', $data_product->product_id)}}" class="w-100">
                                         <div class="scale__image overflow-hidden">
-                                            <img style="width:100%;height: 183.75px;" src="{{$data_product->product_image}}" class="product_hover"/>
+                                            <img style="width:100%;height: 250px;" src="/storage/uploads/{{$data_product->product_image}}" class="product_hover"/>
                                         </div>
                                         <div class="info__products--component mt-2 p-0">
                                             <h5>{{substr($data_product->product_name,0,15).' . . .'}}</h5>
